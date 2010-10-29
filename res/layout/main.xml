@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bgclouds"
+    android:padding="3dip"
+    android:stretchColumns="1">
+    
+    	<TextView android:id="@+id/date_title"
+   				  android:layout_width="fill_parent"  			      
+  			      android:layout_weight="1"
+  			      android:padding="3dip"
+  			      android:textSize="30sp"
+  			      android:gravity="center"
+  			      android:textColor="#000000"
+  			 	  android:text="@string/date_title"/>	  
+    
+    
+    <TableRow android:layout_width="fill_parent"
+  			  android:layout_height="fill_parent"  			
+    		  android:layout_span="3">
+    
+	    <ImageView android:id="@+id/tone"
+	    		   android:layout_weight="1"
+				   android:scaleType="center"
+				   android:gravity="center"
+				   android:padding="3dip"
+				   android:layout_gravity="center"
+				   android:layout_width="wrap_content"
+		           android:layout_height="wrap_content"
+		           android:src="@drawable/tone1"/>  
+	           
+	</TableRow>
+	
+    <TableRow android:layout_width="fill_parent"
+  			  android:layout_height="fill_parent"  			
+    		  android:layout_span="3">
+              
+	<ImageView android:id="@+id/guide"
+			   android:scaleType="center"
+			   android:layout_weight="1"
+			   android:layout_width="wrap_content"
+	           android:layout_height="wrap_content"
+	           android:src="@drawable/glyph2"/>  
+	           
+	</TableRow>
+	<TableRow>
+              
+	<ImageView android:id="@+id/antipode"
+			   android:layout_width="wrap_content"
+	           android:layout_height="wrap_content"	          
+	           android:src="@drawable/glyph4"/>                
+              
+	<ImageView android:id="@+id/seal"
+			   android:layout_width="wrap_content"
+	           android:layout_height="wrap_content"
+	           android:src="@drawable/glyph3"/>  
+	           
+	<ImageView android:id="@+id/analog"
+			   android:layout_width="wrap_content"
+	           android:layout_height="wrap_content"
+	           android:src="@drawable/glyph5"/>  
+	           
+	</TableRow>
+	<TableRow>
+              
+	<ImageView android:id="@+id/occult"
+			   android:layout_weight="1"
+			   android:layout_width="wrap_content"
+	           android:layout_height="wrap_content"
+	           android:src="@drawable/glyph6"/>  
+	           
+	</TableRow>
+	
+	<TextView android:id="@+id/date_name"
+   				  android:layout_width="fill_parent"  			      
+  			      android:layout_weight="1"
+  			      android:textSize="20sp"
+  			      android:padding="3dip"
+  			      android:gravity="center"
+  			      android:textColor="#000000"
+  			 	  android:text="@string/date_name"/>	  
+	
+<!--	 <Button android:layout_height="wrap_content"-->
+<!--                    android:text="@string/prev_day"-->
+<!--                    android:id="@+id/prevDayButton"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    />-->
+<!--                    -->
+<!--	 <Button android:layout_height="wrap_content"-->
+<!--                    android:text="@string/next_day"-->
+<!--                    android:id="@+id/nextDayButton"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    />-->
+                    
+                    
+	
+</TableLayout>  
+
+
+<!--  
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+<TextView  
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:text="@string/hello"
+    />
+</LinearLayout>
+-->

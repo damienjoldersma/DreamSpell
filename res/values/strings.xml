@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, DreamSpell!</string>
+    <string name="app_name">DreamSpell</string>
+    <string name="date_title">Date</string>    
+    <string name="date_name">Name</string> 
+	<string name="prev_day">&lt;&lt;</string>    
+	<string name="next_day">&gt;&gt;</string>    
+</resources>
