@@ -6,6 +6,7 @@ import java.util.Currency;
 import java.util.Date;
 
 import android.app.Activity;
+import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -17,9 +18,18 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class DreamSpell extends Activity implements OnTouchListener {
+public class DreamSpell extends Activity
+ {
 	
 	public static final String TAG = "DreamSpell";
+	
+
+    private static final int SWIPE_MIN_DISTANCE = 120;
+    private static final int SWIPE_MAX_OFF_PATH = 250;
+    private static final int SWIPE_THRESHOLD_VELOCITY = 200;
+    private GestureDetector gestureDetector;
+    View.OnTouchListener gestureListener;
+
 	
 	/** Called when the activity is first created. */
 	@Override
@@ -29,6 +39,18 @@ public class DreamSpell extends Activity implements OnTouchListener {
 		setContentView(R.layout.main);
 
 		calc();
+		
+		  // Gesture detection
+        gestureDetector = new GestureDetector(new MyGestureDetector());
+         gestureListener = new View.OnTouchListener() {
+             public boolean onTouch(View v, MotionEvent event) {
+                 if (gestureDetector.onTouchEvent(event)) {
+                     return true;
+                 }
+                 return false;
+             }
+         };
+
 		 
 //		Button nextDayButton = (Button) findViewById(R.id.nextDayButton);
 //		nextDayButton.setOnClickListener(new View.OnClickListener() {
@@ -54,48 +76,48 @@ public class DreamSpell extends Activity implements OnTouchListener {
 	@Override
 	public boolean onTouchEvent(MotionEvent event)
 	{
-		Log.d(TAG,"onTouchEvent! ");
+		//Log.d(TAG,"onTouchEvent! ");
 		
-		GestureDetector gestureDetector = new GestureDetector(gestureListener);
+		//GestureDetector gestureDetector = new GestureDetector(gestureListener);
 		if ( gestureDetector.onTouchEvent(event) )
 		{
-			Log.d(TAG,"onTouchEvent case1");
+			//Log.d(TAG,"onTouchEvent case1");
 			return true;
 		}
 		else
 		{
-			Log.d(TAG,"onTouchEvent case2");
+			//Log.d(TAG,"onTouchEvent case2");
 			return false;
 		}
 	}
 	
 	
 
-	SimpleOnGestureListener gestureListener = new SimpleOnGestureListener() {
-		private int SWIPE_MIN_DISTANCE = 120;
-		private int SWIPE_MAX_OFF_PATH = 250;
-		private int SWIPE_THRESHOLD_VELOCITY = 200;
-		
-		@Override 
-		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) 
-		{
-			Log.d(TAG,"Checking onFling: " + e1.getX() + " " + e2.getX() + " " + velocityX);
-			if ( e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY ) 
-			{
-				// do something
-				Log.d(TAG,"OnFling case1");
-				return true;
-			} 
-			else if ( e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY )
-			{
-				// do something else
-				Log.d(TAG,"OnFling case2");
-				return true;
-			}
-			
-			return false;
-		}
-	};
+//	SimpleOnGestureListener gestureListener = new SimpleOnGestureListener() {
+//		private int SWIPE_MIN_DISTANCE = 120;
+//		private int SWIPE_MAX_OFF_PATH = 250;
+//		private int SWIPE_THRESHOLD_VELOCITY = 200;
+//		
+//		@Override 
+//		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) 
+//		{
+//			Log.d(TAG,"Checking onFling: " + e1.getX() + " " + e2.getX() + " " + velocityX);
+//			if ( e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY ) 
+//			{
+//				// do something
+//				Log.d(TAG,"OnFling case1");
+//				return true;
+//			} 
+//			else if ( e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY )
+//			{
+//				// do something else
+//				Log.d(TAG,"OnFling case2");
+//				return true;
+//			}
+//			
+//			return false;
+//		}
+//	};
 	
 	private void calc() {
 		calc(new Date(System.currentTimeMillis()));
@@ -131,25 +153,78 @@ public class DreamSpell extends Activity implements OnTouchListener {
 		guide.setImageResource(AndroidUtil.getGlyphResource(DreamSpellUtil.getGuide()));
 	}
 
-	private void addDay() {
+	public void removeDay() {
+		removeDay(1);
+	}
+
+	public void addDay() {
+		addDay(1);
+	}
+	
+	private void addDay(int i) {
+		Log.d(TAG, "addDay " + i);
 		Calendar c = Calendar.getInstance();
 		Date d = DreamSpellUtil.currentDate;
 		c.setTime(d);
-		c.add(Calendar.DAY_OF_YEAR,1);
+		c.add(Calendar.DAY_OF_YEAR,i);
 		calc(c.getTime());
 	}
 
-	private void removeDay() {
+	private void removeDay(int i) {
+		Log.d(TAG, "removeDay " + i);
 		Calendar c = Calendar.getInstance();
 		Date d = DreamSpellUtil.currentDate;
 		c.setTime(d);
-		c.add(Calendar.DAY_OF_YEAR,-1);
+		c.add(Calendar.DAY_OF_YEAR,-i);
 		calc(c.getTime());
 	}
 
-	@Override
 	public boolean onTouch(View v, MotionEvent event) {
 		Log.d(TAG, "onTouch");
 		return false;
 	}
+	
+	class MyGestureDetector extends SimpleOnGestureListener {
+	    @Override
+	    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+	    	Log.d(TAG, "MyGestureDetector onFling!");
+	        try {
+	            //if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH)
+	            //{
+	            //	Log.d(TAG, "MyGestureDetector we got a swipe max off path");
+	            //    return false;
+	            //}
+	        	
+	            // right to left swipe
+	            if(e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) 
+	            {
+	                //Toast.makeText(SelectFilterActivity.this, "Left Swipe", Toast.LENGTH_SHORT`enter code here`).show();
+	            	Log.d(TAG, "MyGestureDetector Left Swipe");
+	            	removeDay(20);
+	            }  
+	            else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) 
+	            {
+	                //Toast.makeText(SelectFilterActivity.this, "Right Swipe", Toast.LENGTH_SHORT).show();
+	            	Log.d(TAG, "MyGestureDetector Right Swipe");
+	            	addDay(20);
+	            }
+	            else if(e1.getY() - e2.getY() > SWIPE_MIN_DISTANCE && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) 
+	            {
+	                //Toast.makeText(SelectFilterActivity.this, "Left Swipe", Toast.LENGTH_SHORT`enter code here`).show();
+	            	Log.d(TAG, "MyGestureDetector Up Swipe");
+	            	removeDay();
+	            }  
+	            else if (e2.getY() - e1.getY() > SWIPE_MIN_DISTANCE && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) 
+	            {
+	                //Toast.makeText(SelectFilterActivity.this, "Right Swipe", Toast.LENGTH_SHORT).show();
+	            	Log.d(TAG, "MyGestureDetector Down Swipe");
+	            	addDay();
+	            }
+	        } catch (Exception e) {
+	            // nothing
+	        }
+	        return false;
+	    }
+	}
 }
+
