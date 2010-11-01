@@ -4,6 +4,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import android.util.Log;
+
 public class DreamSpellUtil {
 
 	/**
@@ -282,8 +284,6 @@ public class DreamSpellUtil {
 		String power = seals[g][4];
 		return power;
 	}				 
-	
-	
 	
 	public static void Calc()
 	{

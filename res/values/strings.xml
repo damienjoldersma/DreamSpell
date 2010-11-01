@@ -5,5 +5,7 @@
     <string name="date_title">Date</string>    
     <string name="date_name">Name</string> 
 	<string name="prev_day">&lt;&lt;</string>    
-	<string name="next_day">&gt;&gt;</string>    
+	<string name="next_day">&gt;&gt;</string>  
+	<string name="goto_today">Today</string>    
+	<string name="goto_day">Find</string>    
 </resources>
