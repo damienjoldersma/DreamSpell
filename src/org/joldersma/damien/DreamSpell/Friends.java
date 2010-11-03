@@ -1,16 +1,18 @@
 package org.joldersma.damien.DreamSpell;
 
-import android.app.Activity;
+import android.app.ListActivity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
-public class Friends extends Activity {
+public class Friends extends ListActivity {
 
 	public static final String TAG = "Friends";
 	
@@ -24,7 +26,7 @@ public class Friends extends Activity {
         setContentView(R.layout.friends);
 
         // Obtain handles to UI objects
-        mFriendList = (ListView) findViewById(R.id.friendList);
+        //mFriendList = (ListView) findViewById(R.id.);
         
         // Populate the contact list
         populateContactList();
@@ -46,7 +48,8 @@ public class Friends extends Activity {
         //        fields, new int[] {R.id.friendViewText, R.id.friendViewBirthDay});
         SimpleCursorAdapter adapter = new FriendListCursorAdapter(this, R.layout.friend_view, cursor,
                 fields, new int[] {R.id.friendViewText});
-        mFriendList.setAdapter(adapter);
+        //mFriendList.setAdapter(adapter);
+        setListAdapter(adapter);
         
         //Cursor c = getAllContactData(0);
         //getColumnData(c);
@@ -109,6 +112,17 @@ public class Friends extends Activity {
             } while (cur.moveToNext());
 
         }
+    }
+    
+    public static final String KEY_DATE = "date";
+    
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position,  id);
+        Log.d(TAG,"onListItemClick: click, id is " + id);
+        Intent i = new Intent(this, DreamSpell.class);
+        i.putExtra(KEY_DATE, DreamSpellUtil.getCurrentDate());
+        startActivity(i);
     }
     
 }
