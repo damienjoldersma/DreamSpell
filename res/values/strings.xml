@@ -8,4 +8,5 @@
 	<string name="next_day">&gt;&gt;</string>  
 	<string name="goto_today">Today</string>    
 	<string name="goto_day">Find</string>    
+	<string name="goto_friends">Friends</string>    
 </resources>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="65px"
+    android:stretchColumns="1">
+    <TableRow android:background="@drawable/bgclouds" 
+    		  android:layout_height="60px" 
+    		  android:layout_width="fill_parent">
+             
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:stretchColumns="1">
+    <TableRow > 
+	<ImageView android:id="@+id/friendViewTone"
+			   android:scaleType="centerInside"
+			   android:layout_width="50px"
+	           android:layout_height="15px"
+	           android:paddingBottom="3px"
+	           android:src="@drawable/tone1"/>   
+	          
+	</TableRow> 
+	<TableRow > 
+	<ImageView android:id="@+id/friendViewGlyph"
+			   android:scaleType="centerInside"
+			   android:layout_width="50px"
+	           android:layout_height="50px"
+	           android:paddingBottom="5px"
+	           android:src="@drawable/glyph1"/>   
+	</TableRow>
+	</TableLayout>
+	                      
+              
+    <TextView android:text="@+id/friendViewText"
+              android:id="@+id/friendViewText"
+              android:textColor="#000"
+              android:padding="10px" 
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"/>
+    <!--  
+    <TextView android:text="@+id/friendViewId"
+              android:id="@+id/friendViewId"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"/>
+    -->
+    <!--  
+    <TextView android:text="@+id/friendViewBirthDay"
+              android:id="@+id/friendViewBirthDay"
+              android:padding="10px" 
+              android:gravity="right"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"/>
+              -->
+ </TableRow>
+</TableLayout>             
+

@@ -3,6 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/bgclouds"
+    android:tileMode="repeat"
     android:padding="3dip"
     android:stretchColumns="1">
     

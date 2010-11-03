@@ -8,6 +8,7 @@ import java.util.GregorianCalendar;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -74,6 +75,7 @@ public class DreamSpell extends Activity
 	
 	private static final int TODAY_ID = Menu.FIRST;
 	private static final int DAY_ID = Menu.FIRST+1;
+	private static final int FRIENDS_ID = Menu.FIRST+2;
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) 
@@ -81,6 +83,7 @@ public class DreamSpell extends Activity
 		super.onCreateOptionsMenu(menu);
 		menu.add(0, TODAY_ID,0, R.string.goto_today);
 		menu.add(0, DAY_ID,0, R.string.goto_day);
+		menu.add(0, FRIENDS_ID,0, R.string.goto_friends);
 		return true;
 	}
 
@@ -93,6 +96,12 @@ public class DreamSpell extends Activity
             return true;
         case DAY_ID:
         	showDialog(DATE_DIALOG_ID);
+        	return true;
+        case FRIENDS_ID:
+        	Intent myIntent = new Intent();
+        	myIntent.setClassName("org.joldersma.damien.DreamSpell", "org.joldersma.damien.DreamSpell.Friends");
+        	//myIntent.putExtra("com.android.samples.SpecialValue", "Hello, Joe!"); // key/value pair, where key needs current package prefix.
+        	startActivity(myIntent);    
         	return true;
         }
         
