@@ -2,6 +2,7 @@ package org.joldersma.damien.DreamSpell;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Hashtable;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -21,7 +22,9 @@ public class FriendListCursorAdapter extends SimpleCursorAdapter implements Filt
 
 	public static final String TAG = "FriendListCursorAdapter";
 	
-    private Context context;
+	public Hashtable<String, Date> birthdays;
+
+	private Context context;
 
     private int layout;
 
@@ -29,6 +32,7 @@ public class FriendListCursorAdapter extends SimpleCursorAdapter implements Filt
         super(context, layout, c, from, to);
         this.context = context;
         this.layout = layout;
+        birthdays = new Hashtable<String, Date>();
     }
 
     @Override
@@ -57,6 +61,10 @@ public class FriendListCursorAdapter extends SimpleCursorAdapter implements Filt
     @Override
     public void bindView(View v, Context context, Cursor c) {
 
+    	int contactIdCol= c.getColumnIndex(Data._ID);
+	
+    	String contactId = c.getString(contactIdCol);
+  	
         int nameCol = c.getColumnIndex(ContactsContract.Data.DISPLAY_NAME);
 
         String name = c.getString(nameCol);
@@ -67,23 +75,26 @@ public class FriendListCursorAdapter extends SimpleCursorAdapter implements Filt
 
         Log.d(TAG,"Got bday: " + bday);
         
+        //1988-01-21
+        try
+    	{
+	        SimpleDateFormat df1 = new SimpleDateFormat( "yyyy-MM-dd" );
+	        Date birthday = df1.parse(bday);
+	        birthdays.put(contactId, birthday);
+	        
+	        DreamSpellUtil.Calc(birthday);
+    	}
+    	catch (Exception e)
+    	{
+    		Log.e(TAG, "Error setting tone",e);
+    		
+    	}
         /**
          * Next set the Tone of the entry.
          */
         ImageView tone = (ImageView) v.findViewById(R.id.friendViewTone);
         if (tone != null) {
-        	try
-        	{
-        		//1988-01-21
-        		SimpleDateFormat df1 = new SimpleDateFormat( "yyyy-MM-dd" );
-        		DreamSpellUtil.Calc(df1.parse(bday));
-        		tone.setImageResource(AndroidUtil.getToneResource(DreamSpellUtil.getTone()));
-        	}
-        	catch (Exception e)
-        	{
-        		Log.e(TAG, "Error setting tone",e);
-        		tone.setImageResource(R.drawable.tone1);
-        	}
+    		tone.setImageResource(AndroidUtil.getToneResource(DreamSpellUtil.getTone()));        	
         }
         
         /**
@@ -112,6 +123,8 @@ public class FriendListCursorAdapter extends SimpleCursorAdapter implements Filt
         if (name_text != null) {
             name_text.setText(name);
         }
+        
+        
     }
 
     @Override
@@ -131,4 +144,8 @@ public class FriendListCursorAdapter extends SimpleCursorAdapter implements Filt
         return context.getContentResolver().query(Data.CONTENT_URI, null,
                 buffer == null ? null : buffer.toString(), args, ContactsContract.Data.DISPLAY_NAME + " ASC");
     }
+    
+    public Hashtable<String, Date> getBirthdays() {
+		return birthdays;
+	}
 }

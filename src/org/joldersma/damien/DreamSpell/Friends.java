@@ -1,5 +1,7 @@
 package org.joldersma.damien.DreamSpell;
 
+import java.util.Date;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -17,6 +19,7 @@ public class Friends extends ListActivity {
 	public static final String TAG = "Friends";
 	
 	private ListView mFriendList;
+	FriendListCursorAdapter friendListCursorAdapter;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState)
@@ -46,10 +49,10 @@ public class Friends extends ListActivity {
         };
         //SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.friend_view, cursor,
         //        fields, new int[] {R.id.friendViewText, R.id.friendViewBirthDay});
-        SimpleCursorAdapter adapter = new FriendListCursorAdapter(this, R.layout.friend_view, cursor,
+        friendListCursorAdapter = new FriendListCursorAdapter(this, R.layout.friend_view, cursor,
                 fields, new int[] {R.id.friendViewText});
         //mFriendList.setAdapter(adapter);
-        setListAdapter(adapter);
+        setListAdapter(friendListCursorAdapter);
         
         //Cursor c = getAllContactData(0);
         //getColumnData(c);
@@ -120,8 +123,12 @@ public class Friends extends ListActivity {
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position,  id);
         Log.d(TAG,"onListItemClick: click, id is " + id);
+        
+        Date birthday = friendListCursorAdapter.getBirthdays().get(String.valueOf(id));
+        Log.d(TAG,"onListItemClick: putting birthday into extra - " + birthday);
+        
         Intent i = new Intent(this, DreamSpell.class);
-        i.putExtra(KEY_DATE, DreamSpellUtil.getCurrentDate());
+        i.putExtra(KEY_DATE, birthday);
         startActivity(i);
     }
     

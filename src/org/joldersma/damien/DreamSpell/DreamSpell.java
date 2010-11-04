@@ -57,8 +57,30 @@ public class DreamSpell extends Activity
 		Log.d(TAG,"** ON CREATE **");
 		setContentView(R.layout.main);
 
-		calc();
-		
+		// Check for bundle extra 
+		Intent intent = getIntent();
+		Bundle extra = intent.getExtras();
+		if ( extra != null )
+		{
+			Log.d(TAG,"Extra is not null");
+			Date date = (Date)extra.getSerializable(Friends.KEY_DATE);
+			if (date != null)
+			{
+				Log.d(TAG,"date is not null, calcing goodness");
+				calc(date);
+			}
+			else
+			{
+				Log.d(TAG,"date is null");
+				calc();
+			}
+				
+		}
+		else
+		{
+			Log.d(TAG,"Extra is null");
+			calc();
+		}
 		  // Gesture detection
         gestureDetector = new GestureDetector(new MyGestureDetector());
          gestureListener = new View.OnTouchListener() {
