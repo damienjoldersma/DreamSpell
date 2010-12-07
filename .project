@@ -30,4 +30,16 @@
 		<nature>com.android.ide.eclipse.adt.AndroidNature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>FacebookSDK_gen</name>
+			<type>2</type>
+			<location>/home/damien/workspaces/android/facebook-android-sdk/facebook/gen</location>
+		</link>
+		<link>
+			<name>FacebookSDK_src</name>
+			<type>2</type>
+			<location>/home/damien/workspaces/android/facebook-android-sdk/facebook/src</location>
+		</link>
+	</linkedResources>
 </projectDescription>

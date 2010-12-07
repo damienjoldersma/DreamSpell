@@ -4,6 +4,14 @@
   android:layout_width="wrap_content"
   android:layout_height="wrap_content">
   
+  <org.joldersma.damien.DreamSpell.LoginButton
+        android:id="@+id/login"
+        android:src="@drawable/login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:layout_margin="30dp"
+        />
+  
   <ListView android:layout_width="match_parent"           
               android:id="@+id/android:list"
               android:layout_height="wrap_content"

@@ -6,6 +6,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.joldersma.damien.DreamSpell.SessionEvents.AuthListener;
+import org.joldersma.damien.DreamSpell.SessionEvents.LogoutListener;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -16,15 +22,24 @@ import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.SimpleCursorAdapter;
+
+import com.facebook.android.AsyncFacebookRunner;
+import com.facebook.android.Facebook;
+import com.facebook.android.FacebookError;
+import com.facebook.android.Util;
 
 public class Friends extends ListActivity {
 
 	public static final String TAG = "Friends";
 	
+	public static final String APP_ID = "32395165793";
+	private Facebook mFacebook;
+    private AsyncFacebookRunner mAsyncRunner;
+	
 	private ListView mFriendList;
 	FriendListCursorAdapter friendListCursorAdapter;
+	
+	private LoginButton mLoginButton;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState)
@@ -32,12 +47,24 @@ public class Friends extends ListActivity {
         Log.v(TAG, "Activity State: onCreate()");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.friends);
+        
+		mFacebook = new Facebook(APP_ID);
+       	mAsyncRunner = new AsyncFacebookRunner(mFacebook);
+       	
+        SessionStore.restore(mFacebook, this);
+        SessionEvents.addAuthListener(new SampleAuthListener());
+        SessionEvents.addLogoutListener(new SampleLogoutListener());
+        mLoginButton = (LoginButton) findViewById(R.id.login);
+        mLoginButton.init(this, mFacebook);
 
         // Obtain handles to UI objects
         //mFriendList = (ListView) findViewById(R.id.);
         
         // Populate the contact list
-        populateContactList();
+        //populateContactList();
+       
+
+        
     }
 
 	/**
@@ -169,4 +196,110 @@ public class Friends extends ListActivity {
         startActivity(i);
     }
     
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode,
+                                    Intent data) {
+        mFacebook.authorizeCallback(requestCode, resultCode, data);
+    }
+
+    
+    
+    
+    public class SampleFriendsListener extends BaseRequestListener {
+
+        public void onComplete(final String response) {
+            try {
+                // process the response here: executed in background thread
+                Log.d("Facebook-Example", "Response: " + response.toString());
+                Log.d("Facebook-Example", "*************** BEGIN Response Formated *******");
+                Log.d("Facebook-Example", response.replace(",", ",\n"));
+                Log.d("Facebook-Example", "*************** END Response Formated *******");
+                
+                Log.d("Facebook-Example", "*************** BEGIN PARSE *******");
+                JSONObject json = Util.parseJson(response);
+      
+                JSONArray data = json.getJSONArray("data");
+                for (int i = 0; i < data.length(); i++) {                	
+					Log.d(TAG,String.format("data %s",i));
+
+					JSONObject d = data.getJSONObject(i);
+					String name = d.getString("name");
+					String birthday = null;
+					try { birthday = d.getString("birthday"); } catch (Exception e) {} 
+					String id = d.getString("id");
+					String pic = d.getString("picture");
+					
+					Log.d(TAG,String.format("data %s, name=%s, id=%s, birthday=%s, pic=%s",i,name,id,birthday,pic));
+				}
+                
+                Log.d("Facebook-Example", "*************** END PARSE *******");
+                
+                final String name = "FOO";// json.getString("data[0]name");
+
+                // then post the processed result back to the UI thread
+                // if we do not do this, an runtime exception will be generated
+                // e.g. "CalledFromWrongThreadException: Only the original
+                // thread that created a view hierarchy can touch its views."
+//                Example.this.runOnUiThread(new Runnable() {
+//                    public void run() {
+//                        mText.setText("Hello there, " + name + "!");
+//                    }
+//                });
+            } catch (JSONException e) {
+                Log.w("Facebook-Example", "JSON Error in response: " + e.toString());
+                Log.w(TAG,e);
+                e.printStackTrace();
+                
+            } catch (FacebookError e) {
+                Log.w("Facebook-Example", "Facebook Error: " + e.getMessage());
+            }
+        }
+
+		public void onFacebookError(FacebookError e) {
+			// TODO Auto-generated method stub
+			Log.e(TAG,"FacebookError=" + e.toString());
+			e.printStackTrace();
+		}
+    }
+    
+    public class SampleAuthListener implements AuthListener {
+
+        public void onAuthSucceed() {
+            Log.d(TAG,"You have logged in! ");
+            
+            Log.d(TAG,"DreamSpell now with new and improved me/friends?fields=id,name,picture,birthday!");
+            Bundle params = new Bundle();
+//            //String[] fields = { "id","name","picture" };
+            params.putString("fields", "id,name,picture,birthday");
+            mAsyncRunner.request("me/friends", params, new SampleFriendsListener());
+            
+        }
+
+        public void onAuthFail(String error) {
+        	Log.d(TAG,"Login Failed: " + error);
+        }
+    }
+
+    public class SampleLogoutListener implements LogoutListener {
+        public void onLogoutBegin() {
+        	Log.d(TAG,"Logging out...");
+        }
+
+        public void onLogoutFinish() {
+        	Log.d(TAG,"You have logged out! ");
+        }
+    }
+    
+    public class SampleDialogListener extends BaseDialogListener {
+
+        public void onComplete(Bundle values) {
+            final String postId = values.getString("post_id");
+            if (postId != null) {
+                Log.d("Facebook-Example", "Dialog Success! post_id=" + postId);
+                
+            } else {
+                Log.d("Facebook-Example", "No wall post made");
+            }
+        }
+    }
 }

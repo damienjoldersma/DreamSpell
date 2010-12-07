@@ -5,6 +5,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import org.joldersma.damien.DreamSpell.SessionEvents.AuthListener;
+import org.joldersma.damien.DreamSpell.SessionEvents.LogoutListener;
+
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -21,11 +24,17 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.android.AsyncFacebookRunner;
+import com.facebook.android.Facebook;
+
+
 public class DreamSpell extends Activity
  {
 	
 	public static final String TAG = "DreamSpell";
 	
+
+
 
     private static final int SWIPE_MIN_DISTANCE = 120;
     //private static final int SWIPE_MAX_OFF_PATH = 250;
@@ -57,6 +66,9 @@ public class DreamSpell extends Activity
 		Log.d(TAG,"** ON CREATE **");
 		setContentView(R.layout.main);
 
+
+		
+		
 		// Check for bundle extra 
 		Intent intent = getIntent();
 		Bundle extra = intent.getExtras();
@@ -347,5 +359,7 @@ public class DreamSpell extends Activity
                 }
                 return null;
             }
+            
+   
 }
 
