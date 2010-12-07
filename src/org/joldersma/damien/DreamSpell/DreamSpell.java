@@ -95,6 +95,39 @@ public class DreamSpell extends Activity
          setDefaultKeyMode(DEFAULT_KEYS_SEARCH_LOCAL);		
 	}
 	
+	
+	
+	@Override
+	protected void onRestart() {
+		// TODO Auto-generated method stub
+		super.onRestart();
+		Log.d(TAG,"onRestart");
+		calc();
+	}
+
+	@Override
+	protected void onRestoreInstanceState(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onRestoreInstanceState(savedInstanceState);
+		Log.d(TAG,"onRestoreInstanceState");
+	}
+
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		Log.d(TAG,"onResume");
+	}
+
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		Log.d(TAG,"onStart");
+	}
+
+
+
 	private static final int TODAY_ID = Menu.FIRST;
 	private static final int DAY_ID = Menu.FIRST+1;
 	private static final int FRIENDS_ID = Menu.FIRST+2;

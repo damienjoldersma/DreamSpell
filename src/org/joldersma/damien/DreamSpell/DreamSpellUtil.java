@@ -14,34 +14,34 @@ public class DreamSpellUtil {
 	public static void main(String[] args) {
 		
 
-		System.out.println("Hello Dream World!");
+//		System.out.println("Hello Dream World!");
 		
 		DreamSpellUtil.Calc();
 		
-		System.out.println("Name: " + DreamSpellUtil.GetName(DreamSpellUtil.getSeal()));
+//		System.out.println("Name: " + DreamSpellUtil.GetName(DreamSpellUtil.getSeal()));
 		
-		System.out.println("Tone: " + DreamSpellUtil.getTone() + " " + 
-				DreamSpellUtil.getTones()[DreamSpellUtil.getTone()][0] + " " +
-				DreamSpellUtil.GetToneAction(DreamSpellUtil.getTone()) + " " +
-				DreamSpellUtil.GetToneEssence(DreamSpellUtil.getTone()) + " " +
-				DreamSpellUtil.GetTonePower(DreamSpellUtil.getTone())
-		);
+//		System.out.println("Tone: " + DreamSpellUtil.getTone() + " " + 
+//				DreamSpellUtil.getTones()[DreamSpellUtil.getTone()][0] + " " +
+//				DreamSpellUtil.GetToneAction(DreamSpellUtil.getTone()) + " " +
+//				DreamSpellUtil.GetToneEssence(DreamSpellUtil.getTone()) + " " +
+//				DreamSpellUtil.GetTonePower(DreamSpellUtil.getTone())
+//		);
+//		
+//		System.out.println("Seal: " + DreamSpellUtil.getSeal() + " " + 
+//				DreamSpellUtil.getSeals()[DreamSpellUtil.getSeal()][0] + " " +
+//				DreamSpellUtil.GetAction() + " " +
+//				DreamSpellUtil.GetEssence() + " " +
+//				DreamSpellUtil.GetPower()
+//		);
 		
-		System.out.println("Seal: " + DreamSpellUtil.getSeal() + " " + 
-				DreamSpellUtil.getSeals()[DreamSpellUtil.getSeal()][0] + " " +
-				DreamSpellUtil.GetAction() + " " +
-				DreamSpellUtil.GetEssence() + " " +
-				DreamSpellUtil.GetPower()
-		);
-		
-		System.out.println("Analog: " + DreamSpellUtil.getAnalog());
-		System.out.println("Occult: " + DreamSpellUtil.getOccult());
-		System.out.println("Antipode: " + DreamSpellUtil.getAntipode());
-		System.out.println("Guide: " + DreamSpellUtil.getGuide());
+//		System.out.println("Analog: " + DreamSpellUtil.getAnalog());
+//		System.out.println("Occult: " + DreamSpellUtil.getOccult());
+//		System.out.println("Antipode: " + DreamSpellUtil.getAntipode());
+//		System.out.println("Guide: " + DreamSpellUtil.getGuide());
 		
 		//System.out.println("Year: " + DreamSpellUtil.get);
 		
-		System.out.println("CurrentDate: " + DreamSpellUtil.getCurrentDate());
+//		System.out.println("CurrentDate: " + DreamSpellUtil.getCurrentDate());
 	}
 
 	static double y,x,rem;
@@ -298,11 +298,17 @@ public class DreamSpellUtil {
 		
 		setCurrentDate(date);
 		
-		System.out.println("-- Year Seal: " + DreamSpellUtil.CalcYearSeal());
-		System.out.println("-- Year Tone: " + DreamSpellUtil.CalcYearTone());
-		System.out.println("-- Distance From Day Out Of Time: " + DreamSpellUtil.CalcDistanceFromDayOutOfTime());
-		System.out.println("-- Year Seal: " + DreamSpellUtil.CalcSeal());
-		System.out.println("-- Year Tone: " + DreamSpellUtil.CalcTone());
+////		System.out.println("-- Year Seal: " + DreamSpellUtil.CalcYearSeal());
+////		System.out.println("-- Year Tone: " + DreamSpellUtil.CalcYearTone());
+////		System.out.println("-- Distance From Day Out Of Time: " + DreamSpellUtil.CalcDistanceFromDayOutOfTime());
+////		System.out.println("-- Year Seal: " + DreamSpellUtil.CalcSeal());
+////		System.out.println("-- Year Tone: " + DreamSpellUtil.CalcTone());
+		
+		DreamSpellUtil.CalcYearSeal();
+		DreamSpellUtil.CalcYearTone();
+		DreamSpellUtil.CalcDistanceFromDayOutOfTime();
+		DreamSpellUtil.CalcSeal();
+		DreamSpellUtil.CalcTone();
 		
 		/*DreamSpellUtil.CalcYearSeal();
 		DreamSpellUtil.CalcYearTone();
@@ -312,17 +318,17 @@ public class DreamSpellUtil {
 		*/
 		
 		DreamSpellUtil.CalcOracle();
-		System.out.println("-- Guide: " + DreamSpellUtil.getGuide());
-		System.out.println("-- Antiopde: " + DreamSpellUtil.getAntipode());
-		System.out.println("-- Analog: " + DreamSpellUtil.getAnalog());
-		System.out.println("-- Occult: " + DreamSpellUtil.getOccult());
-		System.out.println("-- Kin: " + DreamSpellUtil.getKin());			
+//		System.out.println("-- Guide: " + DreamSpellUtil.getGuide());
+//		System.out.println("-- Antiopde: " + DreamSpellUtil.getAntipode());
+//		System.out.println("-- Analog: " + DreamSpellUtil.getAnalog());
+//		System.out.println("-- Occult: " + DreamSpellUtil.getOccult());
+//		System.out.println("-- Kin: " + DreamSpellUtil.getKin());			
 	}
 	
 	public static int CalcYearSeal()
 	{
-		System.out.println("DreamSpellUtil.CalcYearSeal: getCurrentDate is " + getCurrentDate());
-		System.out.println("DreamSpellUtil.CalcYearSeal: getCurrentDate.getYear is " + getCurrentDate());
+//		System.out.println("DreamSpellUtil.CalcYearSeal: getCurrentDate is " + getCurrentDate());
+//		System.out.println("DreamSpellUtil.CalcYearSeal: getCurrentDate.getYear is " + getCurrentDate());
 		
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(getCurrentDate());
@@ -331,15 +337,15 @@ public class DreamSpellUtil {
 		bmonth = cal.get(GregorianCalendar.MONTH)+1;
 		bday = cal.get(GregorianCalendar.DAY_OF_MONTH);
 		
-		System.out.println("byear: " + byear);
-		System.out.println("bmonth: " + bmonth);
-		System.out.println("bday: " + bday);			
+//		System.out.println("byear: " + byear);
+//		System.out.println("bmonth: " + bmonth);
+//		System.out.println("bday: " + bday);			
 		
 		//     calc year seal 
 		if((bmonth<7)||((bmonth==7)&&(bday<26)))byear--;      
-		System.out.println("byear after --: " + byear);
+//		System.out.println("byear after --: " + byear);
 		yseal=4+(15*(calcyseal(byear)-1));
-		System.out.println("yseal: " + yseal);
+//		System.out.println("yseal: " + yseal);
 		if(yseal==34)yseal=14;
 		if(yseal==49)yseal=9;
 		
