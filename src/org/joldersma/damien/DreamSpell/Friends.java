@@ -41,6 +41,8 @@ public class Friends extends ListActivity {
 	
 	private LoginButton mLoginButton;
 	
+	private List<Map<String, String>> friendsData;
+	
 	@Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -60,18 +62,36 @@ public class Friends extends ListActivity {
         // Obtain handles to UI objects
         //mFriendList = (ListView) findViewById(R.id.);
         
-        // Populate the contact list
-        //populateContactList();
-       
+        
+//        mLoginButton.setVisibility(mFacebook.isSessionValid() ?
+//                View.INVISIBLE :
+//                View.VISIBLE);
 
         
+        if ( mFacebook.isSessionValid() )
+        {
+        	// Populate the contact list
+        	Log.d(TAG,"onCreate valid session, going to populate");
+        	populateContactList();
+        }
+             
     }
 
 	/**
      * Populate the contact list based on account currently selected in the account spinner.
+	 * @param friendsData 
      */
     private void populateContactList() {
     	 Log.d(TAG,"populateContactList begin");
+    	 
+    	 if ( friendsData == null )
+    	 {
+    		 Log.d(TAG,"Going to skip populate, friendsData is null");
+    		 return;
+    	 }
+    	 
+    	// mLoginButton.setVisibility(View.INVISIBLE);
+    	 
         // Build adapter with contact entries
     	// Cursor cursor = getContacts();
     	
@@ -90,31 +110,31 @@ public class Friends extends ListActivity {
         setListAdapter(friendListCursorAdapter);
         */
   
-	  	List<Map<String, String>> groupData = new ArrayList<Map<String, String>>();
-    	Map<String, String> group;
-    	group = new HashMap<String, String>();
-        group.put("name", "damien");
-        group.put("birthday", "022277");
-        group.put("picture", "http://profile.ak.fbcdn.net/hprofile-ak-snc4/hs338.snc4/41773_775949236_4548_q.jpg");
-    	groupData.add(group);
-    	
-    	group = new HashMap<String, String>();
-        group.put("name", "damien1");
-        group.put("birthday", "022278");
-        group.put("picture", "http://profile.ak.fbcdn.net/hprofile-ak-snc4/hs338.snc4/41773_775949236_4548_q.jpg");
-        groupData.add(group);
-    	 
-    	group = new HashMap<String, String>();
-        group.put("name", "damien2");
-        group.put("birthday", "022279");
-        group.put("picture", "http://profile.ak.fbcdn.net/hprofile-ak-snc4/hs338.snc4/41773_775949236_4548_q.jpg");
-        groupData.add(group);
+//	  	List<Map<String, String>> groupData = new ArrayList<Map<String, String>>();
+//    	Map<String, String> group;
+//    	group = new HashMap<String, String>();
+//        group.put("name", "damien");
+//        group.put("birthday", "022277");
+//        group.put("picture", "http://profile.ak.fbcdn.net/hprofile-ak-snc4/hs338.snc4/41773_775949236_4548_q.jpg");
+//    	groupData.add(group);
+//    	
+//    	group = new HashMap<String, String>();
+//        group.put("name", "damien1");
+//        group.put("birthday", "022278");
+//        group.put("picture", "http://profile.ak.fbcdn.net/hprofile-ak-snc4/hs338.snc4/41773_775949236_4548_q.jpg");
+//        groupData.add(group);
+//    	 
+//    	group = new HashMap<String, String>();
+//        group.put("name", "damien2");
+//        group.put("birthday", "022279");
+//        group.put("picture", "http://profile.ak.fbcdn.net/hprofile-ak-snc4/hs338.snc4/41773_775949236_4548_q.jpg");
+//        groupData.add(group);
     	 
 //    	SimpleAdapter simpleAdapter = new SimpleAdapter(this,groupData,R.layout.friend_view, new String[] { "name","birthday"},
 //                new int[]{ R.id.friendViewText, R.id.friendViewBirthDay });
 //    	setListAdapter(simpleAdapter);
     	
-    	FriendListFacebookAdapter friendListCursorAdapter = new FriendListFacebookAdapter(this, groupData, R.layout.friend_view,
+    	FriendListFacebookAdapter friendListCursorAdapter = new FriendListFacebookAdapter(this, friendsData, R.layout.friend_view,
         	new String[] { "name","birthday","picture"}, new int[] {R.id.friendViewText, R.id.friendViewBirthDay, R.id.friendViewImage});
     	setListAdapter(friendListCursorAdapter);
         
@@ -199,7 +219,9 @@ public class Friends extends ListActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode,
                                     Intent data) {
+    	Log.d(TAG,String.format("onActivityResult begin requestCode=%s, resultCode=%s",requestCode,resultCode));
         mFacebook.authorizeCallback(requestCode, resultCode, data);
+        Log.d(TAG,String.format("onActivityResult end requestCode=%s, resultCode=%s",requestCode,resultCode));
     }
 
     
@@ -211,11 +233,15 @@ public class Friends extends ListActivity {
             try {
                 // process the response here: executed in background thread
                 Log.d("Facebook-Example", "Response: " + response.toString());
-                Log.d("Facebook-Example", "*************** BEGIN Response Formated *******");
-                Log.d("Facebook-Example", response.replace(",", ",\n"));
-                Log.d("Facebook-Example", "*************** END Response Formated *******");
+//                Log.d("Facebook-Example", "*************** BEGIN Response Formated *******");
+//                Log.d("Facebook-Example", response.replace(",", ",\n"));
+//                Log.d("Facebook-Example", "*************** END Response Formated *******");
                 
                 Log.d("Facebook-Example", "*************** BEGIN PARSE *******");
+        	  	friendsData = new ArrayList<Map<String, String>>();
+            	Map<String, String> friend;
+            	
+                
                 JSONObject json = Util.parseJson(response);
       
                 JSONArray data = json.getJSONArray("data");
@@ -227,14 +253,35 @@ public class Friends extends ListActivity {
 					String birthday = null;
 					try { birthday = d.getString("birthday"); } catch (Exception e) {} 
 					String id = d.getString("id");
-					String pic = d.getString("picture");
+					String picture = d.getString("picture");
 					
-					Log.d(TAG,String.format("data %s, name=%s, id=%s, birthday=%s, pic=%s",i,name,id,birthday,pic));
+					friend = new HashMap<String, String>();
+					friend.put("id", name);
+	            	friend.put("name", name);
+	            	friend.put("birthday", birthday);
+	            	friend.put("picture", picture);
+	            	
+	            	if ( birthday != null )
+	            		friendsData.add(friend);
+					
+					Log.d(TAG,String.format("data %s, name=%s, id=%s, birthday=%s, pic=%s",i,name,id,birthday,picture));
 				}
                 
                 Log.d("Facebook-Example", "*************** END PARSE *******");
                 
-                final String name = "FOO";// json.getString("data[0]name");
+      
+                
+                // then post the processed result back to the UI thread
+                // if we do not do this, an runtime exception will be generated
+                // e.g. "CalledFromWrongThreadException: Only the original
+                // thread that created a view hierarchy can touch its views."
+                Friends.this.runOnUiThread(new Runnable() {
+                    public void run() {
+                    	populateContactList();
+                    }
+                });
+                
+                //final String name = "FOO";// json.getString("data[0]name");
 
                 // then post the processed result back to the UI thread
                 // if we do not do this, an runtime exception will be generated
@@ -267,12 +314,30 @@ public class Friends extends ListActivity {
         public void onAuthSucceed() {
             Log.d(TAG,"You have logged in! ");
             
+            //mLoginButton.setVisibility(View.INVISIBLE);
+
+            
+           
+            
             Log.d(TAG,"DreamSpell now with new and improved me/friends?fields=id,name,picture,birthday!");
             Bundle params = new Bundle();
 //            //String[] fields = { "id","name","picture" };
             params.putString("fields", "id,name,picture,birthday");
-            mAsyncRunner.request("me/friends", params, new SampleFriendsListener());
+          //  mAsyncRunner.request("me/friends", params, new SampleFriendsListener());
             
+            new Thread() {
+            	  @Override public void run() {
+            		  Log.d(TAG,"doing cyclone thread");
+                      Bundle params = new Bundle();
+                      params.putString("fields", "id,name,picture,birthday");
+            		  mAsyncRunner.request("me/friends", params, new SampleFriendsListener());
+            	  }
+            	}.start();
+    
+        	// Populate the contact list
+        	Log.d(TAG,"onAuthSucceed valid, going to populate");
+        	populateContactList();
+
         }
 
         public void onAuthFail(String error) {

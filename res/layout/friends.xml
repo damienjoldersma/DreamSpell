@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="wrap_content"
-  android:layout_height="wrap_content">
+
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   android:layout_width="fill_parent"
+   android:layout_height="fill_parent"
+   android:stretchColumns="1">
+  	<TableRow > 
+		<org.joldersma.damien.DreamSpell.LoginButton
+	       android:id="@+id/login"
+	       android:src="@drawable/login_button"
+	       android:layout_width="wrap_content"
+	       android:layout_height="wrap_content" 
+	       android:layout_margin="30dp"
+	       />
+	</TableRow>
+    <TableRow > 
+		<ListView android:layout_width="match_parent"           
+             android:id="@+id/android:list"
+             android:layout_height="wrap_content"
+             android:layout_weight="1"/>
+    </TableRow>
+</TableLayout>
+ 
+
   
-  <org.joldersma.damien.DreamSpell.LoginButton
-        android:id="@+id/login"
-        android:src="@drawable/login_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" 
-        android:layout_margin="30dp"
-        />
-  
-  <ListView android:layout_width="match_parent"           
-              android:id="@+id/android:list"
-              android:layout_height="wrap_content"
-              android:layout_weight="1"/>
-  
-</LinearLayout>
+
