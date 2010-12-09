@@ -14,13 +14,16 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.widget.DatePicker;
+import android.widget.Gallery;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -53,6 +56,11 @@ public class DreamSpell extends Activity
     private int mYear;
     private int mMonth;
     private int mDay;
+
+
+
+
+	private int SWIPE_DAYS = 1;
     
     static final int DATE_DIALOG_ID = 0;
     
@@ -105,6 +113,8 @@ public class DreamSpell extends Activity
          };
 
          setDefaultKeyMode(DEFAULT_KEYS_SEARCH_LOCAL);		
+         
+         registerForContextMenu(findViewById(R.id.date_title));
 	}
 	
 	
@@ -157,6 +167,7 @@ public class DreamSpell extends Activity
     @Override
 	public boolean onMenuItemSelected(int featureId, MenuItem item) 
     {
+    	Log.d(TAG,"Menu item selected" + item.getItemId());
         switch(item.getItemId()) {
         case TODAY_ID:
             calc();
@@ -174,6 +185,85 @@ public class DreamSpell extends Activity
         
         return super.onMenuItemSelected(featureId, item);
 	}
+    
+    
+
+
+
+	private static final int CHANGE_DAY_1 = Menu.FIRST;
+	private static final int CHANGE_DAY_4 = Menu.FIRST+1;
+	private static final int CHANGE_DAY_7 = Menu.FIRST+2;
+	private static final int CHANGE_DAY_13 = Menu.FIRST+3;
+	private static final int CHANGE_DAY_14 = Menu.FIRST+4;
+	private static final int CHANGE_DAY_20 = Menu.FIRST+5;
+	private static final int CHANGE_DAY_28 = Menu.FIRST+6;
+
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
+		// TODO Auto-generated method stub
+		
+		Log.d(TAG,"onCreateContextMenu going!");
+		
+		//super.onCreateContextMenu(menu, v, menuInfo);
+		menu.setHeaderTitle("Swipe Time Travel");
+		menu.add(0, CHANGE_DAY_1,0, R.string.CHANGE_DAY_1);
+		menu.add(0, CHANGE_DAY_4,0, R.string.CHANGE_DAY_4);
+		menu.add(0, CHANGE_DAY_7,0, R.string.CHANGE_DAY_7);
+		menu.add(0, CHANGE_DAY_13,0, R.string.CHANGE_DAY_13);
+		menu.add(0, CHANGE_DAY_14,0, R.string.CHANGE_DAY_14);
+		menu.add(0, CHANGE_DAY_20,0, R.string.CHANGE_DAY_20);
+		menu.add(0, CHANGE_DAY_28,0, R.string.CHANGE_DAY_28);
+		
+	}
+
+	@Override
+	public void onContextMenuClosed(Menu menu) {
+		// TODO Auto-generated method stub
+		
+		Log.d(TAG,"onContextMenuClosed going!");
+		super.onContextMenuClosed(menu);
+		
+		
+	}
+
+	
+	
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		Log.d(TAG,"onContextItemSelected going! "  + item.getItemId());
+		//return super.onContextItemSelected(item);
+		
+		switch(item.getItemId()) 
+		{
+		case CHANGE_DAY_1:
+			SWIPE_DAYS = 1;
+			return true;
+		case CHANGE_DAY_4:
+			SWIPE_DAYS = 4;
+			return true;
+		case CHANGE_DAY_7:
+			SWIPE_DAYS = 7;
+			return true;
+		case CHANGE_DAY_13:
+			SWIPE_DAYS = 13;
+			return true;
+		case CHANGE_DAY_14:
+			SWIPE_DAYS = 14;
+			return true;
+		case CHANGE_DAY_20:
+			SWIPE_DAYS = 20;
+			return true;
+		case CHANGE_DAY_28:
+			SWIPE_DAYS = 28;
+			return true;
+		}
+
+		return super.onContextItemSelected(item);
+	}
+
+
 
 	@Override
     public boolean onSearchRequested() {
@@ -271,25 +361,25 @@ public class DreamSpell extends Activity
 	            {
 	                //Toast.makeText(SelectFilterActivity.this, "Left Swipe", Toast.LENGTH_SHORT`enter code here`).show();
 	            	Log.d(TAG, "MyGestureDetector Left Swipe");
-	            	removeDay(20);
+	            	removeDay(SWIPE_DAYS);
 	            }  
 	            else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) 
 	            {
 	                //Toast.makeText(SelectFilterActivity.this, "Right Swipe", Toast.LENGTH_SHORT).show();
 	            	Log.d(TAG, "MyGestureDetector Right Swipe");
-	            	addDay(20);
+	            	addDay(SWIPE_DAYS);
 	            }
 	            else if(e1.getY() - e2.getY() > SWIPE_MIN_DISTANCE && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) 
 	            {
 	                //Toast.makeText(SelectFilterActivity.this, "Left Swipe", Toast.LENGTH_SHORT`enter code here`).show();
 	            	Log.d(TAG, "MyGestureDetector Up Swipe");
-	            	removeDay();
+	            	removeDay(SWIPE_DAYS);
 	            }  
 	            else if (e2.getY() - e1.getY() > SWIPE_MIN_DISTANCE && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) 
 	            {
 	                //Toast.makeText(SelectFilterActivity.this, "Right Swipe", Toast.LENGTH_SHORT).show();
 	            	Log.d(TAG, "MyGestureDetector Down Swipe");
-	            	addDay();
+	            	addDay(SWIPE_DAYS);
 	            }
 	        } catch (Exception e) {
 	            // nothing

@@ -8,5 +8,15 @@
 	<string name="next_day">&gt;&gt;</string>  
 	<string name="goto_today">Today</string>    
 	<string name="goto_day">Find</string>    
-	<string name="goto_friends">Friends</string>    
+	<string name="goto_friends">Friends</string>
+	
+	<string name="CHANGE_DAY_1">1 Day</string>
+	<string name="CHANGE_DAY_4">4 Days</string>
+	<string name="CHANGE_DAY_7">7 Days</string>
+	<string name="CHANGE_DAY_13">13 Days</string>
+	<string name="CHANGE_DAY_14">14 Days</string>
+	<string name="CHANGE_DAY_20">20 Days</string>
+	<string name="CHANGE_DAY_28">28 Days</string>
+	<string name="CHANGE_DAY_30">30 Days</string>
+	<string name="CHANGE_DAY_31">31 Days</string>
 </resources>
