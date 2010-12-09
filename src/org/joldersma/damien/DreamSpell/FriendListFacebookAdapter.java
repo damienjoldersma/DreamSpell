@@ -102,10 +102,10 @@ public class FriendListFacebookAdapter extends SimpleAdapter {
         /**
          * Next set the birthday of the entry.
          */
-        TextView birthday_text = (TextView) v.findViewById(R.id.friendViewBirthDay);
-        if (birthday_text != null) {
-        	birthday_text.setText(birthday);
-        }
+//        TextView birthday_text = (TextView) v.findViewById(R.id.friendViewBirthDay);
+//        if (birthday_text != null) {
+//        	birthday_text.setText(birthday);
+//        }
        
         /**
          * Next set the photo of the entry.

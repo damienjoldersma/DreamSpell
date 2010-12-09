@@ -79,7 +79,19 @@ public class Friends extends ListActivity {
         }
         else
         	Log.d(TAG,"No LastNonConfigurationInstance to check for friendsData");
-
+        
+        if ( savedInstanceState != null )
+        {
+        	Log.d(TAG,"Ok have a savedInstanceState");
+        	for (String key : savedInstanceState.keySet()) {
+        		Log.d(TAG,"key=%s");
+        		
+        		
+			}
+        }
+       	else
+       		Log.d(TAG,"No savedInstanceState to check for friendsData");
+        
         if ( mFacebook.isSessionValid() )
         {
         	// Populate the contact list
@@ -93,13 +105,41 @@ public class Friends extends ListActivity {
 	@Override
 	public Object onRetainNonConfigurationInstance() 
 	{
-		Log.d(TAG,"WOW, maybe going to save friendsData");
+		Log.d(TAG,"WOW, onRetainNonConfigurationInstance maybe going to save friendsData");
 	  if (friendsData != null) // Check that the object exists
 	      return(friendsData);
 	  Log.d(TAG,"If you are reading this, it's because friends data is null, friendsData=" + friendsData);
 	  return super.onRetainNonConfigurationInstance();
 	}
 
+	
+	@Override
+	public void onSaveInstanceState(Bundle savedInstanceState) {
+	  // Save UI state changes to the savedInstanceState.
+	  // This bundle will be passed to onCreate if the process is
+	  // killed and restarted.
+		Log.d(TAG,"WOW, onSaveInstanceState maybe going to save friendsData");
+//	  savedInstanceState.putBoolean("MyBoolean", true);
+//	  savedInstanceState.putDouble("myDouble", 1.9);
+//	  savedInstanceState.putInt("MyInt", 1);
+//	  savedInstanceState.putString("MyString", "Welcome back to Android");
+	  
+	  if ( friendsData != null) {
+		  for (Map<String,String> friend : friendsData) {
+			  Log.d(TAG,"onSaveInstanceState adding friend=" + friend);
+			ArrayList<String> friendValues = new ArrayList<String>();
+			friendValues.add(friend.get("id"));
+			friendValues.add(friend.get("name"));
+			friendValues.add(friend.get("birthday"));
+			friendValues.add(friend.get("picture"));
+			savedInstanceState.putStringArrayList(friend.get("id"), friendValues);
+		  }
+	  }
+	  
+	  super.onSaveInstanceState(savedInstanceState);
+	}
+	
+	
 	/**
      * Populate the contact list based on account currently selected in the account spinner.
 	 * @param friendsData 
@@ -158,7 +198,7 @@ public class Friends extends ListActivity {
 //    	setListAdapter(simpleAdapter);
     	
     	FriendListFacebookAdapter friendListCursorAdapter = new FriendListFacebookAdapter(this, friendsData, R.layout.friend_view,
-        	new String[] { "name","birthday","picture"}, new int[] {R.id.friendViewText, R.id.friendViewBirthDay, R.id.friendViewImage});
+        	new String[] { "name","birthday","picture"}, new int[] {R.id.friendViewText, R.id.friendViewImage});
     	setListAdapter(friendListCursorAdapter);
         
         //Cursor c = getAllContactData(0);

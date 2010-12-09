@@ -143,18 +143,18 @@ public class FriendListCursorAdapter extends SimpleCursorAdapter implements Filt
         /**
          * Next set the birthday of the entry.
          */
-        TextView bday_text = (TextView) v.findViewById(R.id.friendViewBirthDay);
-        if (bday_text != null) {
-        	try {
-				SimpleDateFormat df1 = new SimpleDateFormat( "yyyy-MM-dd" );
-				Date d = df1.parse(bday);
-				SimpleDateFormat df2 = new SimpleDateFormat( "dd/MM/yyyy" );
-				bday_text.setText( df2.format(d) );
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-        }
+//        TextView bday_text = (TextView) v.findViewById(R.id.friendViewBirthDay);
+//        if (bday_text != null) {
+//        	try {
+//				SimpleDateFormat df1 = new SimpleDateFormat( "yyyy-MM-dd" );
+//				Date d = df1.parse(bday);
+//				SimpleDateFormat df2 = new SimpleDateFormat( "dd/MM/yyyy" );
+//				bday_text.setText( df2.format(d) );
+//			} catch (ParseException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//        }
         
         
         /**
