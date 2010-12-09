@@ -12,7 +12,7 @@
 			android:layout_width="70px"
 			android:layout_height="70px"
 			android:padding="5px"
-			android:src="@drawable/damien100"/>
+			android:src="@drawable/damien100" />
 
 		<TextView android:text="@+id/friendViewText"
 			android:id="@+id/friendViewText"

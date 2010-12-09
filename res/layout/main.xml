@@ -29,7 +29,7 @@
 				   android:layout_gravity="center"
 				   android:layout_width="wrap_content"
 		           android:layout_height="wrap_content"
-		           android:src="@drawable/tone1"/>  
+		           android:src="@drawable/tone13"/>  
 	           
 	</TableRow>
 	
@@ -45,24 +45,27 @@
 	           android:src="@drawable/glyph2"/>  
 	           
 	</TableRow>
-	<TableRow>
-              
-	<ImageView android:id="@+id/antipode"
-			   android:layout_width="wrap_content"
-	           android:layout_height="wrap_content"	          
-	           android:src="@drawable/glyph4"/>                
-              
+	<TableRow android:gravity="center">
+
+
+
+	<LinearLayout android:id="@+id/LinearLayout01" android:layout_width="wrap_content" android:layout_height="wrap_content">
+		<ImageView android:id="@+id/antipode"
+		android:layout_width="100px"
+		android:layout_height="100px"
+		android:src="@drawable/glyph3"/>
+
 	<ImageView android:id="@+id/seal"
-			   android:layout_width="wrap_content"
-	           android:layout_height="wrap_content"
-	           android:src="@drawable/glyph3"/>  
-	           
+		android:layout_width="100px"
+		android:layout_height="100px"
+		android:src="@drawable/glyph4"/>  
+
 	<ImageView android:id="@+id/analog"
-			   android:layout_width="wrap_content"
-	           android:layout_height="wrap_content"
-	           android:src="@drawable/glyph5"/>  
-	           
-	</TableRow>
+		android:layout_width="100px"
+		android:layout_height="100px"
+		android:src="@drawable/glyph5"/>  
+	</LinearLayout>
+</TableRow>
 	<TableRow>
               
 	<ImageView android:id="@+id/occult"
