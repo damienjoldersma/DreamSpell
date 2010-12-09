@@ -1,5 +1,6 @@
 package org.joldersma.damien.DreamSpell;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -60,14 +61,25 @@ public class Friends extends ListActivity {
         mLoginButton.init(this, mFacebook);
 
         // Obtain handles to UI objects
-        //mFriendList = (ListView) findViewById(R.id.);
+        //mFriendList = (ListView) findViewById(R.id.fr);
         
         
 //        mLoginButton.setVisibility(mFacebook.isSessionValid() ?
 //                View.INVISIBLE :
 //                View.VISIBLE);
-
         
+        //friendsData = getFriendsData(savedInstanceState);
+        
+        // Get the instance of the object that was stored
+        // if one exists
+        if (getLastNonConfigurationInstance() != null)
+        {
+        	Log.d(TAG,"WOW GOING TO GET SAVED FRIENDSDATA!");
+          friendsData = (List<Map<String, String>>)getLastNonConfigurationInstance();
+        }
+        else
+        	Log.d(TAG,"No LastNonConfigurationInstance to check for friendsData");
+
         if ( mFacebook.isSessionValid() )
         {
         	// Populate the contact list
@@ -76,6 +88,17 @@ public class Friends extends ListActivity {
         }
              
     }
+
+	// Store the instance of an object
+	@Override
+	public Object onRetainNonConfigurationInstance() 
+	{
+		Log.d(TAG,"WOW, maybe going to save friendsData");
+	  if (friendsData != null) // Check that the object exists
+	      return(friendsData);
+	  Log.d(TAG,"If you are reading this, it's because friends data is null, friendsData=" + friendsData);
+	  return super.onRetainNonConfigurationInstance();
+	}
 
 	/**
      * Populate the contact list based on account currently selected in the account spinner.
@@ -208,7 +231,38 @@ public class Friends extends ListActivity {
         super.onListItemClick(l, v, position,  id);
         Log.d(TAG,"onListItemClick: click, id is " + id);
         
-        Date birthday = friendListCursorAdapter.getBirthdays().get(String.valueOf(id));
+        Object o = l.getItemAtPosition(position);
+        Log.d(TAG,"onListItemClick: object o is " + o);
+        
+        HashMap<String, String> friend = (HashMap<String, String>) l.getItemAtPosition(position);
+        Log.d(TAG,"onListItemClick: friend is " + friend);
+        
+        String friendId = friend.get("id");
+        String name = friend.get("name");
+        String bday = friend.get("birthday");
+        String picture = friend.get("picture");
+        
+        Log.d(TAG,String.format("onListItemClick: friend values are friendId=%s, name=%s, bday=%s, picture=%s",friendId,name,bday,picture));
+        
+//        friend = new HashMap<String, String>();
+//		friend.put("id", name);
+//    	friend.put("name", name);
+//    	friend.put("birthday", birthday);
+//    	friend.put("picture", picture);
+        
+        Date birthday = new Date();//friendListCursorAdapter.getBirthdays().get(String.valueOf(id));
+        
+        try 
+        {
+        	SimpleDateFormat df1 = new SimpleDateFormat( "MM/dd/yyyy" );
+	        birthday = df1.parse(bday);
+        }
+        catch (Exception e)
+        {
+        	Log.w(TAG,"Couldn't parse birthday, " + bday);
+        	
+        }
+        
         Log.d(TAG,"onListItemClick: putting birthday into extra - " + birthday);
         
         Intent i = new Intent(this, DreamSpell.class);
@@ -246,7 +300,7 @@ public class Friends extends ListActivity {
       
                 JSONArray data = json.getJSONArray("data");
                 for (int i = 0; i < data.length(); i++) {                	
-					Log.d(TAG,String.format("data %s",i));
+					//Log.d(TAG,String.format("data %s",i));
 
 					JSONObject d = data.getJSONObject(i);
 					String name = d.getString("name");
@@ -256,15 +310,15 @@ public class Friends extends ListActivity {
 					String picture = d.getString("picture");
 					
 					friend = new HashMap<String, String>();
-					friend.put("id", name);
+					friend.put("id", id);
 	            	friend.put("name", name);
 	            	friend.put("birthday", birthday);
 	            	friend.put("picture", picture);
 	            	
-	            	if ( birthday != null )
+	            	if ( birthday != null && birthday.length() == 10)
 	            		friendsData.add(friend);
 					
-					Log.d(TAG,String.format("data %s, name=%s, id=%s, birthday=%s, pic=%s",i,name,id,birthday,picture));
+					//Log.d(TAG,String.format("data %s, name=%s, id=%s, birthday=%s, pic=%s",i,name,id,birthday,picture));
 				}
                 
                 Log.d("Facebook-Example", "*************** END PARSE *******");

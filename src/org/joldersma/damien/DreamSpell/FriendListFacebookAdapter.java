@@ -2,12 +2,16 @@ package org.joldersma.damien.DreamSpell;
 
 import java.io.InputStream;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +23,14 @@ import android.widget.TextView;
 
 public class FriendListFacebookAdapter extends SimpleAdapter {
 
+	public static final String TAG = "DreamSpell";
+	
 	private Context context;
 
     private int layout;
 	
     private List<? extends Map<String, ?>> data;
+    public Hashtable<String, Date> birthdays;
     
 	public FriendListFacebookAdapter(Context context,
 			List<? extends Map<String, ?>> data, int resource, String[] from,
@@ -33,6 +40,11 @@ public class FriendListFacebookAdapter extends SimpleAdapter {
 		this.context = context;
 		this.layout = resource;
 		this.data = data;
+		birthdays = new Hashtable<String, Date>();
+	}
+	
+	public Hashtable<String, Date> getBirthdays() {
+		return birthdays;
 	}
 
 	@Override
@@ -70,11 +82,14 @@ public class FriendListFacebookAdapter extends SimpleAdapter {
 		// TODO Auto-generated method stub
 		//return super.getView(position, convertView, parent);
 		
+		String id = (String) data.get(position).get("id");
+		String name = (String) data.get(position).get("name");
+		String birthday = (String) data.get(position).get("birthday");
+		String picture = (String) data.get(position).get("picture");
+         
+		 
 		final LayoutInflater inflater = LayoutInflater.from(context);
-        View v = inflater.inflate(layout, parent, false);
-
-       
-        String name = (String) data.get(position).get("name");
+        View v = inflater.inflate(layout, parent, false);            
 
         /**
          * Next set the name of the entry.
@@ -84,8 +99,6 @@ public class FriendListFacebookAdapter extends SimpleAdapter {
             name_text.setText(name);
         }
 
-        String birthday = (String) data.get(position).get("birthday");
-
         /**
          * Next set the birthday of the entry.
          */
@@ -93,22 +106,49 @@ public class FriendListFacebookAdapter extends SimpleAdapter {
         if (birthday_text != null) {
         	birthday_text.setText(birthday);
         }
-        
-        String picture = (String) data.get(position).get("picture");
-        
+       
         /**
          * Next set the photo of the entry.
          */
         ImageView photo_view = (ImageView) v.findViewById(R.id.friendViewImage);
-        if (photo_view != null) {
-        	
-        	Drawable drawable = LoadImageFromWebOperations(picture);
-        
-        	photo_view.setImageDrawable(drawable);
-
-        	
+        if (photo_view != null) {        	
+        	Drawable drawable = LoadImageFromWebOperations(picture);        
+        	photo_view.setImageDrawable(drawable);        
         }
         
+        /**
+         * Now do the daycalc and show tone and glyph
+         */
+        try
+    	{
+	        SimpleDateFormat df1 = new SimpleDateFormat( "MM/dd/yyyy" );
+	        Date bdate = df1.parse(birthday);
+	        birthdays.put(id, bdate);	        
+	        DreamSpellUtil.Calc(bdate);
+    	
+	        /**
+	         * Next set the Tone of the entry.
+	         */
+	        ImageView tone = (ImageView) v.findViewById(R.id.friendViewTone);
+	        if (tone != null) {
+	    		tone.setImageResource(AndroidUtil.getToneResource(DreamSpellUtil.getTone()));        	
+	        }
+	        
+	        /**
+	         * Next set the Glyph of the entry.
+	         */
+	        ImageView glpyh = (ImageView) v.findViewById(R.id.friendViewGlyph);
+	        if (glpyh != null) {
+	        	glpyh.setImageResource(AndroidUtil.getGlyphResource(DreamSpellUtil.getSeal()));        	
+	        }
+        
+    	}
+    	catch (Exception e)
+    	{
+    		Log.e(TAG, String.format("Error doing day calc, date=%s",birthday),e);
+    		
+    	}
+    	
         return v;
 	}
 
