@@ -21,9 +21,12 @@ import com.facebook.android.Facebook;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.util.Log;
 
 public class SessionStore {
     
+	private static final String TAG = "DreamSpell";
+	
     private static final String TOKEN = "access_token";
     private static final String EXPIRES = "expires_in";
     private static final String KEY = "facebook-session";
@@ -43,7 +46,23 @@ public class SessionStore {
         session.setAccessExpires(savedSession.getLong(EXPIRES, 0));
         return session.isSessionValid();
     }
+     
+    public static boolean save(String key, String value, Context context) {
+    	Log.d(TAG, String.format("SessionStore saving key=%s, value=%s", key, value));
+        Editor editor =
+            context.getSharedPreferences(KEY, Context.MODE_PRIVATE).edit();
+        editor.putString(key, value);
+        return editor.commit();
+    }
 
+    public static String restore(String key, Context context) {
+    	Log.d(TAG, String.format("SessionStore restore key=%s", key));
+        SharedPreferences savedSession =
+            context.getSharedPreferences(KEY, Context.MODE_PRIVATE);
+        return savedSession.getString(key, null);
+    }
+
+    
     public static void clear(Context context) {
         Editor editor = 
             context.getSharedPreferences(KEY, Context.MODE_PRIVATE).edit();

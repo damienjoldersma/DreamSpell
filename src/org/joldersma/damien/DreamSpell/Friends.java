@@ -33,7 +33,7 @@ import com.facebook.android.Util;
 
 public class Friends extends ListActivity {
 
-	public static final String TAG = "Friends";
+	public static final String TAG = "DreamSpell";
 	
 	public static final String APP_ID = "32395165793";
 	private Facebook mFacebook;
@@ -62,7 +62,19 @@ public class Friends extends ListActivity {
         SessionEvents.addLogoutListener(new SampleLogoutListener());
         mLoginButton = (LoginButton) findViewById(R.id.login);
         mLoginButton.init(this, mFacebook);
-
+        
+        Log.d(TAG,"Goign to check SessionStore.restore for friendsDataResponse");
+        friendsDataResponse = SessionStore.restore("friendsDataResponse", this);
+        if ( friendsDataResponse != null )
+        {
+        	Log.d(TAG,"*** Got friendsDataResponse, going to processResponseString!");
+        	processResponseString();
+        }
+        else
+        	Log.d(TAG,"friendsDataResponse is null");
+        	
+        
+        
         // Obtain handles to UI objects
         //mFriendList = (ListView) findViewById(R.id.fr);
         
@@ -100,7 +112,6 @@ public class Friends extends ListActivity {
         {
         	// Populate the contact list
         	Log.d(TAG,"onCreate valid session, going to populate");
-        	processResponseString();
         	populateContactList();
         }
              
@@ -124,6 +135,8 @@ public class Friends extends ListActivity {
 	  // This bundle will be passed to onCreate if the process is
 	  // killed and restarted.
 		Log.d(TAG,"WOW, onSaveInstanceState maybe going to save friendsData");
+		
+		SessionStore.save("friendsDataResponse", friendsDataResponse, this);
 //	  savedInstanceState.putBoolean("MyBoolean", true);
 //	  savedInstanceState.putDouble("myDouble", 1.9);
 //	  savedInstanceState.putInt("MyInt", 1);
@@ -338,6 +351,9 @@ public class Friends extends ListActivity {
 
     private void processResponseString() {
 		try {
+			Log.d(TAG, "processResponseString going to save friendsDataResponse");
+			SessionStore.save("friendsDataResponse",friendsDataResponse, this);
+			
 			String response = friendsDataResponse;
 			
 			if ( response == null )
