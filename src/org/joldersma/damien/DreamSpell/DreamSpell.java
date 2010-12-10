@@ -160,8 +160,7 @@ public class DreamSpell extends Activity
         	Intent myIntent = new Intent();
         	myIntent.setClassName("org.joldersma.damien.DreamSpell", "org.joldersma.damien.DreamSpell.Friends");
         	//myIntent.putExtra("com.android.samples.SpecialValue", "Hello, Joe!"); // key/value pair, where key needs current package prefix.
-        	myIntent.putExtra("friendsDataResponse","fooboo");
-        	startActivity(myIntent); 
+        	startActivity(myIntent);    
         	return true;
         }
         
@@ -169,17 +168,39 @@ public class DreamSpell extends Activity
 	}
     
     
+//	<string name="CHANGE_DAY_1">1 Day (Kin)</string>
+//	<string name="CHANGE_DAY_4">4 Days (Harmonic, Time Cell)</string>
+//	<string name="CHANGE_DAY_5">5 Days (Chromatic, Clans)</string>
+//	<string name="CHANGE_DAY_7">7 Days (Week) </string>
+//	<string name="CHANGE_DAY_13">13 Days (Wave Spell)</string>
+//	<string name="CHANGE_DAY_14">14 Days (Two Weeks)</string>
+//	<string name="CHANGE_DAY_20">20 Days (Harmonic Run, Tzolkin Column)</string>
+//	<string name="CHANGE_DAY_28">28 Days (Moon)</string>
+//	<string name="CHANGE_DAY_30">30 Days (Month)</string>
+//	<string name="CHANGE_DAY_31">31 Days (Month)</string>
+//	<string name="CHANGE_DAY_53">52 Days (Castle)</string>
+//	<string name="CHANGE_DAY_65">65 Days (Tzolkin Galactic Season)</string>
+//	<string name="CHANGE_DAY_260">260 Days (Tzolkin Galactic Spin)</string>
+//	<string name="CHANGE_DAY_364">364 Days (13 Moons)</string>
+//	<string name="CHANGE_DAY_365">365 Days (Year)</string>
 
 
-
-	private static final int CHANGE_DAY_1 = Menu.FIRST;
-	private static final int CHANGE_DAY_4 = Menu.FIRST+1;
-	private static final int CHANGE_DAY_7 = Menu.FIRST+2;
-	private static final int CHANGE_DAY_13 = Menu.FIRST+3;
-	private static final int CHANGE_DAY_14 = Menu.FIRST+4;
-	private static final int CHANGE_DAY_20 = Menu.FIRST+5;
-	private static final int CHANGE_DAY_28 = Menu.FIRST+6;
-
+	private static final int CHANGE_DAY_1 = Menu.FIRST+10;
+	private static final int CHANGE_DAY_4 = Menu.FIRST+11;
+	private static final int CHANGE_DAY_5 = Menu.FIRST+11;
+	private static final int CHANGE_DAY_7 = Menu.FIRST+12;
+	private static final int CHANGE_DAY_13 = Menu.FIRST+13;
+	private static final int CHANGE_DAY_14 = Menu.FIRST+14;
+	private static final int CHANGE_DAY_20 = Menu.FIRST+15;
+	private static final int CHANGE_DAY_28 = Menu.FIRST+16;
+	private static final int CHANGE_DAY_30 = Menu.FIRST+17;
+	private static final int CHANGE_DAY_31 = Menu.FIRST+18;
+	private static final int CHANGE_DAY_52 = Menu.FIRST+19;
+	private static final int CHANGE_DAY_65 = Menu.FIRST+20;
+	private static final int CHANGE_DAY_260 = Menu.FIRST+21;
+	private static final int CHANGE_DAY_364 = Menu.FIRST+22;
+	private static final int CHANGE_DAY_365 = Menu.FIRST+23;
+	
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
@@ -191,12 +212,18 @@ public class DreamSpell extends Activity
 		menu.setHeaderTitle("Swipe Time Travel");
 		menu.add(0, CHANGE_DAY_1,0, R.string.CHANGE_DAY_1);
 		menu.add(0, CHANGE_DAY_4,0, R.string.CHANGE_DAY_4);
+		menu.add(0, CHANGE_DAY_5,0, R.string.CHANGE_DAY_5);
 		menu.add(0, CHANGE_DAY_7,0, R.string.CHANGE_DAY_7);
 		menu.add(0, CHANGE_DAY_13,0, R.string.CHANGE_DAY_13);
 		menu.add(0, CHANGE_DAY_14,0, R.string.CHANGE_DAY_14);
 		menu.add(0, CHANGE_DAY_20,0, R.string.CHANGE_DAY_20);
 		menu.add(0, CHANGE_DAY_28,0, R.string.CHANGE_DAY_28);
-		
+		menu.add(0, CHANGE_DAY_30,0, R.string.CHANGE_DAY_30);
+		menu.add(0, CHANGE_DAY_31,0, R.string.CHANGE_DAY_31);
+		menu.add(0, CHANGE_DAY_65,0, R.string.CHANGE_DAY_65);
+		menu.add(0, CHANGE_DAY_260,0, R.string.CHANGE_DAY_260);
+		menu.add(0, CHANGE_DAY_364,0, R.string.CHANGE_DAY_364);
+		menu.add(0, CHANGE_DAY_365,0, R.string.CHANGE_DAY_365);
 	}
 
 	@Override
