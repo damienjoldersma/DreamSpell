@@ -5,9 +5,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import org.joldersma.damien.DreamSpell.SessionEvents.AuthListener;
-import org.joldersma.damien.DreamSpell.SessionEvents.LogoutListener;
-
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -23,21 +20,14 @@ import android.view.View;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.widget.DatePicker;
-import android.widget.Gallery;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.facebook.android.AsyncFacebookRunner;
-import com.facebook.android.Facebook;
 
 
 public class DreamSpell extends Activity
  {
 	
 	public static final String TAG = "DreamSpell";
-	
-
-
 
     private static final int SWIPE_MIN_DISTANCE = 120;
     //private static final int SWIPE_MAX_OFF_PATH = 250;
@@ -46,7 +36,6 @@ public class DreamSpell extends Activity
     View.OnTouchListener gestureListener;
     
     private DatePickerDialog datePickerDialog;
-    
     
     final static int MENUMODE_SEARCH_KEY = 0;
     final static int MENUMODE_MENU_ITEM = 1;
@@ -57,15 +46,12 @@ public class DreamSpell extends Activity
     private int mMonth;
     private int mDay;
 
-
-
-
 	private int SWIPE_DAYS = 1;
     
     static final int DATE_DIALOG_ID = 0;
     
-    
-    	
+    public String friendsData = null;
+
 	
 	/** Called when the activity is first created. */
 	@Override
@@ -74,9 +60,6 @@ public class DreamSpell extends Activity
 		Log.d(TAG,"** ON CREATE **");
 		setContentView(R.layout.main);
 
-
-		
-		
 		// Check for bundle extra 
 		Intent intent = getIntent();
 		Bundle extra = intent.getExtras();
@@ -148,8 +131,6 @@ public class DreamSpell extends Activity
 		Log.d(TAG,"onStart");
 	}
 
-
-
 	private static final int TODAY_ID = Menu.FIRST;
 	private static final int DAY_ID = Menu.FIRST+1;
 	private static final int FRIENDS_ID = Menu.FIRST+2;
@@ -179,7 +160,8 @@ public class DreamSpell extends Activity
         	Intent myIntent = new Intent();
         	myIntent.setClassName("org.joldersma.damien.DreamSpell", "org.joldersma.damien.DreamSpell.Friends");
         	//myIntent.putExtra("com.android.samples.SpecialValue", "Hello, Joe!"); // key/value pair, where key needs current package prefix.
-        	startActivity(myIntent);    
+        	myIntent.putExtra("friendsDataResponse","fooboo");
+        	startActivity(myIntent); 
         	return true;
         }
         

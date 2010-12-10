@@ -2,6 +2,8 @@ package org.joldersma.damien.DreamSpell;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -43,6 +45,7 @@ public class Friends extends ListActivity {
 	private LoginButton mLoginButton;
 	
 	private List<Map<String, String>> friendsData;
+	public String friendsDataResponse;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState)
@@ -88,6 +91,7 @@ public class Friends extends ListActivity {
         		
         		
 			}
+        	
         }
        	else
        		Log.d(TAG,"No savedInstanceState to check for friendsData");
@@ -96,6 +100,7 @@ public class Friends extends ListActivity {
         {
         	// Populate the contact list
         	Log.d(TAG,"onCreate valid session, going to populate");
+        	processResponseString();
         	populateContactList();
         }
              
@@ -136,9 +141,22 @@ public class Friends extends ListActivity {
 		  }
 	  }
 	  
-	  super.onSaveInstanceState(savedInstanceState);
+	  savedInstanceState.putString("friendsDataResponse",friendsDataResponse);
+	  
+	  //super.onSaveInstanceState(savedInstanceState);
 	}
 	
+	@Override
+	public void onRestoreInstanceState(Bundle savedInstanceState) {
+	  super.onRestoreInstanceState(savedInstanceState);
+	  // Restore UI state from the savedInstanceState.
+	  // This bundle has also been passed to onCreate.
+	  Log.d(TAG,"OnRestore!");
+	  
+	  friendsDataResponse = savedInstanceState.getString("friendsDataResponse");
+	  
+	  Log.d(TAG,String.format("OnRestore got friendsDataResponse=%s",friendsDataResponse));
+	}
 	
 	/**
      * Populate the contact list based on account currently selected in the account spinner.
@@ -318,82 +336,110 @@ public class Friends extends ListActivity {
         Log.d(TAG,String.format("onActivityResult end requestCode=%s, resultCode=%s",requestCode,resultCode));
     }
 
+    private void processResponseString() {
+		try {
+			String response = friendsDataResponse;
+			
+			if ( response == null )
+			{
+				Log.d(TAG, "friendsDataResponse is null, not processing " + friendsDataResponse);
+				return;
+			}
+            // process the response here: executed in background thread
+            Log.d(TAG, "Response: " + response.toString());
+          
+            Log.d(TAG, "*************** BEGIN PARSE *******");
+    	  	friendsData = new ArrayList<Map<String, String>>();
+        	Map<String, String> friend;
+        	
+            
+            JSONObject json = Util.parseJson(response);
+  
+            JSONArray data = json.getJSONArray("data");
+            for (int i = 0; i < data.length(); i++) {                	
+				//Log.d(TAG,String.format("data %s",i));
+
+				JSONObject d = data.getJSONObject(i);
+				String name = d.getString("name");
+				String birthday = null;
+				try { birthday = d.getString("birthday"); } catch (Exception e) {} 
+				String id = d.getString("id");
+				String picture = d.getString("picture");
+				
+				friend = new HashMap<String, String>();
+				friend.put("id", id);
+            	friend.put("name", name);
+            	friend.put("birthday", birthday);
+            	friend.put("picture", picture);
+            	
+            	if ( birthday != null && birthday.length() == 10)
+            		friendsData.add(friend);
+				
+				//Log.d(TAG,String.format("data %s, name=%s, id=%s, birthday=%s, pic=%s",i,name,id,birthday,picture));
+			}
+            
+            Collections.sort(friendsData, new MyComparator());
+            
+            Log.d(TAG, "*************** END PARSE *******");
+            
+  
+            
+            // then post the processed result back to the UI thread
+            // if we do not do this, an runtime exception will be generated
+            // e.g. "CalledFromWrongThreadException: Only the original
+            // thread that created a view hierarchy can touch its views."
+            Friends.this.runOnUiThread(new Runnable() {
+                public void run() {
+                	populateContactList();
+                }
+            });
+            
+            //final String name = "FOO";// json.getString("data[0]name");
+
+            // then post the processed result back to the UI thread
+            // if we do not do this, an runtime exception will be generated
+            // e.g. "CalledFromWrongThreadException: Only the original
+            // thread that created a view hierarchy can touch its views."
+//            Example.this.runOnUiThread(new Runnable() {
+//                public void run() {
+//                    mText.setText("Hello there, " + name + "!");
+//                }
+//            });
+        } catch (JSONException e) {
+            Log.w(TAG, "JSON Error in response: " + e.toString());
+            Log.w(TAG,e);
+            e.printStackTrace();
+            
+        } catch (FacebookError e) {
+            Log.w(TAG, "Facebook Error: " + e.getMessage());
+        }
+	}
     
-    
+    public class MyComparator implements Comparator 
+    {
+    	 public int compare(Object o1, Object o2) {
+    		    // Get the value of the properties
+    		Log.d(TAG,String.format("compare time o1=%s, o2=%s",o1,o2));
+    		
+    		Map<String,String> friend1 = (Map<String,String>)o1;
+    		Map<String,String> friend2 = (Map<String,String>)o2;
+    		return friend1.get("name").compareTo(friend2.get("name"));
+    		 
+//    		 	String friend1 = (String)o1;
+//    		 	String friend2 = (String)o2;
+//    		 	return friend1.compareTo(friend2);
+		 	
+		 	//HashMap<String, String> friend1 = (HashMap<String, String>)o1;
+		 	//HashMap<String, String> friend2 = (HashMap<String, String>)o2;
+		   // return compare(friend1.get("name"),friend2.get("name"));
+		  }
+    }
     
     public class SampleFriendsListener extends BaseRequestListener {
 
         public void onComplete(final String response) {
-            try {
-                // process the response here: executed in background thread
-                Log.d("Facebook-Example", "Response: " + response.toString());
-//                Log.d("Facebook-Example", "*************** BEGIN Response Formated *******");
-//                Log.d("Facebook-Example", response.replace(",", ",\n"));
-//                Log.d("Facebook-Example", "*************** END Response Formated *******");
-                
-                Log.d("Facebook-Example", "*************** BEGIN PARSE *******");
-        	  	friendsData = new ArrayList<Map<String, String>>();
-            	Map<String, String> friend;
-            	
-                
-                JSONObject json = Util.parseJson(response);
-      
-                JSONArray data = json.getJSONArray("data");
-                for (int i = 0; i < data.length(); i++) {                	
-					//Log.d(TAG,String.format("data %s",i));
-
-					JSONObject d = data.getJSONObject(i);
-					String name = d.getString("name");
-					String birthday = null;
-					try { birthday = d.getString("birthday"); } catch (Exception e) {} 
-					String id = d.getString("id");
-					String picture = d.getString("picture");
-					
-					friend = new HashMap<String, String>();
-					friend.put("id", id);
-	            	friend.put("name", name);
-	            	friend.put("birthday", birthday);
-	            	friend.put("picture", picture);
-	            	
-	            	if ( birthday != null && birthday.length() == 10)
-	            		friendsData.add(friend);
-					
-					//Log.d(TAG,String.format("data %s, name=%s, id=%s, birthday=%s, pic=%s",i,name,id,birthday,picture));
-				}
-                
-                Log.d("Facebook-Example", "*************** END PARSE *******");
-                
-      
-                
-                // then post the processed result back to the UI thread
-                // if we do not do this, an runtime exception will be generated
-                // e.g. "CalledFromWrongThreadException: Only the original
-                // thread that created a view hierarchy can touch its views."
-                Friends.this.runOnUiThread(new Runnable() {
-                    public void run() {
-                    	populateContactList();
-                    }
-                });
-                
-                //final String name = "FOO";// json.getString("data[0]name");
-
-                // then post the processed result back to the UI thread
-                // if we do not do this, an runtime exception will be generated
-                // e.g. "CalledFromWrongThreadException: Only the original
-                // thread that created a view hierarchy can touch its views."
-//                Example.this.runOnUiThread(new Runnable() {
-//                    public void run() {
-//                        mText.setText("Hello there, " + name + "!");
-//                    }
-//                });
-            } catch (JSONException e) {
-                Log.w("Facebook-Example", "JSON Error in response: " + e.toString());
-                Log.w(TAG,e);
-                e.printStackTrace();
-                
-            } catch (FacebookError e) {
-                Log.w("Facebook-Example", "Facebook Error: " + e.getMessage());
-            }
+            friendsDataResponse = response;
+            processResponseString();
         }
 
 		public void onFacebookError(FacebookError e) {
@@ -454,10 +500,10 @@ public class Friends extends ListActivity {
         public void onComplete(Bundle values) {
             final String postId = values.getString("post_id");
             if (postId != null) {
-                Log.d("Facebook-Example", "Dialog Success! post_id=" + postId);
+                Log.d(TAG, "Dialog Success! post_id=" + postId);
                 
             } else {
-                Log.d("Facebook-Example", "No wall post made");
+                Log.d(TAG, "No wall post made");
             }
         }
     }
