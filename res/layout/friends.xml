@@ -4,7 +4,8 @@
    android:layout_width="fill_parent"
    android:layout_height="fill_parent"
    android:stretchColumns="1">
-  	<TableRow > 
+   <!-- 
+  	<TableRow android:id="@+id/loginRow"> 
 		<org.joldersma.damien.DreamSpell.LoginButton
 	       android:id="@+id/login"
 	       android:src="@drawable/login_button"
@@ -13,6 +14,7 @@
 	       android:layout_margin="30dp"
 	       />
 	</TableRow>
+	 -->
     <TableRow > 
 		<ListView android:layout_width="match_parent"           
              android:id="@+id/android:list"

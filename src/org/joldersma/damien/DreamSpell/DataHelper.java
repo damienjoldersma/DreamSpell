@@ -62,7 +62,7 @@ public class DataHelper {
 		List<Map<String,String>> list =  new ArrayList<Map<String, String>>();
 		
 		Cursor cursor = this.db.query(TABLE_NAME, new String[] { "name","birthday","picture","facebookId" }, 
-				null, null, null, null, "name desc");
+				null, null, null, null, "name asc");
 		if (cursor.moveToFirst()) 
 		{
 			do 

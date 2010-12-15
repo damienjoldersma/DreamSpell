@@ -18,6 +18,7 @@ import org.json.JSONObject;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Data;
@@ -25,6 +26,7 @@ import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TableRow;
 
 import com.facebook.android.AsyncFacebookRunner;
 import com.facebook.android.Facebook;
@@ -70,10 +72,9 @@ public class Friends extends ListActivity {
 				SessionEvents.addAuthListener(new SampleAuthListener());
 				SessionEvents.addLogoutListener(new SampleLogoutListener());
 				
-				this.dh = new DataHelper(this);
+				//mLoginButton = (LoginButton) findViewById(R.id.login);
+				//mLoginButton.init(this, mFacebook);
 				
-				mLoginButton = (LoginButton) findViewById(R.id.login);
-				mLoginButton.init(this, mFacebook);
 				
 				Log.d(TAG,"Goign to check SessionStore.restore for friendsDataResponse");
 				//friendsDataResponse = SessionStore.restore("friendsDataResponse", this);
@@ -112,20 +113,21 @@ public class Friends extends ListActivity {
 					Log.d(TAG,"Ok have a savedInstanceState");
 					for (String key : savedInstanceState.keySet()) {
 						Log.d(TAG,"key=%s");
-						
-						
-			}
-					
+					}
 				}
 			 	else
 			 		Log.d(TAG,"No savedInstanceState to check for friendsData");
 				
-				if ( mFacebook.isSessionValid() )
-				{
+				this.dh = new DataHelper(this);
+				
+				friendsData = this.dh.selectAll();
+				
+				//if ( mFacebook.isSessionValid() )
+				//{
 					// Populate the contact list
-					Log.d(TAG,"onCreate valid session, going to populate");
+					Log.d(TAG,"onCreate going to populate");
 					populateContactList();
-				}
+				//}
 						 
 		}
 
