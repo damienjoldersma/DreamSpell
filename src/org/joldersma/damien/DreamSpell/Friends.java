@@ -113,23 +113,23 @@ public class Friends extends ListActivity {
 			
 			// Get the instance of the object that was stored
 			// if one exists
-			if (getLastNonConfigurationInstance() != null)
-			{
-				Log.d(TAG,"WOW GOING TO GET SAVED FRIENDSDATA!");
-				friendsData = (List<Map<String, String>>)getLastNonConfigurationInstance();
-			}
-			else
-				Log.d(TAG,"No LastNonConfigurationInstance to check for friendsData");
-			
-			if ( savedInstanceState != null )
-			{
-				Log.d(TAG,"Ok have a savedInstanceState");
-				for (String key : savedInstanceState.keySet()) {
-					Log.d(TAG,"key=%s");
-				}
-			}
-		 	else
-		 		Log.d(TAG,"No savedInstanceState to check for friendsData");
+//			if (getLastNonConfigurationInstance() != null)
+//			{
+//				Log.d(TAG,"WOW GOING TO GET SAVED FRIENDSDATA!");
+//				friendsData = (List<Map<String, String>>)getLastNonConfigurationInstance();
+//			}
+//			else
+//				Log.d(TAG,"No LastNonConfigurationInstance to check for friendsData");
+//			
+//			if ( savedInstanceState != null )
+//			{
+//				Log.d(TAG,"Ok have a savedInstanceState");
+//				for (String key : savedInstanceState.keySet()) {
+//					Log.d(TAG,"key=%s");
+//				}
+//			}
+//		 	else
+//		 		Log.d(TAG,"No savedInstanceState to check for friendsData");
 			
 			this.dh = new DataHelper(this);
 			
@@ -145,14 +145,14 @@ public class Friends extends ListActivity {
 	}
 
 	private static final int LOGIN_ID = Menu.FIRST;
-	private static final int LOGOUT_ID = Menu.FIRST+1;
+	private static final int SYNC_ID = Menu.FIRST+1;
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) 
 	{
 		super.onCreateOptionsMenu(menu);
 		menu.add(0, LOGIN_ID,0, R.string.login);
-		menu.add(0, LOGOUT_ID,0, R.string.logout);
+		menu.add(0, SYNC_ID,0, R.string.sync);
 		return true;
 	}
 
@@ -164,8 +164,8 @@ public class Friends extends ListActivity {
         case LOGIN_ID:
             doClick();
             return true;
-        case LOGOUT_ID:
-        	doClick();
+        case SYNC_ID:
+        	doSync();
         	return true;
         }
         return super.onMenuItemSelected(featureId, item);
@@ -277,25 +277,26 @@ private final class LoginDialogListener implements DialogListener {
 		// killed and restarted.
 		Log.d(TAG,"WOW, onSaveInstanceState maybe going to save friendsData");
 		
-		SessionStore.save("friendsDataResponse", friendsDataResponse, this);
+		///SessionStore.save("friendsDataResponse", friendsDataResponse, this);
+
 //		savedInstanceState.putBoolean("MyBoolean", true);
 //		savedInstanceState.putDouble("myDouble", 1.9);
 //		savedInstanceState.putInt("MyInt", 1);
 //		savedInstanceState.putString("MyString", "Welcome back to Android");
 		
-		if ( friendsData != null) {
-			for (Map<String,String> friend : friendsData) {
-				Log.d(TAG,"onSaveInstanceState adding friend=" + friend);
-			ArrayList<String> friendValues = new ArrayList<String>();
-			friendValues.add(friend.get("facebookId"));
-			friendValues.add(friend.get("name"));
-			friendValues.add(friend.get("birthday"));
-			friendValues.add(friend.get("picture"));
-			savedInstanceState.putStringArrayList(friend.get("facebookId"), friendValues);
-			}
-		}
+//		if ( friendsData != null) {
+//			for (Map<String,String> friend : friendsData) {
+//				Log.d(TAG,"onSaveInstanceState adding friend=" + friend);
+//			ArrayList<String> friendValues = new ArrayList<String>();
+//			friendValues.add(friend.get("facebookId"));
+//			friendValues.add(friend.get("name"));
+//			friendValues.add(friend.get("birthday"));
+//			friendValues.add(friend.get("picture"));
+//			savedInstanceState.putStringArrayList(friend.get("facebookId"), friendValues);
+//			}
+//		}
 		
-		savedInstanceState.putString("friendsDataResponse",friendsDataResponse);
+		//savedInstanceState.putString("friendsDataResponse",friendsDataResponse);
 		
 		//super.onSaveInstanceState(savedInstanceState);
 	}
@@ -307,7 +308,7 @@ private final class LoginDialogListener implements DialogListener {
 		// This bundle has also been passed to onCreate.
 		Log.d(TAG,"OnRestore!");
 		
-		friendsDataResponse = savedInstanceState.getString("friendsDataResponse");
+		//friendsDataResponse = savedInstanceState.getString("friendsDataResponse");
 		
 		Log.d(TAG,String.format("OnRestore got friendsDataResponse=%s",friendsDataResponse));
 	}
@@ -601,6 +602,23 @@ private final class LoginDialogListener implements DialogListener {
 			}
 		}
 		
+		private void doSync() {
+			Log.d(TAG,"DreamSpell now with new and improved me/friends?fields=id,name,picture,birthday!");
+			Bundle params = new Bundle();
+//						//String[] fields = { "facebookId","name","picture" };
+			params.putString("fields", "id,name,picture,birthday");
+//	mAsyncRunner.request("me/friends", params, new SampleFriendsListener());
+			
+			new Thread() {
+				@Override public void run() {
+					Log.d(TAG,"doing cyclone mAyncRunner request thread");
+							Bundle params = new Bundle();
+							params.putString("fields", "id,name,picture,birthday");
+					mAsyncRunner.request("me/friends", params, new SampleFriendsListener());
+				}
+			}.start();
+		}
+
 		public class MyComparator implements Comparator 
 		{
 			 public int compare(Object o1, Object o2) {
@@ -623,16 +641,17 @@ private final class LoginDialogListener implements DialogListener {
 		
 		public class SampleFriendsListener extends BaseRequestListener {
 
-				public void onComplete(final String response) {
-						friendsDataResponse = response;
-						processResponseString();
-				}
+			public void onComplete(final String response) {
+				Log.d(TAG,"SampleFriendsListener onComplete, got and going to process response");
+				friendsDataResponse = response;
+				processResponseString();
+			}
 
-		public void onFacebookError(FacebookError e) {
-			// TODO Auto-generated method stub
-			Log.e(TAG,"FacebookError=" + e.toString());
-			e.printStackTrace();
-		}
+			public void onFacebookError(FacebookError e) {
+				// TODO Auto-generated method stub
+				Log.e(TAG,"FacebookError=" + e.toString());
+				e.printStackTrace();
+			}
 		}
 		
 		public class SampleAuthListener implements AuthListener {
@@ -641,24 +660,8 @@ private final class LoginDialogListener implements DialogListener {
 						Log.d(TAG,"You have logged in! ");
 						
 						//mLoginButton.setVisibility(View.INVISIBLE);
-
 						
-					 
-						
-						Log.d(TAG,"DreamSpell now with new and improved me/friends?fields=id,name,picture,birthday!");
-						Bundle params = new Bundle();
-//						//String[] fields = { "facebookId","name","picture" };
-						params.putString("fields", "id,name,picture,birthday");
-					//	mAsyncRunner.request("me/friends", params, new SampleFriendsListener());
-						
-						new Thread() {
-								@Override public void run() {
-									Log.d(TAG,"doing cyclone mAyncRunner request thread");
-											Bundle params = new Bundle();
-											params.putString("fields", "id,name,picture,birthday");
-									mAsyncRunner.request("me/friends", params, new SampleFriendsListener());
-								}
-							}.start();
+						doSync();
 		
 					// Populate the contact list
 					Log.d(TAG,"onAuthSucceed valid, going to populate");
