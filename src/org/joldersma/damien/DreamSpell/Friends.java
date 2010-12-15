@@ -15,23 +15,30 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Activity;
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.opengl.Visibility;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TableRow;
 
 import com.facebook.android.AsyncFacebookRunner;
+import com.facebook.android.DialogError;
 import com.facebook.android.Facebook;
 import com.facebook.android.FacebookError;
 import com.facebook.android.Util;
+import com.facebook.android.Facebook.DialogListener;
 
 public class Friends extends ListActivity {
 
@@ -46,91 +53,207 @@ public class Friends extends ListActivity {
 	private ListView mFriendList;
 	FriendListCursorAdapter friendListCursorAdapter;
 	
-	private LoginButton mLoginButton;
+	//private LoginButton mLoginButton;
 	
 	private List<Map<String, String>> friendsData;
 	public String friendsDataResponse;
 	
 	@Override
-		public void onCreate(Bundle savedInstanceState)
-		{
-				Log.v(TAG, "Activity State: onCreate()");
-				super.onCreate(savedInstanceState);
-				setContentView(R.layout.friends);
+	public void onCreate(Bundle savedInstanceState)
+	{
+			Log.v(TAG, "Activity State: onCreate()");
+			super.onCreate(savedInstanceState);
+			setContentView(R.layout.friends);
+			
+			mFacebook = new Facebook(APP_ID);
+		 	mAsyncRunner = new AsyncFacebookRunner(mFacebook);
+		 	
+		 	try
+		 	{
+		 		SessionStore.restore(mFacebook, this);
+		 	}
+		 	catch (Exception e)
+		 	{
+		 		Log.e(TAG,"Error trying to restore session",e);
+		 	}
+			SessionEvents.addAuthListener(new SampleAuthListener());
+			SessionEvents.addLogoutListener(new SampleLogoutListener());
+			
+//				mLoginButton = (LoginButton) findViewById(R.id.login);
+//				mLoginButton.init(this, mFacebook);
+			
+			mActivity = this;
+	        mFb = mFacebook;
+	        mPermissions = new String[] {};
+	        mHandler = new Handler();
+	        SessionEvents.addAuthListener(mSessionListener);
+	        SessionEvents.addLogoutListener(mSessionListener);
+			
+			Log.d(TAG,"Goign to check SessionStore.restore for friendsDataResponse");
+			//friendsDataResponse = SessionStore.restore("friendsDataResponse", this);
+			if ( friendsDataResponse != null )
+			{
+				Log.d(TAG,"*** Got friendsDataResponse, going to processResponseString!");
+				processResponseString();
+			}
+			else
+				Log.d(TAG,"friendsDataResponse is null");
 				
-				mFacebook = new Facebook(APP_ID);
-			 	mAsyncRunner = new AsyncFacebookRunner(mFacebook);
-			 	
-			 	try
-			 	{
-			 		//SessionStore.restore(mFacebook, this);
-			 	}
-			 	catch (Exception e)
-			 	{
-			 		Log.e(TAG,"Error trying to restore session",e);
-			 	}
-				SessionEvents.addAuthListener(new SampleAuthListener());
-				SessionEvents.addLogoutListener(new SampleLogoutListener());
-				
-				//mLoginButton = (LoginButton) findViewById(R.id.login);
-				//mLoginButton.init(this, mFacebook);
-				
-				
-				Log.d(TAG,"Goign to check SessionStore.restore for friendsDataResponse");
-				//friendsDataResponse = SessionStore.restore("friendsDataResponse", this);
-				if ( friendsDataResponse != null )
-				{
-					Log.d(TAG,"*** Got friendsDataResponse, going to processResponseString!");
-					processResponseString();
-				}
-				else
-					Log.d(TAG,"friendsDataResponse is null");
-					
-				
-				
-				// Obtain handles to UI objects
-				//mFriendList = (ListView) findViewById(R.id.fr);
-				
-				
+			
+			
+			// Obtain handles to UI objects
+			//mFriendList = (ListView) findViewById(R.id.fr);
+			
+			
 //				mLoginButton.setVisibility(mFacebook.isSessionValid() ?
 //								View.INVISIBLE :
 //								View.VISIBLE);
-				
-				//friendsData = getFriendsData(savedInstanceState);
-				
-				// Get the instance of the object that was stored
-				// if one exists
-				if (getLastNonConfigurationInstance() != null)
-				{
-					Log.d(TAG,"WOW GOING TO GET SAVED FRIENDSDATA!");
-					friendsData = (List<Map<String, String>>)getLastNonConfigurationInstance();
+			
+			//friendsData = getFriendsData(savedInstanceState);
+			
+			// Get the instance of the object that was stored
+			// if one exists
+			if (getLastNonConfigurationInstance() != null)
+			{
+				Log.d(TAG,"WOW GOING TO GET SAVED FRIENDSDATA!");
+				friendsData = (List<Map<String, String>>)getLastNonConfigurationInstance();
+			}
+			else
+				Log.d(TAG,"No LastNonConfigurationInstance to check for friendsData");
+			
+			if ( savedInstanceState != null )
+			{
+				Log.d(TAG,"Ok have a savedInstanceState");
+				for (String key : savedInstanceState.keySet()) {
+					Log.d(TAG,"key=%s");
 				}
-				else
-					Log.d(TAG,"No LastNonConfigurationInstance to check for friendsData");
-				
-				if ( savedInstanceState != null )
-				{
-					Log.d(TAG,"Ok have a savedInstanceState");
-					for (String key : savedInstanceState.keySet()) {
-						Log.d(TAG,"key=%s");
-					}
-				}
-			 	else
-			 		Log.d(TAG,"No savedInstanceState to check for friendsData");
-				
-				this.dh = new DataHelper(this);
-				
-				friendsData = this.dh.selectAll();
-				
-				//if ( mFacebook.isSessionValid() )
-				//{
-					// Populate the contact list
-					Log.d(TAG,"onCreate going to populate");
-					populateContactList();
-				//}
-						 
-		}
+			}
+		 	else
+		 		Log.d(TAG,"No savedInstanceState to check for friendsData");
+			
+			this.dh = new DataHelper(this);
+			
+			friendsData = this.dh.selectAll();
+			
+			//if ( mFacebook.isSessionValid() )
+			//{
+				// Populate the contact list
+				Log.d(TAG,"onCreate going to populate");
+				populateContactList();
+			//}
+					 
+	}
 
+	private static final int LOGIN_ID = Menu.FIRST;
+	private static final int LOGOUT_ID = Menu.FIRST+1;
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) 
+	{
+		super.onCreateOptionsMenu(menu);
+		menu.add(0, LOGIN_ID,0, R.string.login);
+		menu.add(0, LOGOUT_ID,0, R.string.logout);
+		return true;
+	}
+
+    @Override
+	public boolean onMenuItemSelected(int featureId, MenuItem item) 
+    {
+    	Log.d(TAG,"Menu item selected" + item.getItemId());
+        switch(item.getItemId()) {
+        case LOGIN_ID:
+            doClick();
+            return true;
+        case LOGOUT_ID:
+        	doClick();
+        	return true;
+        }
+        return super.onMenuItemSelected(featureId, item);
+	}
+    
+    public void doClick() {
+		if (mFb.isSessionValid()) {
+			Log.d(TAG,"buttonOnClick listener - session is valid going to logout");
+		    SessionEvents.onLogoutBegin();
+		    AsyncFacebookRunner asyncRunner = new AsyncFacebookRunner(mFb);
+		    asyncRunner.logout(getContext(), new LogoutRequestListener());
+		} else {
+			Log.d(TAG,"buttonOnClick listener - session is not valid going to login,");
+		    mFb.authorize(mActivity, mPermissions, new LoginDialogListener());
+		}
+	}
+
+
+	private Facebook mFb;
+	private Handler mHandler;
+	private SessionListener mSessionListener = new SessionListener();
+	private String[] mPermissions;
+	private Activity mActivity;
+	
+private final class LoginDialogListener implements DialogListener {
+    	
+    	public LoginDialogListener()
+    	{
+    		Log.d(TAG,"LoginDialogListener constructor ");
+    		
+    	}
+    	
+        public void onComplete(Bundle values) {
+        	Log.d(TAG,"LoginDialogListener onComplete");
+            SessionEvents.onLoginSuccess();
+        }
+
+        public void onFacebookError(FacebookError error) {
+        	Log.d(TAG,"LoginDialogListener onFacebookError=" + error.toString());
+        	error.printStackTrace();
+            SessionEvents.onLoginError(error.getMessage());
+        }
+        
+        public void onError(DialogError error) {
+        	Log.d(TAG,"LoginDialogListener onError=" + error.toString());
+        	error.printStackTrace();
+            SessionEvents.onLoginError(error.getMessage());
+        }
+
+        public void onCancel() {
+        	Log.d(TAG,"LoginDialogListener onCancel");
+            SessionEvents.onLoginError("Action Canceled");
+        }
+    }
+    
+    private class LogoutRequestListener extends BaseRequestListener {
+        public void onComplete(String response) {
+            // callback should be run in the original thread, 
+            // not the background thread
+            mHandler.post(new Runnable() {
+                public void run() {
+                    SessionEvents.onLogoutFinish();
+                }
+            });
+        }
+    }
+    
+    private class SessionListener implements AuthListener, LogoutListener {
+        
+		public void onAuthSucceed() {
+        	Log.d(TAG, "SessionListener onAuthSucceed!");
+            //setImageResource(R.drawable.logout_button);
+           SessionStore.save(mFb, getContext()	);
+        }
+
+        public void onAuthFail(String error) {
+        	Log.d(TAG, "SessionListener onAuthFail=" + error);
+        }
+        
+        public void onLogoutBegin() {
+        }
+        
+        public void onLogoutFinish() {
+            SessionStore.clear(getContext());
+            //setImageResource(R.drawable.login_button);
+        }
+    }
+	
 	// Store the instance of an object
 	@Override
 	public Object onRetainNonConfigurationInstance() 
@@ -143,6 +266,10 @@ public class Friends extends ListActivity {
 	}
 
 	
+	public Context getContext() {
+		return this.getBaseContext();
+	}
+
 	@Override
 	public void onSaveInstanceState(Bundle savedInstanceState) {
 		// Save UI state changes to the savedInstanceState.

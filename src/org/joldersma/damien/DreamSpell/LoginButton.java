@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+/*
 package org.joldersma.damien.DreamSpell;
 
 import org.joldersma.damien.DreamSpell.SessionEvents.AuthListener;
@@ -37,6 +37,8 @@ import android.widget.ImageButton;
 
 public class LoginButton extends ImageButton {
     
+	private static final String TAG = "DreamSpell";
+	
     private Facebook mFb;
     private Handler mHandler;
     private SessionListener mSessionListener = new SessionListener();
@@ -78,20 +80,23 @@ public class LoginButton extends ImageButton {
         setOnClickListener(new ButtonOnClickListener());
     }
     
-    private final class ButtonOnClickListener implements OnClickListener {
+    public void doClick() {
+		if (mFb.isSessionValid()) {
+			Log.d(TAG,"buttonOnClick listener - session is valid going to logout");
+		    SessionEvents.onLogoutBegin();
+		    AsyncFacebookRunner asyncRunner = new AsyncFacebookRunner(mFb);
+		    asyncRunner.logout(getContext(), new LogoutRequestListener());
+		} else {
+			Log.d(TAG,"buttonOnClick listener - session is not valid going to login,");
+		    mFb.authorize(mActivity, mPermissions, new LoginDialogListener());
+		}
+	}
+
+	private final class ButtonOnClickListener implements OnClickListener {
         
         public void onClick(View arg0) {
-        	Log.d("Friends","buttonOnClick listener");
-            if (mFb.isSessionValid()) {
-            	Log.d("Friends","buttonOnClick listener - session is valid going to logout");
-                SessionEvents.onLogoutBegin();
-                AsyncFacebookRunner asyncRunner = new AsyncFacebookRunner(mFb);
-                asyncRunner.logout(getContext(), new LogoutRequestListener());
-            } else {
-            	Log.d("Friends","buttonOnClick listener - session is not valid going to login,");
-                mFb.authorize(mActivity, mPermissions,
-                              new LoginDialogListener());
-            }
+        	Log.d(TAG,"buttonOnClick listener");
+            doClick();
         }
     }
 
@@ -99,29 +104,29 @@ public class LoginButton extends ImageButton {
     	
     	public LoginDialogListener()
     	{
-    		Log.d("Friends","LoginDialogListener constructor ");
+    		Log.d(TAG,"LoginDialogListener constructor ");
     		
     	}
     	
         public void onComplete(Bundle values) {
-        	Log.d("Friends","LoginDialogListener onComplete");
+        	Log.d(TAG,"LoginDialogListener onComplete");
             SessionEvents.onLoginSuccess();
         }
 
         public void onFacebookError(FacebookError error) {
-        	Log.d("Friends","LoginDialogListener onFacebookError=" + error.toString());
+        	Log.d(TAG,"LoginDialogListener onFacebookError=" + error.toString());
         	error.printStackTrace();
             SessionEvents.onLoginError(error.getMessage());
         }
         
         public void onError(DialogError error) {
-        	Log.d("Friends","LoginDialogListener onError=" + error.toString());
+        	Log.d(TAG,"LoginDialogListener onError=" + error.toString());
         	error.printStackTrace();
             SessionEvents.onLoginError(error.getMessage());
         }
 
         public void onCancel() {
-        	Log.d("Friends","LoginDialogListener onCancel");
+        	Log.d(TAG,"LoginDialogListener onCancel");
             SessionEvents.onLoginError("Action Canceled");
         }
     }
@@ -140,8 +145,6 @@ public class LoginButton extends ImageButton {
     
     private class SessionListener implements AuthListener, LogoutListener {
         
-        private static final String TAG = "Friends";
-
 		public void onAuthSucceed() {
         	Log.d(TAG, "SessionListener onAuthSucceed!");
             setImageResource(R.drawable.logout_button);
@@ -162,3 +165,4 @@ public class LoginButton extends ImageButton {
     }
     
 }
+*/

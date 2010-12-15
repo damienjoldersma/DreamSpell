@@ -9,7 +9,10 @@
 	<string name="goto_today">Today</string>    
 	<string name="goto_day">Find</string>    
 	<string name="goto_friends">Friends</string>
-	
+
+	<string name="login">Login</string>    
+	<string name="logout">Logout</string>
+
 	<string name="CHANGE_DAY_1">1 Day (Kin)</string>
 	<string name="CHANGE_DAY_4">4 Days (Harmonic, Time Cell)</string>
 	<string name="CHANGE_DAY_5">5 Days (Chromatic, Clan)</string>
