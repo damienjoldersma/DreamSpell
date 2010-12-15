@@ -82,7 +82,7 @@ public class FriendListFacebookAdapter extends SimpleAdapter {
 		// TODO Auto-generated method stub
 		//return super.getView(position, convertView, parent);
 		
-		String id = (String) data.get(position).get("id");
+		String id = (String) data.get(position).get("facebookId");
 		String name = (String) data.get(position).get("name");
 		String birthday = (String) data.get(position).get("birthday");
 		String picture = (String) data.get(position).get("picture");
