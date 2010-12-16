@@ -30,8 +30,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TableRow;
+import android.widget.AbsListView.OnScrollListener;
 
 import com.facebook.android.AsyncFacebookRunner;
 import com.facebook.android.DialogError;
@@ -40,7 +44,7 @@ import com.facebook.android.FacebookError;
 import com.facebook.android.Util;
 import com.facebook.android.Facebook.DialogListener;
 
-public class Friends extends ListActivity {
+public class Friends extends ListActivity implements OnScrollListener {
 
 	public static final String TAG = "DreamSpell";
 	
@@ -57,6 +61,9 @@ public class Friends extends ListActivity {
 	
 	private List<Map<String, String>> friendsData;
 	public String friendsDataResponse;
+	
+	//Aleph0 adapter = new Aleph0();
+	FriendListFacebookAdapter adapter = null;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -130,6 +137,9 @@ public class Friends extends ListActivity {
 //			}
 //		 	else
 //		 		Log.d(TAG,"No savedInstanceState to check for friendsData");
+			
+			setListAdapter(adapter); 
+		    getListView().setOnScrollListener(this);
 			
 			this.dh = new DataHelper(this);
 			
@@ -370,9 +380,11 @@ private final class LoginDialogListener implements DialogListener {
 //								new int[]{ R.id.friendViewText, R.id.friendViewBirthDay });
 //			setListAdapter(simpleAdapter);
 			
-			FriendListFacebookAdapter friendListCursorAdapter = new FriendListFacebookAdapter(this, friendsData, R.layout.friend_view,
+			adapter = new FriendListFacebookAdapter(this, friendsData, R.layout.friend_view,
 					new String[] { "name","birthday","picture"}, new int[] {R.id.friendViewText, R.id.friendViewImage});
-			setListAdapter(friendListCursorAdapter);
+			setListAdapter(adapter);
+			
+			
 				
 				//Cursor c = getAllContactData(0);
 				//getColumnData(c);
@@ -696,4 +708,38 @@ private final class LoginDialogListener implements DialogListener {
 						}
 				}
 		}
+		
+		 public void onScroll(AbsListView view,
+			        int firstVisible, int visibleCount, int totalCount) {
+
+			        boolean loadMore = /* maybe add a padding */
+			            firstVisible + visibleCount >= totalCount;
+
+			        if(loadMore && adapter != null ) {
+			        	Log.d(TAG,"Increasing adapter count to 3");
+			            adapter.count += 3; // visibleCount; // or any other amount
+			            adapter.notifyDataSetChanged();
+			        }
+			    }
+
+			    public void onScrollStateChanged(AbsListView v, int s) { }    
+
+//			    class Aleph0 extends BaseAdapter {
+//			        int count =10; /* starting amount */
+//			        public int getCount() { return count; }
+//			        public Object getItem(int pos) { return pos; }
+//			        public long getItemId(int pos) { return pos; }
+//
+//			        public View getView(int pos, View v, ViewGroup p) {
+//			                TextView view = new TextView(Test.this);
+//			                view.setText("entry " + pos);
+//			                return view;
+//			        }
+//			        
+//					public View getView(int position, View convertView,
+//							ViewGroup parent) {
+//						// TODO Auto-generated method stub
+//						return null;
+//					}
+//			    }
 }
