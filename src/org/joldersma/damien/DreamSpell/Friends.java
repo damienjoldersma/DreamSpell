@@ -380,7 +380,7 @@ private final class LoginDialogListener implements DialogListener {
 //								new int[]{ R.id.friendViewText, R.id.friendViewBirthDay });
 //			setListAdapter(simpleAdapter);
 			
-			adapter = new FriendListFacebookAdapter(this, friendsData, R.layout.friend_view,
+			adapter = new FriendListFacebookAdapter(this,this, friendsData, R.layout.friend_view,
 					new String[] { "name","birthday","picture"}, new int[] {R.id.friendViewText, R.id.friendViewImage});
 			setListAdapter(adapter);
 			

@@ -15,6 +15,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
@@ -42,12 +43,16 @@ public class FriendListFacebookAdapter extends SimpleAdapter {
     public Hashtable<String, Date> birthdays;
     private final Map<String, Drawable> drawableMap;
     
+    private Activity activity;
+    private static LayoutInflater inflater=null;
+    public ImageLoader imageLoader; 
+    
     int count = 6; /* starting amount */
 //    public int getCount() { return count; }
 //    public Object getItem(int pos) { return pos; }
 //    public long getItemId(int pos) { return pos; }
     
-	public FriendListFacebookAdapter(Context context,
+	public FriendListFacebookAdapter(Activity a, Context context,
 			List<? extends Map<String, ?>> data, int resource, String[] from,
 			int[] to) {
 		super(context, data, resource, from, to);
@@ -57,6 +62,10 @@ public class FriendListFacebookAdapter extends SimpleAdapter {
 		this.layout = resource;
 		this.data = data;
 		birthdays = new Hashtable<String, Date>();
+		
+		activity = a;
+		inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		imageLoader=new ImageLoader(activity.getApplicationContext());
 	}
 	
 	public Hashtable<String, Date> getBirthdays() {
@@ -66,7 +75,11 @@ public class FriendListFacebookAdapter extends SimpleAdapter {
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return count;
+		int dataSize = data.size();
+		if ( count < dataSize)
+			return count;
+		else
+			return dataSize;
 	}
 
 	@Override
@@ -131,7 +144,8 @@ public class FriendListFacebookAdapter extends SimpleAdapter {
 //        	Drawable drawable = LoadImageFromWebOperations(picture);        
 //        	photo_view.setImageDrawable(drawable);        
        
-        	fetchDrawableOnThread(picture,photo_view);
+        	//fetchDrawableOnThread(picture,photo_view);
+        	imageLoader.DisplayImage(picture, activity, photo_view);
         
 //	        Thread thread = new Thread() {
 //	    		@Override
