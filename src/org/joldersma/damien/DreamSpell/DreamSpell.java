@@ -88,9 +88,12 @@ public class DreamSpell extends Activity
         gestureDetector = new GestureDetector(new MyGestureDetector());
          gestureListener = new View.OnTouchListener() {
              public boolean onTouch(View v, MotionEvent event) {
+            	 Log.d(TAG, "Doing onTouch message1");
                  if (gestureDetector.onTouchEvent(event)) {
+                	 Log.d(TAG, "Doing onTouch message2");
                      return true;
                  }
+                 Log.d(TAG, "Doing onTouch message3");
                  return false;
              }
          };
@@ -406,17 +409,17 @@ public class DreamSpell extends Activity
 	@Override
 		public boolean onTouchEvent(MotionEvent event)
 	 	{
-			//Log.d(TAG,"onTouchEvent! ");
+			Log.d(TAG,"onTouchEvent! ");
 			
 			//GestureDetector gestureDetector = new GestureDetector(gestureListener);
 			if ( gestureDetector.onTouchEvent(event) )
 			{
-				//Log.d(TAG,"onTouchEvent case1");
+				Log.d(TAG,"onTouchEvent case1");
 				return true;
 			}
 			else
 			{
-				//Log.d(TAG,"onTouchEvent case2");
+				Log.d(TAG,"onTouchEvent case2");
 				return false;
 			}
 	 	}
