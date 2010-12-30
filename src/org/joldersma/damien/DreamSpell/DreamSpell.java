@@ -8,11 +8,13 @@ import java.util.GregorianCalendar;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.GestureDetector;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -21,6 +23,7 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.widget.DatePicker;
 import android.widget.ImageView;
+import android.widget.TabHost;
 import android.widget.TextView;
 
 
@@ -84,9 +87,10 @@ public class DreamSpell extends Activity
 			Log.d(TAG,"Extra is null");
 			calc();
 		}
-		  // Gesture detection
+
+		// Gesture detection
         gestureDetector = new GestureDetector(new MyGestureDetector());
-         gestureListener = new View.OnTouchListener() {
+        gestureListener = new View.OnTouchListener() {
              public boolean onTouch(View v, MotionEvent event) {
             	 Log.d(TAG, "Doing onTouch message1");
                  if (gestureDetector.onTouchEvent(event)) {
@@ -137,6 +141,7 @@ public class DreamSpell extends Activity
 	private static final int TODAY_ID = Menu.FIRST;
 	private static final int DAY_ID = Menu.FIRST+1;
 	private static final int FRIENDS_ID = Menu.FIRST+2;
+	private static final int ORACLE_ID = Menu.FIRST+3;
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) 
@@ -145,6 +150,7 @@ public class DreamSpell extends Activity
 		menu.add(0, TODAY_ID,0, R.string.goto_today);
 		menu.add(0, DAY_ID,0, R.string.goto_day);
 		menu.add(0, FRIENDS_ID,0, R.string.goto_friends);
+		menu.add(0, ORACLE_ID,0, R.string.goto_oracle);
 		return true;
 	}
 
@@ -164,6 +170,12 @@ public class DreamSpell extends Activity
         	myIntent.setClassName("org.joldersma.damien.DreamSpell", "org.joldersma.damien.DreamSpell.Friends");
         	//myIntent.putExtra("com.android.samples.SpecialValue", "Hello, Joe!"); // key/value pair, where key needs current package prefix.
         	startActivity(myIntent);    
+        	return true;
+        case ORACLE_ID:
+        	Intent myIntent1 = new Intent();
+        	myIntent1.setClassName("org.joldersma.damien.DreamSpell", "org.joldersma.damien.DreamSpell.Oracle");
+        	//myIntent.putExtra("com.android.samples.SpecialValue", "Hello, Joe!"); // key/value pair, where key needs current package prefix.
+        	startActivity(myIntent1);
         	return true;
         }
         

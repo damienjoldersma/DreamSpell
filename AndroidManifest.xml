@@ -18,6 +18,13 @@
 			</intent-filter>
 		</activity>
     
+    <activity android:name=".Oracle"
+                  android:label="@string/goto_oracle">
+			<intent-filter>
+               <action android:name="android.intent.action.MAIN" />
+              
+			</intent-filter>
+		</activity>
 
 </application>
 

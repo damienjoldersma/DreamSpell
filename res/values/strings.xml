@@ -29,7 +29,8 @@
 	<string name="CHANGE_DAY_260">260 Days (Tzolkin Spin)</string>
 	<string name="CHANGE_DAY_364">364 Days (13 Moons)</string>
 	<string name="CHANGE_DAY_365">365 Days (Year)</string>
-	
+	<string name="about_text">About</string>
+		<string name="goto_oracle">Oracle</string>
 	<string name="oracle_text">
 Tone 1 Magnetic\n
 Seal of the Day, Destiny

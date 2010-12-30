@@ -38,49 +38,33 @@
 	</TableRow>
 	
 	<TableRow android:gravity="center">
-
-	<LinearLayout android:id="@+id/LinearLayout01" android:layout_height="wrap_content" android:layout_width="fill_parent" android:layout_gravity="center">
-		<ImageView android:id="@+id/antipode"
-		android:layout_width="100px"
-		android:layout_height="100px"
-		android:src="@drawable/glyph3"/>
-
-	<ImageView android:id="@+id/seal"
-		android:layout_width="100px"
-		android:layout_height="100px"
-		android:src="@drawable/glyph4"/>  
-
-	<ImageView android:id="@+id/analog"
-		android:layout_width="100px"
-		android:layout_height="100px"
-		android:src="@drawable/glyph5"/>  
-	</LinearLayout>
-</TableRow>
-	<TableRow>
-              
-	<ImageView android:id="@+id/occult"
-			   android:layout_weight="1"
-			   android:layout_width="wrap_content"
-	           android:layout_height="wrap_content"
-	           android:src="@drawable/glyph6"/>  
-	           
+		<LinearLayout android:id="@+id/LinearLayout01" 
+			android:layout_height="wrap_content" 
+			android:layout_width="fill_parent" 
+			android:layout_gravity="center">
+			<ImageView android:id="@+id/antipode"
+			android:layout_width="100px"
+			android:layout_height="100px"
+			android:src="@drawable/glyph3"/>
+			<ImageView android:id="@+id/seal"
+				android:layout_width="100px"
+				android:layout_height="100px"
+				android:src="@drawable/glyph4"/>  
+		
+			<ImageView android:id="@+id/analog"
+				android:layout_width="100px"
+				android:layout_height="100px"
+				android:src="@drawable/glyph5"/>  
+		</LinearLayout>
 	</TableRow>
 	
-	<TableRow android:gravity="center">
-	
-	<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:scrollbarTrackVertical="@drawable/scrollbar_vertical_track"
-    android:scrollbarThumbVertical="@drawable/scrollbar_vertical_thumb"
-    android:scrollbarSize="12dip" android:layout_width="wrap_content">
-	
-	<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/mainTable"
-     android:layout_height="match_parent"
-      android:layout_width="match_parent"
-    android:background="@drawable/bgclouds"
-    android:tileMode="repeat"
-    android:padding="3dip"
-    android:stretchColumns="1"> 
+	<TableRow>
+		<ImageView android:id="@+id/occult"
+				   android:layout_weight="1"
+				   android:layout_width="wrap_content"
+		           android:layout_height="wrap_content"
+		           android:src="@drawable/glyph6"/>  
+	</TableRow>
 	
 	<TableRow>
 		<TextView android:id="@+id/date_title"
@@ -102,22 +86,4 @@
 	  			      android:textColor="#000000"
 	  			 	  android:text="@string/date_name"/>	
 	</TableRow>
-
-	
-	<TableRow>
-	
-		<TextView android:id="@+id/oracle_text"
-	   				  android:layout_width="fill_parent"
-	  			      android:layout_weight="1"
-	  			      android:textSize="12sp"
-	  			      android:padding="3dip"
-	  			      android:gravity="left"
-	  			      android:textColor="#000000"
-	  			 	  android:text="@string/oracle_text"/>
-	</TableRow>
-</TableLayout> 
-</ScrollView>
-</TableRow>
-
-</TableLayout>   
-
+	</TableLayout>
