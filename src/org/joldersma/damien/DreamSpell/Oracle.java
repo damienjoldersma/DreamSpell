@@ -82,5 +82,38 @@ public class Oracle extends Activity {
 		
 		TextView yearSealText = (TextView) findViewById(R.id.oracle_year_seal_text);
 		yearSealText.setText(DreamSpellUtil.getSealDefinition(DreamSpellUtil.getYearSeal()));
+		
+		TextView sealDefText = (TextView) findViewById(R.id.oracle_seal_def);
+		sealDefText.setText(DreamSpellUtil.getOracleDefinition(1));
+		
+		TextView yearDefText = (TextView) findViewById(R.id.oracle_year_def);
+		yearDefText.setText(DreamSpellUtil.getOracleDefinition(2));
+		
+		TextView guideDefText = (TextView) findViewById(R.id.oracle_guide_def);
+		guideDefText.setText(DreamSpellUtil.getOracleDefinition(3));
+		
+		TextView antipodeDefText = (TextView) findViewById(R.id.oracle_antipode_def);
+		antipodeDefText.setText(DreamSpellUtil.getOracleDefinition(4));
+		
+		TextView occultDefText = (TextView) findViewById(R.id.oracle_occult_def);
+		occultDefText.setText(DreamSpellUtil.getOracleDefinition(5));
+		
+		TextView analogDefText = (TextView) findViewById(R.id.oracle_analog_def);
+		analogDefText.setText(DreamSpellUtil.getOracleDefinition(6));
+		
+		TextView wavespellDefText = (TextView) findViewById(R.id.oracle_wavespell_def);
+		wavespellDefText.setText(DreamSpellUtil.getOracleDefinition(7));
+		
+		
+		
+		
+//		<TextView android:id="@+id/oracle_seal_def"
+//		<TextView android:id="@+id/oracle_guide_def"
+//		<TextView android:id="@+id/oracle_antipode_def"
+//		<TextView android:id="@+id/oracle_occult_def"
+//		<TextView android:id="@+id/oracle_analog_def"
+//		<TextView android:id="@+id/oracle_wavespell_def"
+//		<TextView android:id="@+id/oracle_year_def"
+
 	}
 }

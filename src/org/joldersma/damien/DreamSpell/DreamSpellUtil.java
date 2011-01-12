@@ -209,6 +209,17 @@ public class DreamSpellUtil {
 		{"Yellow Sun","AHAU","Enlightens","Life","Universal Fire"}
 	};		
 		
+	static String[] oracleTextDefinition = new String[] 
+	{
+		"The seal of the day is the basis of life destiny, with power of the solar tribe.",
+		"The seal of the year is the basis of life destiny, with the power of the solar tribe.",
+		"The seal for the Guide of the day modifies the oracle reading in Outcome.",
+		"The seal for the Anitpode of the day modifies the oracle reading with Challenging power (strengthening memory, reconstruction).", 
+		"The seal for the Occult of the day modifies the oracle reading with Hidden power (the unexpected).",
+		"The seal for the Analog of the day modifies the oracle reading with Like-Minded power (galactic-solar planetary power).",
+		"The seal for the Wavespell sets the emphasis of the thirteen day, thirteen tone cycle."
+	};
+		
 	public static String getSealDefinition(int s)
 	{
 		return String.format("%s (%s) %s and emphasizes %s",
@@ -219,6 +230,11 @@ public class DreamSpellUtil {
 	{
 		return String.format("Tone %s %s, creative power to %s %s, action of %s",
 				t,tones[t][0],tones[t][1],tones[t][2],tones[t][3]);
+	}
+	
+	public static String getOracleDefinition(int i)
+	{
+		return oracleTextDefinition[i-1];
 	}
 	
 	public static String getDailyMediation()
