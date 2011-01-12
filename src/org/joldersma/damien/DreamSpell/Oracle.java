@@ -19,12 +19,6 @@ public class Oracle extends Activity {
 		Log.d(TAG,"** ON CREATE **");
 		setContentView(R.layout.oracle);
 		
-		TextView mDateTitle = (TextView) findViewById(R.id.date_title);
-		mDateTitle.setText(DateFormat.getDateInstance().format(DreamSpellUtil.getCurrentDate()));
-
-		TextView mDateName = (TextView) findViewById(R.id.date_name);
-		mDateName.setText(DreamSpellUtil.GetName());
-		
 		ImageView tone = (ImageView) findViewById(R.id.tone);
 		tone.setImageResource(AndroidUtil.getToneResource(DreamSpellUtil.getTone()));
 		
@@ -43,35 +37,50 @@ public class Oracle extends Activity {
 		ImageView guide = (ImageView) findViewById(R.id.guide);
 		guide.setImageResource(AndroidUtil.getGlyphResource(DreamSpellUtil.getGuide()));
 		
+		ImageView waveSpellSeal = (ImageView) findViewById(R.id.wavespell_seal);
+		waveSpellSeal.setImageResource(AndroidUtil.getGlyphResource(DreamSpellUtil.getWavespell()));
+		
+		ImageView yearTone = (ImageView) findViewById(R.id.oracle_year_tone);
+		yearTone.setImageResource(AndroidUtil.getToneResource(DreamSpellUtil.getYearTone()));
+		
+		ImageView yearSeal = (ImageView) findViewById(R.id.oracle_year_seal);
+		yearSeal.setImageResource(AndroidUtil.getGlyphResource(DreamSpellUtil.getYearSeal()));
+		
+		TextView poemText = (TextView) findViewById(R.id.oracle_poem);
+		poemText.setText("POEM");
+		
 		TextView sealText = (TextView) findViewById(R.id.oracle_seal_text);
-		sealText.setText(DreamSpellUtil.GetSealName(DreamSpellUtil.getSeal()));
+		sealText.setText(DreamSpellUtil.getSealDefinition(DreamSpellUtil.getSeal()));
 		
 		TextView toneText = (TextView) findViewById(R.id.oracle_tone_text);
-		toneText.setText(DreamSpellUtil.GetSealName(DreamSpellUtil.getTone()));
+		toneText.setText(DreamSpellUtil.getToneDefinition(DreamSpellUtil.getTone()));
+		
+		TextView dailyMeditationText = (TextView) findViewById(R.id.oracle_daily_meditation);
+		dailyMeditationText.setText(DreamSpellUtil.getDailyMediation(DreamSpellUtil.getTone()));
 		
 		TextView guideText = (TextView) findViewById(R.id.oracle_guide_text);
-		guideText.setText(DreamSpellUtil.GetSealName(DreamSpellUtil.getGuide()));
+		guideText.setText(DreamSpellUtil.getSealDefinition(DreamSpellUtil.getGuide()));
 		
 		TextView antipodeText = (TextView) findViewById(R.id.oracle_antipode_text);
-		antipodeText.setText(DreamSpellUtil.GetSealName(DreamSpellUtil.getAntipode()));
+		antipodeText.setText(DreamSpellUtil.getSealDefinition(DreamSpellUtil.getAntipode()));
 		
 		TextView occultText = (TextView) findViewById(R.id.oracle_occult_text);
-		occultText.setText(DreamSpellUtil.GetSealName(DreamSpellUtil.getOccult()));
+		occultText.setText(DreamSpellUtil.getSealDefinition(DreamSpellUtil.getOccult()));
 		
 		TextView analogText = (TextView) findViewById(R.id.oracle_analog_text);
-		analogText.setText(DreamSpellUtil.GetSealName(DreamSpellUtil.getAnalog()));
+		analogText.setText(DreamSpellUtil.getSealDefinition(DreamSpellUtil.getAnalog()));
 		
 		TextView wavespellToneText = (TextView) findViewById(R.id.oracle_wavespell_tone_text);
 		//wavespellToneText.setText(DreamSpellUtil.GetWavespell(DreamSpellUtil.getWavespell()));
-		wavespellToneText.setText("Tone 1 Magnetic");
+		wavespellToneText.setText(DreamSpellUtil.getToneDefinition(1));
 		
 		TextView wavespellSealText = (TextView) findViewById(R.id.oracle_wavespell_seal_text);
-		wavespellSealText.setText(DreamSpellUtil.GetSealName(DreamSpellUtil.getWavespell()));
+		wavespellSealText.setText(DreamSpellUtil.getSealDefinition(DreamSpellUtil.getWavespell()));
 		
 		TextView yearToneText = (TextView) findViewById(R.id.oracle_year_tone_text);
-		yearToneText.setText(DreamSpellUtil.GetYearTone());
+		yearToneText.setText(DreamSpellUtil.getToneDefinition(DreamSpellUtil.getYearTone()));
 		
 		TextView yearSealText = (TextView) findViewById(R.id.oracle_year_seal_text);
-		yearSealText.setText(DreamSpellUtil.GetSealName(DreamSpellUtil.getYearSeal()));
+		yearSealText.setText(DreamSpellUtil.getSealDefinition(DreamSpellUtil.getYearSeal()));
 	}
 }

@@ -166,7 +166,7 @@ public class DreamSpellUtil {
 		
 	static String[][] tones = new String[][]
 	{ 
-		// Tone, Power, Action, Essence
+		// Tone, Power, Action, Essence, Daily Meditation
 		{"Unknown"," ", " "," "," "},
 		{"Magnetic","Unify", "Purpose","Attraction","What is this wavespell's Goal?"},
 		{"Lunar","Polarize", "Challenge","Stabilizing","What are the Obstacles for this wavespell's goal?"},
@@ -209,6 +209,28 @@ public class DreamSpellUtil {
 		{"Yellow Sun","AHAU","Enlightens","Life","Universal Fire"}
 	};		
 		
+	public static String getSealDefinition(int s)
+	{
+		return String.format("%s (%s) %s and emphasizes %s",
+				seals[s][0],seals[s][1],seals[s][2],seals[s][4]);
+	}
+	
+	public static String getToneDefinition(int t)
+	{
+		return String.format("Tone %s %s, creative power to %s %s, action of %s",
+				t,tones[t][0],tones[t][1],tones[t][2],tones[t][3]);
+	}
+	
+	public static String getDailyMediation()
+	{
+		return getDailyMediation(tone);
+	}
+	
+	public static String getDailyMediation(int t)
+	{
+		return "Daily meditation - " + tones[t][4];
+	}
+	
 	public DreamSpellUtil()
 	{
 	}

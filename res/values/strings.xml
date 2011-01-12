@@ -43,6 +43,17 @@ I am guided by the power of space\n
 	
 		<string name="goto_oracle">Oracle</string>
 		
+		<string name="oracle_seal_title">Seal of the Day, Destiny</string>
+		<string name="oracle_tone_title">Tone of the day</string>
+		<string name="oracle_guide_title">Guide of the Day, effecting Outcome</string>
+		<string name="oracle_antipode_title">Antipode of the Day, the Challenging focus</string>
+		<string name="oracle_occult_title">Occult of the Day, the Hidden power</string>
+		<string name="oracle_analog_title">Analog of the Day, the Like-Minded power</string>
+		<string name="oracle_wavespell_tone_title">Tone one starts the Wavespell</string>
+		<string name="oracle_wavespell_seal_title">Seal for this Wavespell</string>
+		<string name="oracle_year_tone_title">Tone of the Year</string>
+		<string name="oracle_year_seal_title">Seal of the Year, Destiny</string>
+		
 		<string name="oracle_seal_text">kin seal</string>
 		<string name="oracle_tone_text">kin tone</string>
 		<string name="oracle_guide_text">guide</string>
@@ -54,6 +65,7 @@ I am guided by the power of space\n
 		<string name="oracle_year_tone_text">year tone</string>
 		<string name="oracle_year_seal_text">year seal</string>
 		
+		<string name="oracle_daily_meditation">Meditation</string>
 		
 	<string name="oracle_text">
 Tone 1 Magnetic\n
