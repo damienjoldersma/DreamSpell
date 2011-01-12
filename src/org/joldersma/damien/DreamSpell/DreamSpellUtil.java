@@ -112,6 +112,27 @@ public class DreamSpellUtil {
 	public static void setAnalog(int analog) {
 		DreamSpellUtil.analog = analog;
 	}
+	
+	public static int getYearTone() {
+		return ytone;
+	}
+
+	public static void setYearTone(int t) {
+		DreamSpellUtil.ytone = t;
+	}
+	
+	public static int getYearSeal() {
+		return yseal;
+	}
+
+	public static void setYearSeal(int s) {
+		DreamSpellUtil.yseal = s;
+	}
+	
+	
+	public static int getWavespell() {
+		return magseal;
+	}
 
 	public static Date getCurrentDate() {
 		return currentDate;
@@ -199,9 +220,19 @@ public class DreamSpellUtil {
 	
 	public static String GetName(int s)
 	{
+		return GetName(s,tone);
+	}
+	
+	public static String GetName(int s, int t)
+	{
 		String seal = seals[s][0];
-		seal = seal.replace(" "," " + tones[tone][0] + " ");
+		seal = seal.replace(" "," " + tones[t][0] + " ");
 		return seal;
+	}
+	
+	public static String GetSealName(int s)
+	{
+		return seals[s][0];
 	}
 
 	public static String GetAction()
@@ -217,6 +248,12 @@ public class DreamSpellUtil {
 	public static String GetAction(Glyph g)
 	{
 		return GetGlyphAction(g.getNumber());
+	}
+	
+	public static String GetToneName(int t)
+	{
+		String action = tones[t][0];
+		return action;
 	}
 	
 	public static String GetToneAction(int t)
@@ -283,7 +320,37 @@ public class DreamSpellUtil {
 	{
 		String power = seals[g][4];
 		return power;
-	}				 
+	}		
+	
+	public static String GetWavespell()
+	{
+		return GetName(getWavespell());
+	}
+	
+	public static String GetWavespell(int magseal)
+	{
+		return GetName(magseal);
+	}
+	
+	public static String GetYearTone()
+	{
+		return GetYearTone(ytone);
+	}
+	
+	public static String GetYearTone(int t)
+	{
+		return GetToneName(t);
+	}
+	
+	public static String GetYearSeal()
+	{
+		return GetYearSeal(yseal);
+	}
+	
+	public static String GetYearSeal(int s)
+	{
+		return GetName(s);
+	}
 	
 	public static void Calc()
 	{
