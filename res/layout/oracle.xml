@@ -32,6 +32,7 @@
 								android:text="@string/oracle_poem"/>
 		</TableRow>
 		
+		<View android:layout_margin="3dip" android:layout_height="2dp" android:layout_width="fill_parent" android:background="#777"/>
 		
 		<TableRow>
 			<TextView android:id="@+id/oracle_seal_title"
@@ -62,6 +63,8 @@
 								android:textColor="#000000"
 								android:text="@string/oracle_seal_text"/>
 		</TableRow>
+		
+		<View android:layout_margin="3dip" android:layout_height="2dp" android:layout_width="fill_parent" android:background="#777"/>
 		
 		<TableRow>
 			<TextView android:id="@+id/oracle_tone_title"
@@ -109,6 +112,8 @@
 						 		android:text="@string/oracle_daily_meditation"/>
 		</TableRow>
 		
+		<View android:layout_margin="3dip" android:layout_height="2dp" android:layout_width="fill_parent" android:background="#777"/>
+		
 		<TableRow>
 			<TextView android:id="@+id/oracle_guide_title"
 								android:layout_width="fill_parent"
@@ -141,6 +146,8 @@
 							 		android:text="@string/oracle_guide_text"/>
 		</TableRow>
 		
+		<View android:layout_margin="3dip" android:layout_height="2dp" android:layout_width="fill_parent" android:background="#777"/>
+		
 		<TableRow>
 			<TextView android:id="@+id/oracle_antipode_title"
 								android:layout_width="fill_parent"
@@ -170,6 +177,8 @@
 										android:textColor="#000000"
 							 		android:text="@string/oracle_antipode_text"/>
 		</TableRow>
+		
+		<View android:layout_margin="3dip" android:layout_height="2dp" android:layout_width="fill_parent" android:background="#777"/>
 		
 		<TableRow>
 			<TextView android:id="@+id/oracle_occult_title"
@@ -201,6 +210,8 @@
 							 		android:text="@string/oracle_occult_text"/>
 		</TableRow>
 		
+		<View android:layout_margin="3dip" android:layout_height="2dp" android:layout_width="fill_parent" android:background="#777"/>
+		
 		<TableRow>
 			<TextView android:id="@+id/oracle_analog_title"
 								android:layout_width="fill_parent"
@@ -230,6 +241,8 @@
 										android:textColor="#000000"
 							 		android:text="@string/oracle_analog_text"/>
 		</TableRow>
+		
+		<View android:layout_margin="3dip" android:layout_height="2dp" android:layout_width="fill_parent" android:background="#777"/>
 		
 		<TableRow>
 			<TextView android:id="@+id/oracle_wavespell_tone_title"
@@ -261,6 +274,8 @@
 							 		android:text="@string/oracle_wavespell_tone_text"/>
 		</TableRow>
 		
+		<View android:layout_margin="3dip" android:layout_height="2dp" android:layout_width="fill_parent" android:background="#777"/>
+		
 		<TableRow>
 			<TextView android:id="@+id/oracle_wavespell_seal_title"
 								android:layout_width="fill_parent"
@@ -291,6 +306,8 @@
 							 		android:text="@string/oracle_wavespell_seal_text"/>
 		</TableRow>
 		
+		<View android:layout_margin="3dip" android:layout_height="2dp" android:layout_width="fill_parent" android:background="#777"/>
+		
 		<TableRow>
 			<TextView android:id="@+id/oracle_year_tone_title"
 								android:layout_width="fill_parent"
@@ -320,6 +337,8 @@
 								android:textColor="#000000"
 								android:text="@string/oracle_year_tone_text"/>
 		</TableRow>
+		
+		<View android:layout_margin="3dip" android:layout_height="2dp" android:layout_width="fill_parent" android:background="#777"/>
 		
 		<TableRow>
 			<TextView android:id="@+id/oracle_year_seal_title"
