@@ -4,9 +4,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import android.content.res.Resources;
 import android.util.Log;
 
 public class DreamSpellUtil {
+
+	public static final String TAG = "DreamSpell";
 
 	/**
 	 * @param args
@@ -220,11 +223,40 @@ public class DreamSpellUtil {
 		"The seal for the Wavespell sets the emphasis of the thirteen day, thirteen tone cycle."
 	};
 	
-	public static String getAffirmation()
+	
+	public static String getAffirmation(Resources res)
 	{
+		// TONE NAME,CREATIVE POWER,FUNCTION,ACTION
+		String[] affirmation_tones_raw = res.getStringArray(R.array.affirmation_tones);
+		
+		// GLYPH,MAYAN NAME,COLOR,ACTION,CREATIVE POWER,FUNCTION
+		String[] affirmation_glyphs_raw = res.getStringArray(R.array.affirmation_glyphs);
+		
+		String[][] affirmation_tones = new String[13][5];
+		for (int i = 0; i < affirmation_tones_raw.length; i++) {
+			String t = affirmation_tones_raw[i];
+			String[] values = t.split(",");
+			affirmation_tones[i] = values;
+		}
+		
+		String[][] affirmation_glyphs = new String[20][7];
+		for (int i = 0; i < affirmation_glyphs_raw.length; i++) {
+			String g = affirmation_glyphs_raw[i];
+			String[] values = g.split(",");
+			affirmation_glyphs[i] = values;
+		}
+		
+		String guidePower = affirmation_glyphs[getGuide()-1][4];
+		
+		if ( getTone() == 1 || getTone() == 6 || getTone() == 11)
+			guidePower = "MY OWN POWER DOUBLED!";
+		
+		Log.d(TAG,"getSeal is " + getSeal());
+		Log.d(TAG,"guidePower is " + guidePower);
+		
 		/*
 		 * I 'Tone Power' in order to 'Tribe Action'
-		 * 'Tone Action'ing 'Tribe Essence'
+		 * 'Tone Action' 'Tribe Essence'
 		 * I seal the 'Timecell' of 'Tribe Power'
 		 * With the 'Tone Name' tone of 'Tone Essence'
 		 * I am guided by the power of 'Guide Power'
@@ -232,17 +264,19 @@ public class DreamSpellUtil {
 		
 		return String.format(
 		 "I %s in order to %s\n" +
-		 "%s ing %s\n" +
+		 "%s %s\n" +
 		 "I seal the %s of %s\n" +
 		 "With the %s tone of %s\n" +
 		 "I am guided by the power of %s\n",
-		 GetTonePower(),GetTribeAction(),
-		 GetToneAction(),GetEssence(),
-		 "TIMECELL",GetGlyphPower(seal),
-		 GetToneName(getTone()),GetToneEssence(getTone()),
-		 GetGlyphPower(getGuide()));
+		 affirmation_tones[getTone()-1][1],affirmation_glyphs[getSeal()-1][3],
+		 affirmation_tones[getTone()-1][3],affirmation_glyphs[getSeal()-1][5],
+		 affirmation_glyphs[getSeal()-1][6],affirmation_glyphs[getSeal()-1][4],
+		 affirmation_tones[getTone()-1][0],affirmation_tones[getTone()-1][2],
+		 guidePower);
 	}
-		
+	// TONE,POWER,FUNCTION,ACTION
+	// GLYPH,MAYAN NAME,COLOR,ACTION,POWER,FUNCTION
+	
 	public static String getSealDefinition(int s)
 	{
 		return String.format("%s (%s) %s and emphasizes %s",

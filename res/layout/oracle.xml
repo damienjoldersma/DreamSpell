@@ -19,9 +19,21 @@
 		android:tileMode="repeat"
 		android:padding="3dip"
 		android:stretchColumns="1"> 
+		
+			<TableRow>
+			<TextView android:id="@+id/oracle_affirmation_title"
+								android:layout_width="fill_parent"
+								android:layout_height="fill_parent"
+								android:layout_weight="1"
+								android:textSize="16sp"
+								android:padding="3dip"
+								android:gravity="left"
+								android:textColor="#000000"
+								android:text="@string/oracle_affirmation_title"/>
+		</TableRow>
 
 		<TableRow>
-			<TextView android:id="@+id/oracle_poem"
+			<TextView android:id="@+id/oracle_affirmation"
 								android:layout_width="fill_parent"
 								android:layout_height="fill_parent"
 								android:layout_weight="1"
@@ -29,7 +41,7 @@
 								android:padding="3dip"
 								android:gravity="left"
 								android:textColor="#000000"
-								android:text="@string/oracle_poem"/>
+								android:text="@string/oracle_affirmation"/>
 		</TableRow>
 		
 		<View android:layout_margin="3dip" android:layout_height="2dp" android:layout_width="fill_parent" android:background="#777"/>

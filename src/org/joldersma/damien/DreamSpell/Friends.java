@@ -50,7 +50,7 @@ public class Friends extends ListActivity implements OnScrollListener {
 	
 	public static final String APP_ID = "32395165793";
 	private Facebook mFacebook;
-		private AsyncFacebookRunner mAsyncRunner;
+	private AsyncFacebookRunner mAsyncRunner;
 	
 	private DataHelper dh;
 

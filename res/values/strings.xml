@@ -31,7 +31,7 @@
 	<string name="CHANGE_DAY_365">365 Days (Year)</string>
 	<string name="about_text">About</string>
 	
-	<string name="oracle_poem">
+	<string name="oracle_affirmation">
 	Red Eastern Castle of Turning\n
 Earth family- Polar      Clan- Blood\n
 I empower in order to survive\n
@@ -43,6 +43,7 @@ I am guided by the power of space\n
 	
 		<string name="goto_oracle">Oracle</string>
 		
+		<string name="oracle_affirmation_title">Daily Affirmation</string>
 		<string name="oracle_seal_title">Seal of the Day, Destiny</string>
 		<string name="oracle_tone_title">Tone of the day</string>
 		<string name="oracle_guide_title">Guide of the Day, effecting Outcome</string>
@@ -66,51 +67,45 @@ I am guided by the power of space\n
 		<string name="oracle_year_seal_text">year seal</string>
 		
 		<string name="oracle_daily_meditation">Meditation</string>
-		
-	<string name="oracle_text">
-Tone 1 Magnetic\n
-Seal of the Day, Destiny
-\n
-\n
-Blue Night (AKBAL) Dreams and emphasizes Abundance.\n
-The seal of the day is the basis of life destiny, with power of the solar tribe.\n
-Kin 183 of 260 day cycle(20 wavespells of 13 tones).
-\n\n
-Tone of the day\n
-Tone 1 Magnetic, creative power to Unify Purpose,action of Attraction. Daily meditation- What is this wavespell\'s Goal?\n
-Guide of the Day, effecting Outcome
-\n\n
-Blue Night (AKBAL) Dreams and emphasizes Abundance.\n
-The seal for the Guide of the day modifies the oracle reading in Outcome.
-\n\n
-Antipode of the Day, the Challenging focus
-\n\n
-Red Skywalker (BEN) Explores and emphasizes Space.\n
-The seal for the Anitpode of the day modifies the oracle reading with Challenging power (strengthening memory, reconstruction).
-\n\n
-Occult of the Day, the Hidden power
-\n\n
-White Mirror (ETZNAB) Reflects and emphasizes Endlessness.\n
-The seal for the Occult of the day modifies the oracle reading with Hidden power (the unexpected).
-Analog of the Day, the Like-Minded power
-\n\n
-Yellow Warrior (CIB) Questions and emphasizes Intelligence.\n
-The seal for the Analog of the day modifies the oracle reading with Like-Minded power (galactic-solar planetary power).
-\n\n
-Tone one starts the Wavespell\n
-Tone 1 Magnetic, creative power to Unify Purpose,action of Attraction
-\n\n
-Seal for this Wavespell\n
-\n\n
-Blue Night (AKBAL) Dreams and emphasizes Abundance.\n
-The seal for the Wavespell sets the emphasis of the thirteen day, thirteen tone cycle.
-\n\n
-Tone of the Year\n
-Tone 3 Electric, creative power to Activate Service,action of Bonding
-\n\n
-Seal of the Year, Destiny\n
-\n\n
-Red Moon (MULAC) Purifies and emphasizes Universal Water.\n
-The seal of the year is the basis of life destiny, with the power of the solar tribe.
-</string>
+	
+<string-array name="affirmation_tones">
+<!--TONE #,TONE NAME,CREATIVE POWER,FUNCTION,ACTION-->
+<item>magnetic,unify,purpose,Attracting</item>
+<item>lunar,polarize,challenge,Stabilizing</item>
+<item>electric,activate,service,Bonding</item>
+<item>self existing,define,form,Measuring</item>
+<item>overtone,empower,radiance,Commanding</item>
+<item>rhythmic,organize,equality,Balancing</item>
+<item>resonant,channel,attunement,Inspiring</item>
+<item>galactic,harmonize,integrity,Modeling</item>
+<item>solar,pulse,intention,Realizing</item>
+<item>planetary,perfect,manifestation,Producing</item>
+<item>spectral,dissolve ,liberation,Releasing</item>
+<item>crystal,dedicate,cooperation,Universalizing</item>
+<item>cosmic,endure,presence,Transcending</item>
+</string-array>
+
+<string-array name="affirmation_glyphs">
+<!-- GLYPH,MAYAN NAME,COLOR,ACTION,CREATIVE POWER,FUNCTION,TIMECELL-->
+<item>dragon,Imix,red,nurture,birth,being,input</item>
+<item>wind,Ik,white,communicate,spirit,breath,input</item>
+<item>night,Akbal,blue,dream,abundance,intuition,input</item>
+<item>seed,Kan,yellow,target,flowering,awareness,input</item>
+<item>serpent,Chicchan,red,survive,life force,instinct,store</item>
+<item>worldbridger,Cimi,white,equalize,death,opportunity,store</item>
+<item>hand,Manik,blue,know,accomplishment,healing,store</item>
+<item>star,Lamat,yellow,beautify,elegance,art,store</item>
+<item>moon,Mulac,red,purify,universal water,flow,process</item>
+<item>dog,Oc,white,love,heart,loyalty,process</item>
+<item>monkey,Chuen,blue,play,magic,illusion,process</item>
+<item>human,Eb,yellow,influence,free will,wisdom,process</item>
+<item>skywalker,Ben,red,explore,space,wakefulness,output</item>
+<item>wizard,Ix,white,enchant,timelessness,receptivity,output</item>
+<item>eagle,Men,blue,create,vision,mind,output</item>
+<item>warrior,Cib,yellow,question,intelligence,fearlessness,output</item>
+<item>earth,Caban,red,evolve,navigation,synchronicity,matrix</item>
+<item>mirror,Etznab,white,reflect,endlessness,order,matrix</item>
+<item>storm,Cauac,blue,catalyze,self-generation,energy,matrix</item>
+<item>sun,Ahau,yellow,enlighten,universal fire,life,matrix</item>
+</string-array>
 </resources>

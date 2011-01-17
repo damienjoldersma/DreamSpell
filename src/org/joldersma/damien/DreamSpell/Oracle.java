@@ -46,8 +46,8 @@ public class Oracle extends Activity {
 		ImageView yearSeal = (ImageView) findViewById(R.id.oracle_year_seal);
 		yearSeal.setImageResource(AndroidUtil.getGlyphResource(DreamSpellUtil.getYearSeal()));
 		
-		TextView poemText = (TextView) findViewById(R.id.oracle_poem);
-		poemText.setText(DreamSpellUtil.getAffirmation());
+		TextView affirmationText = (TextView) findViewById(R.id.oracle_affirmation);
+		affirmationText.setText(DreamSpellUtil.getAffirmation(getResources()));
 		
 		TextView sealText = (TextView) findViewById(R.id.oracle_seal_text);
 		sealText.setText(DreamSpellUtil.getSealDefinition(DreamSpellUtil.getSeal()));

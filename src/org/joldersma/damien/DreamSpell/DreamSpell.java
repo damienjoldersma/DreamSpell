@@ -60,6 +60,8 @@ public class DreamSpell extends Activity
 		Log.d(TAG,"** ON CREATE **");
 		setContentView(R.layout.main);
 
+		
+		
 		// Check for bundle extra 
 		Intent intent = getIntent();
 		Bundle extra = intent.getExtras();
@@ -311,6 +313,7 @@ public class DreamSpell extends Activity
         {
         	datePickerDialog.updateDate(mYear, mMonth, mDay);
         }
+        
 		
 		DreamSpellUtil.Calc(d);
 
