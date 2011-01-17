@@ -210,7 +210,7 @@ public class DreamSpellUtil {
 	};		
 		
 	static String[] oracleTextDefinition = new String[] 
-	{
+	{                                                                                                  
 		"The seal of the day is the basis of life destiny, with power of the solar tribe.",
 		"The seal of the year is the basis of life destiny, with the power of the solar tribe.",
 		"The seal for the Guide of the day modifies the oracle reading in Outcome.",
@@ -219,6 +219,29 @@ public class DreamSpellUtil {
 		"The seal for the Analog of the day modifies the oracle reading with Like-Minded power (galactic-solar planetary power).",
 		"The seal for the Wavespell sets the emphasis of the thirteen day, thirteen tone cycle."
 	};
+	
+	public static String getAffirmation()
+	{
+		/*
+		 * I 'Tone Power' in order to 'Tribe Action'
+		 * 'Tone Action'ing 'Tribe Essence'
+		 * I seal the 'Timecell' of 'Tribe Power'
+		 * With the 'Tone Name' tone of 'Tone Essence'
+		 * I am guided by the power of 'Guide Power'
+		 */
+		
+		return String.format(
+		 "I %s in order to %s\n" +
+		 "%s ing %s\n" +
+		 "I seal the %s of %s\n" +
+		 "With the %s tone of %s\n" +
+		 "I am guided by the power of %s\n",
+		 GetTonePower(),GetTribeAction(),
+		 GetToneAction(),GetEssence(),
+		 "TIMECELL",GetGlyphPower(seal),
+		 GetToneName(getTone()),GetToneEssence(getTone()),
+		 GetGlyphPower(getGuide()));
+	}
 		
 	public static String getSealDefinition(int s)
 	{
@@ -273,10 +296,15 @@ public class DreamSpellUtil {
 		return seals[s][0];
 	}
 
-	public static String GetAction()
+	public static String GetToneAction()
 	{
 		return GetToneAction(getTone());
-	}		
+	}	
+	
+	public static String GetTribeAction()
+	{
+		return GetGlyphAction(getSeal());
+	}
 	
 	public static String GetAction(Tone t)
 	{
@@ -333,7 +361,7 @@ public class DreamSpellUtil {
 		return esssence;
 	}
 	
-	public static String GetPower()
+	public static String GetTonePower()
 	{
 		return GetTonePower(getTone());
 	}
