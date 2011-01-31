@@ -25,6 +25,15 @@
               
 			</intent-filter>
 		</activity>
+		
+		  
+    <activity android:name=".About"
+                  android:label="@string/about_text">
+			<intent-filter>
+               <action android:name="android.intent.action.MAIN" />
+              
+			</intent-filter>
+		</activity>
 
 </application>
 
