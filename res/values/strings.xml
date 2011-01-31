@@ -31,6 +31,12 @@
 	<string name="CHANGE_DAY_365">365 Days (Year)</string>
 	<string name="about_text">About</string>
 	
+	<string name="about_info">
+	This is a DreamSpell application for Android, adapted by Damien Joldersma (White Cosmic Dog).
+	I was greatly inspired by Starroot\'s Daily DreamSpell Oracle. And of course the Law of Time Foundation.
+	And also StarShip Plaza, amazing.  I also used Photon.net\'s charts and resources.
+	</string>
+	
 	<string name="oracle_affirmation">
 	Red Eastern Castle of Turning\n
 Earth family- Polar      Clan- Blood\n

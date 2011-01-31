@@ -267,7 +267,7 @@ public class DreamSpellUtil {
 		 "%s %s\n" +
 		 "I seal the %s of %s\n" +
 		 "With the %s tone of %s\n" +
-		 "I am guided by the power of %s\n",
+		 "I am guided by the power of %s",
 		 affirmation_tones[getTone()-1][1],affirmation_glyphs[getSeal()-1][3],
 		 affirmation_tones[getTone()-1][3],affirmation_glyphs[getSeal()-1][5],
 		 affirmation_glyphs[getSeal()-1][6],affirmation_glyphs[getSeal()-1][4],
