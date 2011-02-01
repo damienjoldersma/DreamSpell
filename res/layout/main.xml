@@ -71,19 +71,17 @@
    				  android:layout_width="fill_parent"  			      
   			      android:layout_weight="1"
   			      android:padding="3dip"
-  			      android:textSize="30sp"
   			      android:gravity="center"
   			      android:textColor="#000000"
-  			 	  android:text="@string/date_title"/>	 
+  			 	  android:text="@string/date_title" android:textSize="30sp"/>	 
 		</TableRow>
 	<TableRow>
 		<TextView android:id="@+id/date_name"
 	   				  android:layout_width="fill_parent"
 	  			      android:layout_weight="1"
-	  			      android:textSize="20sp"
 	  			      android:padding="3dip"
 	  			      android:gravity="center"
 	  			      android:textColor="#000000"
-	  			 	  android:text="@string/date_name"/>	
+	  			 	  android:text="@string/date_name" android:textSize="35sp"/>	
 	</TableRow>
 	</TableLayout>
