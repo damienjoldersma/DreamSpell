@@ -3,8 +3,8 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/mainTable"
     android:layout_height="fill_parent"
-      android:layout_width="match_parent"
-    android:background="@drawable/bgclouds"
+    android:layout_width="match_parent"
+    android:background="@drawable/backrepeat"
     android:tileMode="repeat"
     android:padding="3dip"
     android:stretchColumns="1"> 
@@ -73,7 +73,7 @@
   			      android:padding="3dip"
   			      android:gravity="center"
   			      android:textColor="#000000"
-  			 	  android:text="@string/date_title" android:textSize="30sp"/>	 
+  			 	  android:text="@string/date_title" android:textSize="25sp"/>	 
 		</TableRow>
 	<TableRow>
 		<TextView android:id="@+id/date_name"
@@ -82,6 +82,6 @@
 	  			      android:padding="3dip"
 	  			      android:gravity="center"
 	  			      android:textColor="#000000"
-	  			 	  android:text="@string/date_name" android:textSize="35sp"/>	
+	  			 	  android:text="@string/date_name" android:textSize="30sp"/>	
 	</TableRow>
 	</TableLayout>
