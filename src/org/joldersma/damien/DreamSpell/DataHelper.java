@@ -96,6 +96,33 @@ public class DataHelper {
 			}
 			return list;
 	}
+	 
+	
+	public List<Map<String,String>> selectSeals()
+	{
+		Log.d(TAG,"Doing selectSeals");
+		List<Map<String,String>> list =  new ArrayList<Map<String, String>>();
+		
+		Cursor cursor = this.db.query(TABLE_NAME, new String[] { "name","birthday","picture","facebookId" }, 
+				null, null, null, null, "name asc");
+		if (cursor.moveToFirst()) 
+		{
+			do 
+			{
+				Map<String, String> kin = new HashMap<String, String>();
+				kin.put("name", cursor.getString(0));
+				kin.put("birthday", cursor.getString(1));
+				kin.put("picture", cursor.getString(2));
+				kin.put("facebookId", cursor.getString(3));
+				list.add(kin); 
+				} while (cursor.moveToNext());
+			}
+			if (cursor != null && !cursor.isClosed()) {
+				 cursor.close();
+			}
+		
+		return list;
+	}
 
 	private static class OpenHelper extends SQLiteOpenHelper {
 

@@ -1,17 +1,26 @@
 package org.joldersma.damien.DreamSpell;
 
+import java.util.List;
+import java.util.Map;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.TabHost.TabSpec;
 
 public class FriendGroups extends Activity {
 	
-	private TextView textView1, textView2, textView3, textView4, textView5, textView6, textView7;
-
+	public static final String TAG = "DreamSpell";
+	private DataHelper dh;
+	private FriendListFacebookAdapter adapter = null;
+	private List<Map<String, String>> friendsData;	
+	private TextView textView2, textView3, textView4, textView5, textView6, textView7;
+	private ListView listView1;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -19,12 +28,15 @@ public class FriendGroups extends Activity {
 		
 		setContentView(R.layout.friend_groups);
 		
+		this.dh = new DataHelper(this);
+		friendsData = this.dh.selectAll();
+		
 		TabHost myTabHost = (TabHost)this.findViewById(R.id.tabhost);
 		myTabHost.setup();
 		
 		//textView1 = (TextView)this.findViewById(R.id.friend_groups_text_view);
 		//textView2 = (TextView)this.findViewById(R.id.friend_groups_text_view);
-		textView1 = new TextView(FriendGroups.this);
+		listView1 = new ListView(FriendGroups.this);
 		textView2 = new TextView(FriendGroups.this);
 		textView3 = new TextView(FriendGroups.this);
 		textView4 = new TextView(FriendGroups.this);
@@ -37,8 +49,10 @@ public class FriendGroups extends Activity {
 		ts.setContent(new TabHost.TabContentFactory(){
 			public View createTabContent(String tag)
 			{
-				textView1.setText("wow made it 1");
-				return textView1;
+				adapter = new FriendListFacebookAdapter(FriendGroups.this,FriendGroups.this, friendsData, R.layout.friend_view,
+						new String[] { "name","birthday","picture"}, new int[] {R.id.friendViewText, R.id.friendViewImage});
+				listView1.setAdapter(adapter);
+				return listView1;
 			}
 		});
 		myTabHost.addTab(ts);
