@@ -34,6 +34,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.TabHost;
 import android.widget.TableRow;
 import android.widget.AbsListView.OnScrollListener;
 
@@ -71,6 +72,7 @@ public class Friends extends ListActivity implements OnScrollListener {
 			Log.v(TAG, "Activity State: onCreate()");
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.friends);
+			
 			
 			mFacebook = new Facebook(APP_ID);
 		 	mAsyncRunner = new AsyncFacebookRunner(mFacebook);
