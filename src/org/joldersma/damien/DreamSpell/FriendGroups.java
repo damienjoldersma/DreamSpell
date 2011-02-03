@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TabHost;
-import android.widget.TextView;
+import android.widget.ListView;
 import android.widget.TabHost.TabSpec;
 
 public class FriendGroups extends Activity {
@@ -18,8 +18,7 @@ public class FriendGroups extends Activity {
 	private DataHelper dh;
 	private FriendListFacebookAdapter adapter = null;
 	private List<Map<String, String>> friendsData;	
-	private TextView textView2, textView3, textView4, textView5, textView6, textView7;
-	private ListView listView1;
+	private ListView listView1, listView2, listView3, listView4, listView5, listView6, listView7;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,15 +33,13 @@ public class FriendGroups extends Activity {
 		TabHost myTabHost = (TabHost)this.findViewById(R.id.tabhost);
 		myTabHost.setup();
 		
-		//textView1 = (TextView)this.findViewById(R.id.friend_groups_text_view);
-		//textView2 = (TextView)this.findViewById(R.id.friend_groups_text_view);
 		listView1 = new ListView(FriendGroups.this);
-		textView2 = new TextView(FriendGroups.this);
-		textView3 = new TextView(FriendGroups.this);
-		textView4 = new TextView(FriendGroups.this);
-		textView5 = new TextView(FriendGroups.this);
-		textView6 = new TextView(FriendGroups.this);
-		textView7 = new TextView(FriendGroups.this);
+		listView2 = new ListView(FriendGroups.this);
+		listView3 = new ListView(FriendGroups.this);
+		listView4 = new ListView(FriendGroups.this);
+		listView5 = new ListView(FriendGroups.this);
+		listView6 = new ListView(FriendGroups.this);
+		listView7 = new ListView(FriendGroups.this);
 		
 		TabSpec ts = myTabHost.newTabSpec("TAB_TAG_1");
 		ts.setIndicator("All");
@@ -62,8 +59,8 @@ public class FriendGroups extends Activity {
 		ts1.setContent(new TabHost.TabContentFactory(){
 			public View createTabContent(String tag)
 			{
-				textView2.setText("party party 2");
-				return textView2;
+				
+				return listView2;
 			}
 		});
 		myTabHost.addTab(ts1);
@@ -73,8 +70,8 @@ public class FriendGroups extends Activity {
 		ts2.setContent(new TabHost.TabContentFactory(){
 			public View createTabContent(String tag)
 			{
-				textView3.setText("abra cadabra 3");
-				return textView3;
+				
+				return listView3;
 			}
 		});
 		myTabHost.addTab(ts2);
@@ -84,8 +81,8 @@ public class FriendGroups extends Activity {
 		ts3.setContent(new TabHost.TabContentFactory(){
 			public View createTabContent(String tag)
 			{
-				textView4.setText("analog fun");
-				return textView4;
+				
+				return listView4;
 			}
 		});
 		myTabHost.addTab(ts3);
@@ -95,8 +92,8 @@ public class FriendGroups extends Activity {
 		ts4.setContent(new TabHost.TabContentFactory(){
 			public View createTabContent(String tag)
 			{
-				textView5.setText("occult time");
-				return textView5;
+				
+				return listView5;
 			}
 		});
 		myTabHost.addTab(ts4);
@@ -106,8 +103,8 @@ public class FriendGroups extends Activity {
 		ts5.setContent(new TabHost.TabContentFactory(){
 			public View createTabContent(String tag)
 			{
-				textView6.setText("focus");
-				return textView6;
+				
+				return listView6;
 			}
 		});
 		myTabHost.addTab(ts5);
@@ -117,8 +114,8 @@ public class FriendGroups extends Activity {
 		ts6.setContent(new TabHost.TabContentFactory(){
 			public View createTabContent(String tag)
 			{
-				textView7.setText("focus");
-				return textView7;
+				
+				return listView7;
 			}
 		});
 		myTabHost.addTab(ts6);
