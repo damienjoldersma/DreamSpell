@@ -17,7 +17,7 @@ public class DreamSpellUtil {
 	public static void main(String[] args) {
 		
 
-//		System.out.println("Hello Dream World!");
+		System.out.println("Hello Dream World!");
 		
 		DreamSpellUtil.Calc();
 		
@@ -44,7 +44,52 @@ public class DreamSpellUtil {
 		
 		//System.out.println("Year: " + DreamSpellUtil.get);
 		
-//		System.out.println("CurrentDate: " + DreamSpellUtil.getCurrentDate());
+		System.out.println("CurrentDate: " + DreamSpellUtil.getCurrentDate());
+		
+//		int kin = 0;
+//		for (int seal = 1; seal <= 20; seal++)
+//		{
+//			for (int tone = 1; tone <= 13; tone++)		
+//			{
+//				kin++;
+//				System.out.println(String.format("Kin: %s, Seal: %s, Tone: %s",kin,seal,tone));
+//				
+//			}
+//		}
+		
+		Date rowDate = new Date(Date.parse("12/25/2010"));
+		
+		Calendar c1 = Calendar.getInstance();
+		c1.set(2010,11,24);
+		
+		rowDate = c1.getTime();
+		
+		for (int kinRow = 1; kinRow <= 260; kinRow++)
+		{
+			c1.add(Calendar.DATE,1);
+			rowDate = c1.getTime();
+			DreamSpellUtil.Calc(rowDate);
+			
+			Date date = DreamSpellUtil.getCurrentDate();
+			int kin = DreamSpellUtil.getKin();
+			int seal = DreamSpellUtil.getSeal();
+			int tone = DreamSpellUtil.getTone();
+			int analog = DreamSpellUtil.getAnalog();
+			int occult = DreamSpellUtil.getOccult();
+			int antipode = DreamSpellUtil.getAntipode();
+			int guide = DreamSpellUtil.getGuide();
+			
+			//System.out.println(String.format("date: %s, kin: %s, seal: %s, tone: %s, analog: %s, occult: %s, antipode: %s, guide: %s",
+			//		date,kin,seal,tone,analog,occult,antipode,guide));
+			
+			//System.out.println(String.format("%s,%s,%s,%s,%s,%s,%s",
+			//		kin,seal,tone,analog,occult,antipode,guide));
+			
+			System.out.println(String.format("INSERT INTO KIN_LOOKUP (kin,seal,tone,analog,occult,antipode,guide) VALUES (%s,%s,%s,%s,%s,%s,%s);",
+					kin,seal,tone,analog,occult,antipode,guide));
+			
+		}
+		
 	}
 
 	static double y,x,rem;
@@ -740,3 +785,4 @@ public class DreamSpellUtil {
 	}
 	*/
 }
+
