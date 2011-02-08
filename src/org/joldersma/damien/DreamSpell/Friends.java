@@ -32,11 +32,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TableRow;
 import android.widget.AbsListView.OnScrollListener;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.TabHost.TabSpec;
 
 import com.facebook.android.AsyncFacebookRunner;
 import com.facebook.android.DialogError;
@@ -45,7 +49,7 @@ import com.facebook.android.FacebookError;
 import com.facebook.android.Util;
 import com.facebook.android.Facebook.DialogListener;
 
-public class Friends extends ListActivity implements OnScrollListener {
+public class Friends extends Activity implements OnScrollListener, OnItemClickListener {
 
 	public static final String TAG = "DreamSpell";
 	
@@ -55,8 +59,8 @@ public class Friends extends ListActivity implements OnScrollListener {
 	
 	private DataHelper dh;
 
-	private ListView mFriendList;
 	FriendListCursorAdapter friendListCursorAdapter;
+	private ListView listView1, listView2, listView3, listView4, listView5, listView6, listView7;
 	
 	//private LoginButton mLoginButton;
 	
@@ -65,6 +69,7 @@ public class Friends extends ListActivity implements OnScrollListener {
 	
 	//Aleph0 adapter = new Aleph0();
 	FriendListFacebookAdapter adapter = null;
+	
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -140,8 +145,8 @@ public class Friends extends ListActivity implements OnScrollListener {
 //		 	else
 //		 		Log.d(TAG,"No savedInstanceState to check for friendsData");
 			
-			setListAdapter(adapter); 
-		    getListView().setOnScrollListener(this);
+			//setListAdapter(adapter); 
+		    //getListView().setOnScrollListener(this); // TODO setOnScrollListners on listviews
 			
 			this.dh = new DataHelper(this);
 			
@@ -151,11 +156,132 @@ public class Friends extends ListActivity implements OnScrollListener {
 			//{
 				// Populate the contact list
 				Log.d(TAG,"onCreate going to populate");
-				populateContactList();
+				//populateContactList();
 			//}
+			setupTabs();
 					 
 	}
 
+	public void setupTabs()
+	{
+		TabHost myTabHost = (TabHost)this.findViewById(R.id.tabhost);
+		myTabHost.setup();
+		
+		listView1 = new ListView(Friends.this);
+		listView2 = new ListView(Friends.this);
+		listView3 = new ListView(Friends.this);
+		listView4 = new ListView(Friends.this);
+		listView5 = new ListView(Friends.this);
+		listView6 = new ListView(Friends.this);
+		listView7 = new ListView(Friends.this);
+		
+		TabSpec ts = myTabHost.newTabSpec("TAB_TAG_1");
+		ts.setIndicator("All");
+		ts.setContent(new TabHost.TabContentFactory(){
+			public View createTabContent(String tag)
+			{
+				adapter = new FriendListFacebookAdapter(Friends.this,Friends.this, friendsData, R.layout.friend_view,
+						new String[] { "name","birthday","picture"}, new int[] {R.id.friendViewText, R.id.friendViewImage});
+				listView1.setAdapter(adapter);
+				listView1.setOnScrollListener(Friends.this); 
+				listView1.setOnItemClickListener(Friends.this);
+				return listView1;
+			}
+		});
+		myTabHost.addTab(ts);
+		
+		TabSpec ts1 = myTabHost.newTabSpec("TAB_TAG_2");
+		ts1.setIndicator("Seal");
+		ts1.setContent(new TabHost.TabContentFactory(){
+			public View createTabContent(String tag)
+			{
+				DreamSpellUtil.Calc(DreamSpell.getCurrentDate());
+				List<Map<String,String>> data = dh.select("seal",DreamSpellUtil.getSeal());
+				ListAdapter a = new FriendListFacebookAdapter(Friends.this,Friends.this, data, R.layout.friend_view,
+						new String[] { "name","birthday","picture"}, new int[] {R.id.friendViewText, R.id.friendViewImage});
+				listView2.setAdapter(a);
+				return listView2;
+			}
+		});
+		myTabHost.addTab(ts1);
+		
+		TabSpec ts2 = myTabHost.newTabSpec("TAB_TAG_3");
+		ts2.setIndicator("Tone");
+		ts2.setContent(new TabHost.TabContentFactory(){
+			public View createTabContent(String tag)
+			{
+				DreamSpellUtil.Calc(DreamSpell.getCurrentDate());
+				List<Map<String,String>> data = dh.select("tone",DreamSpellUtil.getTone());
+				ListAdapter a = new FriendListFacebookAdapter(Friends.this,Friends.this, data, R.layout.friend_view,
+						new String[] { "name","birthday","picture"}, new int[] {R.id.friendViewText, R.id.friendViewImage});
+				listView3.setAdapter(a);
+				return listView3;
+			}
+		});
+		myTabHost.addTab(ts2);
+		
+		TabSpec ts3 = myTabHost.newTabSpec("TAB_TAG_3");
+		ts3.setIndicator("Analog");
+		ts3.setContent(new TabHost.TabContentFactory(){
+			public View createTabContent(String tag)
+			{
+				DreamSpellUtil.Calc(DreamSpell.getCurrentDate());
+				List<Map<String,String>> data = dh.select("seal",DreamSpellUtil.getAnalog());
+				ListAdapter a = new FriendListFacebookAdapter(Friends.this,Friends.this, data, R.layout.friend_view,
+						new String[] { "name","birthday","picture"}, new int[] {R.id.friendViewText, R.id.friendViewImage});
+				listView4.setAdapter(a);
+				return listView4;
+			}
+		});
+		myTabHost.addTab(ts3);
+		
+		TabSpec ts4 = myTabHost.newTabSpec("TAB_TAG_4");
+		ts4.setIndicator("Occult");
+		ts4.setContent(new TabHost.TabContentFactory(){
+			public View createTabContent(String tag)
+			{
+				DreamSpellUtil.Calc(DreamSpell.getCurrentDate());
+				List<Map<String,String>> data = dh.select("seal",DreamSpellUtil.getOccult());
+				ListAdapter a = new FriendListFacebookAdapter(Friends.this,Friends.this, data, R.layout.friend_view,
+						new String[] { "name","birthday","picture"}, new int[] {R.id.friendViewText, R.id.friendViewImage});
+				listView5.setAdapter(a);
+				return listView5;
+			}
+		});
+		myTabHost.addTab(ts4);
+		
+		TabSpec ts5 = myTabHost.newTabSpec("TAB_TAG_5");
+		ts5.setIndicator("Antipode");
+		ts5.setContent(new TabHost.TabContentFactory(){
+			public View createTabContent(String tag)
+			{
+				DreamSpellUtil.Calc(DreamSpell.getCurrentDate());
+				List<Map<String,String>> data = dh.select("seal",DreamSpellUtil.getAntipode());
+				ListAdapter a = new FriendListFacebookAdapter(Friends.this,Friends.this, data, R.layout.friend_view,
+						new String[] { "name","birthday","picture"}, new int[] {R.id.friendViewText, R.id.friendViewImage});
+				listView6.setAdapter(a);
+				return listView6;
+			}
+		});
+		myTabHost.addTab(ts5);
+		
+		TabSpec ts6 = myTabHost.newTabSpec("TAB_TAG_6");
+		ts6.setIndicator("Guide");
+		ts6.setContent(new TabHost.TabContentFactory(){
+			public View createTabContent(String tag)
+			{
+				DreamSpellUtil.Calc(DreamSpell.getCurrentDate());
+				List<Map<String,String>> data = dh.select("seal",DreamSpellUtil.getGuide());
+				ListAdapter a = new FriendListFacebookAdapter(Friends.this,Friends.this, data, R.layout.friend_view,
+						new String[] { "name","birthday","picture"}, new int[] {R.id.friendViewText, R.id.friendViewImage});
+				listView7.setAdapter(a);
+				return listView7;
+			}
+		});
+		myTabHost.addTab(ts6);
+		
+	}
+	
 	private static final int LOGIN_ID = Menu.FIRST;
 	private static final int SYNC_ID = Menu.FIRST+1;
 	
@@ -384,7 +510,7 @@ private final class LoginDialogListener implements DialogListener {
 			
 			adapter = new FriendListFacebookAdapter(this,this, friendsData, R.layout.friend_view,
 					new String[] { "name","birthday","picture"}, new int[] {R.id.friendViewText, R.id.friendViewImage});
-			setListAdapter(adapter);
+			//setListAdapter(adapter);
 			
 			
 				
@@ -453,9 +579,15 @@ private final class LoginDialogListener implements DialogListener {
 		
 		public static final String KEY_DATE = "date";
 		
-		@Override
-		protected void onListItemClick(ListView l, View v, int position, long id) {
-				super.onListItemClick(l, v, position,	id);
+		public void onItemClick(AdapterView<?> l, View v,
+				int position, long id) {
+			// TODO Auto-generated method stub
+			
+		//}    
+		
+		//@Override
+		//protected void onTODOListItemClick(ListView l, View v, int position, long id) {
+				//super.onListItemClick(l, v, position,	id);
 				Log.d(TAG,"onListItemClick: click, id is " + id);
 				
 				Object o = l.getItemAtPosition(position);
@@ -593,7 +725,8 @@ private final class LoginDialogListener implements DialogListener {
 			// thread that created a view hierarchy can touch its views."
 			Friends.this.runOnUiThread(new Runnable() {
 					public void run() {
-						populateContactList();
+						//populateContactList();
+						//setupTabs();
 					}
 			});
 			
@@ -682,7 +815,8 @@ private final class LoginDialogListener implements DialogListener {
 		
 					// Populate the contact list
 					Log.d(TAG,"onAuthSucceed valid, going to populate");
-					populateContactList();
+					//populateContactList();
+					//setupTabs();
 
 				}
 
@@ -727,7 +861,9 @@ private final class LoginDialogListener implements DialogListener {
 			        }
 			    }
 
-			    public void onScrollStateChanged(AbsListView v, int s) { }    
+			    public void onScrollStateChanged(AbsListView v, int s) { }
+
+				
 
 //			    class Aleph0 extends BaseAdapter {
 //			        int count =10; /* starting amount */

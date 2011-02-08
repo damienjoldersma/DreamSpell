@@ -170,8 +170,8 @@ public class DreamSpell extends Activity
         	return true;
         case FRIENDS_ID:
         	Intent myIntent = new Intent();
-        	//myIntent.setClassName("org.joldersma.damien.DreamSpell", "org.joldersma.damien.DreamSpell.Friends"); // TEST
-        	myIntent.setClassName("org.joldersma.damien.DreamSpell", "org.joldersma.damien.DreamSpell.FriendGroups"); // TEST
+        	myIntent.setClassName("org.joldersma.damien.DreamSpell", "org.joldersma.damien.DreamSpell.Friends"); // TEST
+        	//myIntent.setClassName("org.joldersma.damien.DreamSpell", "org.joldersma.damien.DreamSpell.FriendGroups"); // TEST
         	//myIntent.putExtra("com.android.samples.SpecialValue", "Hello, Joe!"); // key/value pair, where key needs current package prefix.
         	startActivity(myIntent);    
         	return true;
