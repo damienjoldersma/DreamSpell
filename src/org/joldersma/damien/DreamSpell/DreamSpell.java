@@ -51,6 +51,8 @@ public class DreamSpell extends Activity
     static final int DATE_DIALOG_ID = 0;
     
     public String friendsData = null;
+    
+    private static Date currentDate;
 
 	
 	/** Called when the activity is first created. */
@@ -168,7 +170,8 @@ public class DreamSpell extends Activity
         	return true;
         case FRIENDS_ID:
         	Intent myIntent = new Intent();
-        	myIntent.setClassName("org.joldersma.damien.DreamSpell", "org.joldersma.damien.DreamSpell.FriendGroups");
+        	//myIntent.setClassName("org.joldersma.damien.DreamSpell", "org.joldersma.damien.DreamSpell.Friends"); // TEST
+        	myIntent.setClassName("org.joldersma.damien.DreamSpell", "org.joldersma.damien.DreamSpell.FriendGroups"); // TEST
         	//myIntent.putExtra("com.android.samples.SpecialValue", "Hello, Joe!"); // key/value pair, where key needs current package prefix.
         	startActivity(myIntent);    
         	return true;
@@ -305,11 +308,22 @@ public class DreamSpell extends Activity
 		return true;
 	}
 		
+	public static Date getCurrentDate() {
+		return currentDate;
+	}
+
+	public static void setCurrentDate(Date d) {
+		currentDate = d;
+	}
+	
 	private void calc() {
 		calc(new Date(System.currentTimeMillis()));
 	}
 
 	private void calc(Date d) {
+		// Update App Current Date
+		setCurrentDate(d);
+		
 		// get the current date
         final Calendar c = Calendar.getInstance();
         c.setTime(d);

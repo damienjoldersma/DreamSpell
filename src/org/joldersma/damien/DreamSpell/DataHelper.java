@@ -17,7 +17,7 @@ public class DataHelper {
 	public static final String TAG = "DreamSpell";
 	
 	private static final String DATABASE_NAME = "friends.db";
-	private static final int DATABASE_VERSION = 1;
+	private static final int DATABASE_VERSION = 6;
 	private static final String TABLE_NAME = "kin";
 
 	private Context context;
@@ -25,7 +25,7 @@ public class DataHelper {
 
 	private SQLiteStatement insertStmt;
 	private static final String INSERT = "insert into " 
-			+ TABLE_NAME + "(name,birthday,picture,facebookId) values (?,?,?,?)";
+			+ TABLE_NAME + "(name,birthday,picture,facebookId,kin) values (?,?,?,?,?)";
 
 	public DataHelper(Context context) {
 		this.context = context;
@@ -36,15 +36,16 @@ public class DataHelper {
 
 	public long insert(Map<String, String> kin)
 	{
-		Log.d(TAG,String.format("Doing insert name=%s, facebookId=%s",kin.get("name"),kin.get("facebookId")));
-		return insert(kin.get("name"),kin.get("birthday"),kin.get("picture"),kin.get("facebookId"));
+		Log.d(TAG,String.format("Doing insert name=%s, facebookId=%s, kin=%s",kin.get("name"),kin.get("facebookId"),kin.get("kin")));
+		return insert(kin.get("name"),kin.get("birthday"),kin.get("picture"),kin.get("facebookId"),kin.get("kin"));
 	}
 	
-	public long insert(String name,String birthday, String picture, String facebookId) {
+	public long insert(String name,String birthday, String picture, String facebookId, String kin) {
 		this.insertStmt.bindString(1, name == null ? "null" : name );
 		this.insertStmt.bindString(2, birthday == null ? "null" : birthday );
 		this.insertStmt.bindString(3, picture == null ? "null" : picture );
 		this.insertStmt.bindString(4, facebookId == null ? "null" : facebookId );
+		this.insertStmt.bindString(5, kin == null ? "null" : kin );
 		return this.insertStmt.executeInsert();
 	}
 
@@ -61,7 +62,7 @@ public class DataHelper {
 		Log.d(TAG,"Doing selectAll");
 		List<Map<String,String>> list =  new ArrayList<Map<String, String>>();
 		
-		Cursor cursor = this.db.query(TABLE_NAME, new String[] { "name","birthday","picture","facebookId" }, 
+		Cursor cursor = this.db.query(TABLE_NAME, new String[] { "name","birthday","picture","facebookId","kin" }, 
 				null, null, null, null, "name asc");
 		if (cursor.moveToFirst()) 
 		{
@@ -72,6 +73,7 @@ public class DataHelper {
 				kin.put("birthday", cursor.getString(1));
 				kin.put("picture", cursor.getString(2));
 				kin.put("facebookId", cursor.getString(3));
+				kin.put("kin", cursor.getString(4));
 				list.add(kin); 
 				} while (cursor.moveToNext());
 			}
@@ -84,7 +86,7 @@ public class DataHelper {
 	
 	 public List<String> selectAllNames() {
 		List<String> list = new ArrayList<String>();
-		Cursor cursor = this.db.query(TABLE_NAME, new String[] { "name","birthday","picture","facebookId" }, 
+		Cursor cursor = this.db.query(TABLE_NAME, new String[] { "name" }, 
 			null, null, null, null, "name desc");
 		if (cursor.moveToFirst()) {
 			 do {
@@ -98,13 +100,14 @@ public class DataHelper {
 	}
 	 
 	
-	public List<Map<String,String>> selectSeals()
+	public List<Map<String,String>> select(String name, int value)
 	{
 		Log.d(TAG,"Doing selectSeals");
 		List<Map<String,String>> list =  new ArrayList<Map<String, String>>();
 		
-		Cursor cursor = this.db.query(TABLE_NAME, new String[] { "name","birthday","picture","facebookId" }, 
-				null, null, null, null, "name asc");
+		
+		Cursor cursor = this.db.query("kin join KIN_LOOKUP on kin.kin = KIN_LOOKUP.id", new String[] { "name","birthday","picture","facebookId","kin" }, 
+				String.format("%s = %s",name,value), null, null, null, "name asc");
 		if (cursor.moveToFirst()) 
 		{
 			do 
@@ -114,6 +117,7 @@ public class DataHelper {
 				kin.put("birthday", cursor.getString(1));
 				kin.put("picture", cursor.getString(2));
 				kin.put("facebookId", cursor.getString(3));
+				kin.put("kin", cursor.getString(4));
 				list.add(kin); 
 				} while (cursor.moveToNext());
 			}
@@ -133,8 +137,17 @@ public class DataHelper {
 		@Override
 	 
 		public void onCreate(SQLiteDatabase db) {
-			 db.execSQL("CREATE TABLE " + TABLE_NAME + 
-		" (id INTEGER PRIMARY KEY, name TEXT, birthday TEXT, picture TEXT, facebookId TEXT)");
+			db.execSQL("CREATE TABLE " + TABLE_NAME + 
+				" (id INTEGER PRIMARY KEY, name TEXT, birthday TEXT," +
+				" picture TEXT, facebookId TEXT, kin INTEGER)");
+			
+			db.execSQL("CREATE TABLE kin_lookup" + 
+				" (id INTEGER PRIMARY KEY, seal INTEGER, tone INTEGER," +
+				" analog INTEGER, occult INTEGER, antipode INTEGER, guide INTEGER)");
+			
+			DreamSpellUtil.buildKinLookup(db);
+			
+			//db.close();
 		}
 
 
@@ -142,6 +155,7 @@ public class DataHelper {
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 			 Log.w("Example", "Upgrading database, this will drop tables and recreate.");
 			 db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+			 db.execSQL("DROP TABLE IF EXISTS kin_lookup");
 			 onCreate(db);
 		}
 	 }

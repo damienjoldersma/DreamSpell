@@ -570,6 +570,9 @@ private final class LoginDialogListener implements DialogListener {
 				
 				if ( birthday != null && birthday.length() == 10)
 				{
+					// Now find kin number
+					friend.put("kin", DreamSpellUtil.getKinNumber(birthday));
+					
 					friendsData.add(friend); // TODO Remove here?
 					Log.d(TAG,"## Going to insert friend");
 					dh.insert(friend);

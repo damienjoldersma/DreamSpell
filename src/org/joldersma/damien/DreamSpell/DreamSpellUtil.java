@@ -1,10 +1,13 @@
 package org.joldersma.damien.DreamSpell;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
 import android.content.res.Resources;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 public class DreamSpellUtil {
@@ -57,10 +60,15 @@ public class DreamSpellUtil {
 //			}
 //		}
 		
-		Date rowDate = new Date(Date.parse("12/25/2010"));
+		//buildKinLookup(null);
+		
+	}
+
+	public static void buildKinLookup(SQLiteDatabase db) {
+		Date rowDate = new Date(Date.parse("12/25/2010")); // Happens to be Kin 1, any Kin 1 date would work 
 		
 		Calendar c1 = Calendar.getInstance();
-		c1.set(2010,11,24);
+		c1.set(2010,11,24); // Start it a day before, Kin 260, allow it to roll over
 		
 		rowDate = c1.getTime();
 		
@@ -79,16 +87,17 @@ public class DreamSpellUtil {
 			int antipode = DreamSpellUtil.getAntipode();
 			int guide = DreamSpellUtil.getGuide();
 			
-			//System.out.println(String.format("date: %s, kin: %s, seal: %s, tone: %s, analog: %s, occult: %s, antipode: %s, guide: %s",
-			//		date,kin,seal,tone,analog,occult,antipode,guide));
+			System.out.println(String.format("date: %s, kin: %s, seal: %s, tone: %s, analog: %s, occult: %s, antipode: %s, guide: %s",
+					date,kin,seal,tone,analog,occult,antipode,guide));
 			
 			//System.out.println(String.format("%s,%s,%s,%s,%s,%s,%s",
 			//		kin,seal,tone,analog,occult,antipode,guide));
 			
-			System.out.println(String.format("INSERT INTO KIN_LOOKUP (kin,seal,tone,analog,occult,antipode,guide) VALUES (%s,%s,%s,%s,%s,%s,%s);",
-					kin,seal,tone,analog,occult,antipode,guide));
+			db.execSQL(String.format("INSERT INTO KIN_LOOKUP (seal,tone,analog,occult,antipode,guide) VALUES (%s,%s,%s,%s,%s,%s);",
+					seal,tone,analog,occult,antipode,guide));
 			
 		}
+		
 		
 	}
 
@@ -682,6 +691,21 @@ public class DreamSpellUtil {
 			if(sealone==14) one23=2;
 		}
 		return(i*13+ktone);		
+	}
+
+	public static String getKinNumber(String birthday) {
+		try {
+			SimpleDateFormat df1 = new SimpleDateFormat( "MM/dd/yyyy" );
+			Date bdate;
+			bdate = df1.parse(birthday);
+			DreamSpellUtil.Calc(bdate);
+			return String.valueOf(DreamSpellUtil.getKin());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return null;
 	}
 	
 	/*

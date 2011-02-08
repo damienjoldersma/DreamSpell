@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.ListView;
@@ -59,7 +60,11 @@ public class FriendGroups extends Activity {
 		ts1.setContent(new TabHost.TabContentFactory(){
 			public View createTabContent(String tag)
 			{
-				
+				DreamSpellUtil.Calc(DreamSpell.getCurrentDate());
+				List<Map<String,String>> data = dh.select("seal",DreamSpellUtil.getSeal());
+				ListAdapter a = new FriendListFacebookAdapter(FriendGroups.this,FriendGroups.this, data, R.layout.friend_view,
+						new String[] { "name","birthday","picture"}, new int[] {R.id.friendViewText, R.id.friendViewImage});
+				listView2.setAdapter(a);
 				return listView2;
 			}
 		});
@@ -70,7 +75,11 @@ public class FriendGroups extends Activity {
 		ts2.setContent(new TabHost.TabContentFactory(){
 			public View createTabContent(String tag)
 			{
-				
+				DreamSpellUtil.Calc(DreamSpell.getCurrentDate());
+				List<Map<String,String>> data = dh.select("tone",DreamSpellUtil.getTone());
+				ListAdapter a = new FriendListFacebookAdapter(FriendGroups.this,FriendGroups.this, data, R.layout.friend_view,
+						new String[] { "name","birthday","picture"}, new int[] {R.id.friendViewText, R.id.friendViewImage});
+				listView3.setAdapter(a);
 				return listView3;
 			}
 		});
@@ -81,7 +90,11 @@ public class FriendGroups extends Activity {
 		ts3.setContent(new TabHost.TabContentFactory(){
 			public View createTabContent(String tag)
 			{
-				
+				DreamSpellUtil.Calc(DreamSpell.getCurrentDate());
+				List<Map<String,String>> data = dh.select("seal",DreamSpellUtil.getAnalog());
+				ListAdapter a = new FriendListFacebookAdapter(FriendGroups.this,FriendGroups.this, data, R.layout.friend_view,
+						new String[] { "name","birthday","picture"}, new int[] {R.id.friendViewText, R.id.friendViewImage});
+				listView4.setAdapter(a);
 				return listView4;
 			}
 		});
@@ -92,18 +105,26 @@ public class FriendGroups extends Activity {
 		ts4.setContent(new TabHost.TabContentFactory(){
 			public View createTabContent(String tag)
 			{
-				
+				DreamSpellUtil.Calc(DreamSpell.getCurrentDate());
+				List<Map<String,String>> data = dh.select("seal",DreamSpellUtil.getOccult());
+				ListAdapter a = new FriendListFacebookAdapter(FriendGroups.this,FriendGroups.this, data, R.layout.friend_view,
+						new String[] { "name","birthday","picture"}, new int[] {R.id.friendViewText, R.id.friendViewImage});
+				listView5.setAdapter(a);
 				return listView5;
 			}
 		});
 		myTabHost.addTab(ts4);
 		
 		TabSpec ts5 = myTabHost.newTabSpec("TAB_TAG_5");
-		ts5.setIndicator("Focus");
+		ts5.setIndicator("Antipode");
 		ts5.setContent(new TabHost.TabContentFactory(){
 			public View createTabContent(String tag)
 			{
-				
+				DreamSpellUtil.Calc(DreamSpell.getCurrentDate());
+				List<Map<String,String>> data = dh.select("seal",DreamSpellUtil.getAntipode());
+				ListAdapter a = new FriendListFacebookAdapter(FriendGroups.this,FriendGroups.this, data, R.layout.friend_view,
+						new String[] { "name","birthday","picture"}, new int[] {R.id.friendViewText, R.id.friendViewImage});
+				listView6.setAdapter(a);
 				return listView6;
 			}
 		});
@@ -114,7 +135,11 @@ public class FriendGroups extends Activity {
 		ts6.setContent(new TabHost.TabContentFactory(){
 			public View createTabContent(String tag)
 			{
-				
+				DreamSpellUtil.Calc(DreamSpell.getCurrentDate());
+				List<Map<String,String>> data = dh.select("seal",DreamSpellUtil.getGuide());
+				ListAdapter a = new FriendListFacebookAdapter(FriendGroups.this,FriendGroups.this, data, R.layout.friend_view,
+						new String[] { "name","birthday","picture"}, new int[] {R.id.friendViewText, R.id.friendViewImage});
+				listView7.setAdapter(a);
 				return listView7;
 			}
 		});
