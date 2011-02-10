@@ -23,13 +23,16 @@ import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.ContactsContract;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.Filter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
@@ -121,7 +124,11 @@ public class FriendListFacebookAdapter extends SimpleAdapter {
 		
 		final LayoutInflater inflater = LayoutInflater.from(context);
         View v = inflater.inflate(layout, parent, false);        
+        
+        //v.getLayoutParams().width = LayoutParams.FILL_PARENT;
+        //v.getLayoutParams().height = LayoutParams.WRAP_CONTENT;
 		 //View v = View.inflate(context, R.layout.friend_view, null);
+        
 	      v.setClickable(true);
 	      v.setFocusable(true);
 	      //view.setBackgroundResource(android.R.drawable.menuitem_background);
@@ -180,8 +187,18 @@ public class FriendListFacebookAdapter extends SimpleAdapter {
          */
         TextView name_text = (TextView) v.findViewById(R.id.friendViewText);
         if (name_text != null) {
+        	name_text.setSingleLine(false);
+        	name_text.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
             name_text.setText(name);
             name_text.setFocusable(false);
+            name_text.setHorizontallyScrolling(false);
+            name_text.getLayoutParams().width = LayoutParams.FILL_PARENT;
+            name_text.getLayoutParams().height = LayoutParams.WRAP_CONTENT;
+            //name_text.getLayoutParams().weight = 1;
+            //name_text.setWidth(0);
+            name_text.setEms(10);
+            name_text.setMarqueeRepeatLimit(-1);
+            //name_text.setHeight(0);
         }
 
         /**
