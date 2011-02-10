@@ -16,6 +16,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -180,13 +181,23 @@ public class Friends extends Activity implements OnScrollListener, OnItemClickLi
 		ts.setContent(new TabHost.TabContentFactory(){
 			public View createTabContent(String tag)
 			{
-				adapter = new FriendListFacebookAdapter(Friends.this,Friends.this, friendsData, R.layout.friend_view,
+				FriendListFacebookAdapter a = new FriendListFacebookAdapter(Friends.this,Friends.this, friendsData, R.layout.friend_view,
 						new String[] { "name","birthday","picture"}, new int[] {R.id.friendViewText, R.id.friendViewImage});
-				listView1.setAdapter(adapter);
-				listView1.setOnScrollListener(Friends.this); 
-				listView1.setOnItemClickListener(Friends.this);
+				listView1.setAdapter(a);
+				listView1.setOnItemClickListener(new OnItemClickListener() {
+						public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+						AlertDialog.Builder adb=new AlertDialog.Builder(Friends.this);
+						adb.setTitle("LVSelectedItemExample");
+						adb.setMessage("Selected Item is = "+a.getItemAtPosition(position));
+						adb.setPositiveButton("Ok", null);
+						adb.show();
+					}
+				 });
+				listView1.setOnScrollListener(new FriendsOnScrollListener(a)); 
 				return listView1;
 			}
+			
+			
 		});
 		myTabHost.addTab(ts);
 		
@@ -197,9 +208,13 @@ public class Friends extends Activity implements OnScrollListener, OnItemClickLi
 			{
 				DreamSpellUtil.Calc(DreamSpell.getCurrentDate());
 				List<Map<String,String>> data = dh.select("seal",DreamSpellUtil.getSeal());
-				ListAdapter a = new FriendListFacebookAdapter(Friends.this,Friends.this, data, R.layout.friend_view,
+				FriendListFacebookAdapter a = new FriendListFacebookAdapter(Friends.this,Friends.this, data, R.layout.friend_view,
 						new String[] { "name","birthday","picture"}, new int[] {R.id.friendViewText, R.id.friendViewImage});
 				listView2.setAdapter(a);
+				listView2.setItemsCanFocus(true);
+				listView2.setOnItemClickListener(new FriendsOnItemClickListener(Friends.this));
+				listView2.setOnScrollListener(new FriendsOnScrollListener(a)); 
+				
 				return listView2;
 			}
 		});
@@ -212,9 +227,12 @@ public class Friends extends Activity implements OnScrollListener, OnItemClickLi
 			{
 				DreamSpellUtil.Calc(DreamSpell.getCurrentDate());
 				List<Map<String,String>> data = dh.select("tone",DreamSpellUtil.getTone());
-				ListAdapter a = new FriendListFacebookAdapter(Friends.this,Friends.this, data, R.layout.friend_view,
+				FriendListFacebookAdapter a = new FriendListFacebookAdapter(Friends.this,Friends.this, data, R.layout.friend_view,
 						new String[] { "name","birthday","picture"}, new int[] {R.id.friendViewText, R.id.friendViewImage});
 				listView3.setAdapter(a);
+				listView3.setItemsCanFocus(true);
+				listView3.setOnItemClickListener(new FriendsOnItemClickListener(Friends.this));
+				listView3.setOnScrollListener(new FriendsOnScrollListener(a)); 
 				return listView3;
 			}
 		});
@@ -227,9 +245,12 @@ public class Friends extends Activity implements OnScrollListener, OnItemClickLi
 			{
 				DreamSpellUtil.Calc(DreamSpell.getCurrentDate());
 				List<Map<String,String>> data = dh.select("seal",DreamSpellUtil.getAnalog());
-				ListAdapter a = new FriendListFacebookAdapter(Friends.this,Friends.this, data, R.layout.friend_view,
+				FriendListFacebookAdapter a = new FriendListFacebookAdapter(Friends.this,Friends.this, data, R.layout.friend_view,
 						new String[] { "name","birthday","picture"}, new int[] {R.id.friendViewText, R.id.friendViewImage});
 				listView4.setAdapter(a);
+				listView4.setItemsCanFocus(true);
+				listView4.setOnItemClickListener(new FriendsOnItemClickListener(Friends.this));
+				listView4.setOnScrollListener(new FriendsOnScrollListener(a)); 
 				return listView4;
 			}
 		});
@@ -242,9 +263,12 @@ public class Friends extends Activity implements OnScrollListener, OnItemClickLi
 			{
 				DreamSpellUtil.Calc(DreamSpell.getCurrentDate());
 				List<Map<String,String>> data = dh.select("seal",DreamSpellUtil.getOccult());
-				ListAdapter a = new FriendListFacebookAdapter(Friends.this,Friends.this, data, R.layout.friend_view,
+				FriendListFacebookAdapter a = new FriendListFacebookAdapter(Friends.this,Friends.this, data, R.layout.friend_view,
 						new String[] { "name","birthday","picture"}, new int[] {R.id.friendViewText, R.id.friendViewImage});
 				listView5.setAdapter(a);
+				listView5.setItemsCanFocus(true);
+				listView5.setOnItemClickListener(new FriendsOnItemClickListener(Friends.this));
+				listView5.setOnScrollListener(new FriendsOnScrollListener(a)); 
 				return listView5;
 			}
 		});
@@ -257,9 +281,12 @@ public class Friends extends Activity implements OnScrollListener, OnItemClickLi
 			{
 				DreamSpellUtil.Calc(DreamSpell.getCurrentDate());
 				List<Map<String,String>> data = dh.select("seal",DreamSpellUtil.getAntipode());
-				ListAdapter a = new FriendListFacebookAdapter(Friends.this,Friends.this, data, R.layout.friend_view,
+				FriendListFacebookAdapter a = new FriendListFacebookAdapter(Friends.this,Friends.this, data, R.layout.friend_view,
 						new String[] { "name","birthday","picture"}, new int[] {R.id.friendViewText, R.id.friendViewImage});
 				listView6.setAdapter(a);
+				listView6.setItemsCanFocus(true);
+				listView6.setOnItemClickListener(new FriendsOnItemClickListener(Friends.this));
+				listView6.setOnScrollListener(new FriendsOnScrollListener(a)); 
 				return listView6;
 			}
 		});
@@ -267,19 +294,46 @@ public class Friends extends Activity implements OnScrollListener, OnItemClickLi
 		
 		TabSpec ts6 = myTabHost.newTabSpec("TAB_TAG_6");
 		ts6.setIndicator("Guide");
+		
 		ts6.setContent(new TabHost.TabContentFactory(){
 			public View createTabContent(String tag)
 			{
 				DreamSpellUtil.Calc(DreamSpell.getCurrentDate());
 				List<Map<String,String>> data = dh.select("seal",DreamSpellUtil.getGuide());
-				ListAdapter a = new FriendListFacebookAdapter(Friends.this,Friends.this, data, R.layout.friend_view,
+				FriendListFacebookAdapter a = new FriendListFacebookAdapter(Friends.this,Friends.this, data, R.layout.friend_view,
 						new String[] { "name","birthday","picture"}, new int[] {R.id.friendViewText, R.id.friendViewImage});
 				listView7.setAdapter(a);
+				listView2.setItemsCanFocus(true);
+				listView7.setOnItemClickListener(new OnItemClickListener() {
+						public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+						AlertDialog.Builder adb=new AlertDialog.Builder(Friends.this);
+						adb.setTitle("LVSelectedItemExample");
+						adb.setMessage("Selected Item is = "+a.getItemAtPosition(position));
+						adb.setPositiveButton("Ok", null);
+						adb.show();
+					}
+				 });
+				listView7.setOnScrollListener(new FriendsOnScrollListener(a)); 
 				return listView7;
 			}
 		});
 		myTabHost.addTab(ts6);
 		
+		myTabHost.getTabWidget().getChildAt(0).getLayoutParams().width = 60;
+		myTabHost.getTabWidget().getChildAt(1).getLayoutParams().width = 60;
+		myTabHost.getTabWidget().getChildAt(2).getLayoutParams().width = 60;
+		myTabHost.getTabWidget().getChildAt(3).getLayoutParams().width = 60;
+		myTabHost.getTabWidget().getChildAt(4).getLayoutParams().width = 60;
+		myTabHost.getTabWidget().getChildAt(5).getLayoutParams().width = 80;
+		myTabHost.getTabWidget().getChildAt(6).getLayoutParams().width = 60;
+		
+		myTabHost.getTabWidget().getChildAt(0).getLayoutParams().height = 30;
+		myTabHost.getTabWidget().getChildAt(1).getLayoutParams().height = 30;
+		myTabHost.getTabWidget().getChildAt(2).getLayoutParams().height = 30;
+		myTabHost.getTabWidget().getChildAt(3).getLayoutParams().height = 30;
+		myTabHost.getTabWidget().getChildAt(4).getLayoutParams().height = 30;
+		myTabHost.getTabWidget().getChildAt(5).getLayoutParams().height = 30;
+		myTabHost.getTabWidget().getChildAt(6).getLayoutParams().height = 30;
 	}
 	
 	private static final int LOGIN_ID = Menu.FIRST;

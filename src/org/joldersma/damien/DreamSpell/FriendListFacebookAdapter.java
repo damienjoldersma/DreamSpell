@@ -16,7 +16,9 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
@@ -25,6 +27,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.SimpleAdapter;
@@ -37,7 +40,11 @@ public class FriendListFacebookAdapter extends SimpleAdapter {
 	
 	private Context context;
 
-    private int layout;
+	private Friends friends;
+
+	public static final String KEY_DATE = "date";
+	
+	private int layout;
 	
     private List<? extends Map<String, ?>> data;
     public Hashtable<String, Date> birthdays;
@@ -59,6 +66,7 @@ public class FriendListFacebookAdapter extends SimpleAdapter {
 		// TODO Auto-generated constructor stub
 		drawableMap = new HashMap<String, Drawable>();
 		this.context = context;
+		this.friends = (Friends)context;
 		this.layout = resource;
 		this.data = data;
 		birthdays = new Hashtable<String, Date>();
@@ -107,9 +115,57 @@ public class FriendListFacebookAdapter extends SimpleAdapter {
 	}
 
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public View getView(final int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
 		//return super.getView(position, convertView, parent);
+		
+		final LayoutInflater inflater = LayoutInflater.from(context);
+        View v = inflater.inflate(layout, parent, false);        
+		 //View v = View.inflate(context, R.layout.friend_view, null);
+	      v.setClickable(true);
+	      v.setFocusable(true);
+	      //view.setBackgroundResource(android.R.drawable.menuitem_background);
+	      v.setOnClickListener(new OnClickListener(){
+
+	        public void onClick(View v) {
+	            //new AlertDialog.Builder(context).setTitle("touched").show();
+	        	Log.d(TAG,"onItemClick: click, position is " + position);
+				
+				Object o = getItem(position);
+				Log.d(TAG,"onItemClick: object o is " + o);
+				
+				HashMap<String, String> friend = (HashMap<String, String>) getItem(position);
+				Log.d(TAG,"onItemClick: friend is " + friend);
+				
+				String friendId = friend.get("facebookId");
+				String name = friend.get("name");
+				String bday = friend.get("birthday");
+				String picture = friend.get("picture");
+				
+				Log.d(TAG,String.format("onItemClick: friend values are friendId=%s, name=%s, bday=%s, picture=%s",friendId,name,bday,picture));
+				
+				Date birthday = new Date();
+				
+				try 
+				{
+					SimpleDateFormat df1 = new SimpleDateFormat( "MM/dd/yyyy" );
+					birthday = df1.parse(bday);
+				}
+				catch (Exception e)
+				{
+					Log.w(TAG,"Couldn't parse birthday, " + bday);
+					
+				}
+				
+				Log.d(TAG,"onItemClick: putting birthday into extra - " + birthday);
+				
+				Intent i = new Intent(friends, DreamSpell.class);
+				i.putExtra(KEY_DATE, birthday);
+				friends.startActivity(i);
+	        }
+
+	      });
+		
 		
 		String id = (String) data.get(position).get("facebookId");
 		String name = (String) data.get(position).get("name");
@@ -117,8 +173,7 @@ public class FriendListFacebookAdapter extends SimpleAdapter {
 		String picture = (String) data.get(position).get("picture");
          
 		 
-		final LayoutInflater inflater = LayoutInflater.from(context);
-        View v = inflater.inflate(layout, parent, false);            
+		    
 
         /**
          * Next set the name of the entry.
@@ -126,6 +181,7 @@ public class FriendListFacebookAdapter extends SimpleAdapter {
         TextView name_text = (TextView) v.findViewById(R.id.friendViewText);
         if (name_text != null) {
             name_text.setText(name);
+            name_text.setFocusable(false);
         }
 
         /**
@@ -145,8 +201,10 @@ public class FriendListFacebookAdapter extends SimpleAdapter {
 //        	photo_view.setImageDrawable(drawable);        
        
         	//fetchDrawableOnThread(picture,photo_view);
+        	
         	imageLoader.DisplayImage(picture, activity, photo_view);
         
+        	photo_view.setFocusable(false);
 //	        Thread thread = new Thread() {
 //	    		@Override
 //	    		public void run() {
@@ -181,6 +239,7 @@ public class FriendListFacebookAdapter extends SimpleAdapter {
 	        ImageView tone = (ImageView) v.findViewById(R.id.friendViewTone);
 	        if (tone != null) {
 	    		tone.setImageResource(AndroidUtil.getToneResource(DreamSpellUtil.getTone()));        	
+	    		tone.setFocusable(false);
 	        }
 	        
 	        /**
@@ -188,7 +247,8 @@ public class FriendListFacebookAdapter extends SimpleAdapter {
 	         */
 	        ImageView glpyh = (ImageView) v.findViewById(R.id.friendViewGlyph);
 	        if (glpyh != null) {
-	        	glpyh.setImageResource(AndroidUtil.getGlyphResource(DreamSpellUtil.getSeal()));        	
+	        	glpyh.setImageResource(AndroidUtil.getGlyphResource(DreamSpellUtil.getSeal()));
+	        	glpyh.setFocusable(false);
 	        }
         
     	}
@@ -197,6 +257,9 @@ public class FriendListFacebookAdapter extends SimpleAdapter {
     		Log.e(TAG, String.format("Error doing day calc, date=%s",birthday),e);
     		
     	}
+    	
+    	v.setFocusable(false);
+    	//v.setOnClickListener();
     	
         return v;
 	}
