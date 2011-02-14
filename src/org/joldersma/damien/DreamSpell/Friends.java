@@ -57,6 +57,7 @@ public class Friends extends Activity implements OnScrollListener, OnItemClickLi
 	public static final String APP_ID = "32395165793";
 	private Facebook mFacebook;
 	private AsyncFacebookRunner mAsyncRunner;
+	boolean loggedIn = false;
 	
 	private DataHelper dh;
 
@@ -85,12 +86,24 @@ public class Friends extends Activity implements OnScrollListener, OnItemClickLi
 		 	
 		 	try
 		 	{
+		 		Log.d(TAG,"Going to restore facebook session");
 		 		SessionStore.restore(mFacebook, this);
+		 		Log.d(TAG,"Restored facebook session");
+		 		
 		 	}
 		 	catch (Exception e)
 		 	{
 		 		Log.e(TAG,"Error trying to restore session",e);
 		 	}
+		 	
+		 	if ( mFacebook.isSessionValid() )
+		 	{
+		 		loggedIn = true;
+		 		Log.d(TAG,"Valid facebook session");
+		 	}
+		 	else
+		 		Log.d(TAG,"No valid facebook session");
+		 	
 			SessionEvents.addAuthListener(new SampleAuthListener());
 			SessionEvents.addLogoutListener(new SampleLogoutListener());
 			
@@ -316,12 +329,38 @@ public class Friends extends Activity implements OnScrollListener, OnItemClickLi
 	public boolean onCreateOptionsMenu(Menu menu) 
 	{
 		super.onCreateOptionsMenu(menu);
-		menu.add(0, LOGIN_ID,0, R.string.login);
-		menu.add(0, SYNC_ID,0, R.string.sync);
-		menu.add(0, ALL_FRIENDS_ID,0, R.string.all_friends);
+//		menu.add(0, LOGIN_ID,0, loggedIn ? R.string.logout : R.string.login);
+//		menu.add(0, SYNC_ID,0, R.string.sync);
+//		menu.add(0, ALL_FRIENDS_ID,0, R.string.all_friends);
+		updateMenu(menu);
 		return true;
 	}
+	
+	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
 
+		Log.d(TAG,"OnPrepareOptionsMenu fired!");
+		menu.clear();
+		
+		updateMenu(menu);
+		
+		return super.onPrepareOptionsMenu(menu);
+	}
+
+	public void updateMenu(Menu menu)
+	{
+		if ( loggedIn )
+		{
+			menu.add(0, LOGIN_ID,0, R.string.logout);
+			menu.add(0, SYNC_ID,0, R.string.sync);
+		}
+		else
+		{
+			menu.add(0, LOGIN_ID,0, R.string.login);
+		}
+		
+		menu.add(0, ALL_FRIENDS_ID,0, R.string.all_friends);
+	}
     @Override
 	public boolean onMenuItemSelected(int featureId, MenuItem item) 
     {
@@ -346,6 +385,9 @@ public class Friends extends Activity implements OnScrollListener, OnItemClickLi
 		    SessionEvents.onLogoutBegin();
 		    AsyncFacebookRunner asyncRunner = new AsyncFacebookRunner(mFb);
 		    asyncRunner.logout(getContext(), new LogoutRequestListener());
+		    
+		    // Update menu
+		    
 		} else {
 			Log.d(TAG,"buttonOnClick listener - session is not valid going to login,");
 		    mFb.authorize(mActivity, mPermissions, new LoginDialogListener());
@@ -409,6 +451,7 @@ private final class LoginDialogListener implements DialogListener {
             // not the background thread
             mHandler.post(new Runnable() {
                 public void run() {
+                	Log.d(TAG,"OnLogoutFinish");
                     SessionEvents.onLogoutFinish();
                 }
             });
@@ -421,18 +464,28 @@ private final class LoginDialogListener implements DialogListener {
         	Log.d(TAG, "SessionListener onAuthSucceed!");
             //setImageResource(R.drawable.logout_button);
            SessionStore.save(mFb, getContext()	);
+           loggedIn = true;
         }
 
         public void onAuthFail(String error) {
         	Log.d(TAG, "SessionListener onAuthFail=" + error);
+        	loggedIn = false;
         }
         
         public void onLogoutBegin() {
         }
         
         public void onLogoutFinish() {
+        	Log.d(TAG,"My SessionListener onLogoutFinish");
             SessionStore.clear(getContext());
             //setImageResource(R.drawable.login_button);
+            AlertDialog.Builder adb=new AlertDialog.Builder(Friends.this);
+			adb.setTitle("Facebook Logout");
+			adb.setMessage("You've been logged out!");
+			adb.setPositiveButton("Ok", null);
+			adb.show();
+            
+        	loggedIn = false;
         }
     }
 	
