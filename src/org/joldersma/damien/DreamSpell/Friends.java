@@ -18,6 +18,7 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -837,6 +838,9 @@ private final class LoginDialogListener implements DialogListener {
 //										mText.setText("Hello there, " + name + "!");
 //								}
 //						});
+			Log.d(TAG,"Going to dismiss dialog1");
+			dialog.dismiss();
+			
 			} catch (JSONException e) {
 					Log.w(TAG, "JSON Error in response: " + e.toString());
 					Log.w(TAG,e);
@@ -847,8 +851,11 @@ private final class LoginDialogListener implements DialogListener {
 					e.printStackTrace();
 			}
 		}
-		
+		ProgressDialog dialog = null;
 		private void doSync() {
+			dialog = ProgressDialog.show(Friends.this, "", 
+                    "Loading. Please wait...", true);
+			
 			Log.d(TAG,"DreamSpell now with new and improved me/friends?fields=id,name,picture,birthday!");
 			Bundle params = new Bundle();
 //						//String[] fields = { "facebookId","name","picture" };
@@ -861,6 +868,7 @@ private final class LoginDialogListener implements DialogListener {
 							Bundle params = new Bundle();
 							params.putString("fields", "id,name,picture,birthday");
 					mAsyncRunner.request("me/friends", params, new SampleFriendsListener());
+					
 				}
 			}.start();
 		}
