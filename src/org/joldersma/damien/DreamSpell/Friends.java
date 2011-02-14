@@ -168,39 +168,13 @@ public class Friends extends Activity implements OnScrollListener, OnItemClickLi
 		TabHost myTabHost = (TabHost)this.findViewById(R.id.tabhost);
 		myTabHost.setup();
 		
-		listView1 = new ListView(Friends.this);
 		listView2 = new ListView(Friends.this);
 		listView3 = new ListView(Friends.this);
 		listView4 = new ListView(Friends.this);
 		listView5 = new ListView(Friends.this);
 		listView6 = new ListView(Friends.this);
 		listView7 = new ListView(Friends.this);
-		
-		TabSpec ts = myTabHost.newTabSpec("TAB_TAG_1");
-		ts.setIndicator("All");
-		ts.setContent(new TabHost.TabContentFactory(){
-			public View createTabContent(String tag)
-			{
-				FriendListFacebookAdapter a = new FriendListFacebookAdapter(Friends.this,Friends.this, friendsData, R.layout.friend_view,
-						new String[] { "name","birthday","picture"}, new int[] {R.id.friendViewText, R.id.friendViewImage});
-				listView1.setAdapter(a);
-				listView1.setOnItemClickListener(new OnItemClickListener() {
-						public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-						AlertDialog.Builder adb=new AlertDialog.Builder(Friends.this);
-						adb.setTitle("LVSelectedItemExample");
-						adb.setMessage("Selected Item is = "+a.getItemAtPosition(position));
-						adb.setPositiveButton("Ok", null);
-						adb.show();
-					}
-				 });
-				listView1.setOnScrollListener(new FriendsOnScrollListener(a)); 
-				return listView1;
-			}
-			
-			
-		});
-		myTabHost.addTab(ts);
-		
+				
 		TabSpec ts1 = myTabHost.newTabSpec("TAB_TAG_2");
 		ts1.setIndicator("Seal");
 		ts1.setContent(new TabHost.TabContentFactory(){
@@ -323,9 +297,8 @@ public class Friends extends Activity implements OnScrollListener, OnItemClickLi
 		myTabHost.getTabWidget().getChildAt(1).getLayoutParams().width = 60;
 		myTabHost.getTabWidget().getChildAt(2).getLayoutParams().width = 60;
 		myTabHost.getTabWidget().getChildAt(3).getLayoutParams().width = 60;
-		myTabHost.getTabWidget().getChildAt(4).getLayoutParams().width = 60;
-		myTabHost.getTabWidget().getChildAt(5).getLayoutParams().width = 80;
-		myTabHost.getTabWidget().getChildAt(6).getLayoutParams().width = 60;
+		myTabHost.getTabWidget().getChildAt(4).getLayoutParams().width = 80;
+		myTabHost.getTabWidget().getChildAt(5).getLayoutParams().width = 60;
 		
 		myTabHost.getTabWidget().getChildAt(0).getLayoutParams().height = 30;
 		myTabHost.getTabWidget().getChildAt(1).getLayoutParams().height = 30;
@@ -333,11 +306,11 @@ public class Friends extends Activity implements OnScrollListener, OnItemClickLi
 		myTabHost.getTabWidget().getChildAt(3).getLayoutParams().height = 30;
 		myTabHost.getTabWidget().getChildAt(4).getLayoutParams().height = 30;
 		myTabHost.getTabWidget().getChildAt(5).getLayoutParams().height = 30;
-		myTabHost.getTabWidget().getChildAt(6).getLayoutParams().height = 30;
 	}
 	
 	private static final int LOGIN_ID = Menu.FIRST;
 	private static final int SYNC_ID = Menu.FIRST+1;
+	private static final int ALL_FRIENDS_ID = Menu.FIRST+2;
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) 
@@ -345,6 +318,7 @@ public class Friends extends Activity implements OnScrollListener, OnItemClickLi
 		super.onCreateOptionsMenu(menu);
 		menu.add(0, LOGIN_ID,0, R.string.login);
 		menu.add(0, SYNC_ID,0, R.string.sync);
+		menu.add(0, ALL_FRIENDS_ID,0, R.string.all_friends);
 		return true;
 	}
 
@@ -359,7 +333,10 @@ public class Friends extends Activity implements OnScrollListener, OnItemClickLi
         case SYNC_ID:
         	doSync();
         	return true;
-        }
+	    case ALL_FRIENDS_ID:
+	    	showAllFriends();
+	    	return true;
+	    }
         return super.onMenuItemSelected(featureId, item);
 	}
     
@@ -375,6 +352,19 @@ public class Friends extends Activity implements OnScrollListener, OnItemClickLi
 		}
 	}
 
+    public void showAllFriends()
+    {
+    	setContentView(R.layout.all_friends);
+    	
+    	ListView allFriendsList = (ListView)this.findViewById(R.id.all_friends_list);
+    	
+    	FriendListFacebookAdapter a = new FriendListFacebookAdapter(Friends.this,Friends.this, friendsData, R.layout.friend_view,
+				new String[] { "name","birthday","picture"}, new int[] {R.id.friendViewText, R.id.friendViewImage});
+    	allFriendsList.setAdapter(a);
+
+    	allFriendsList.setOnScrollListener(new FriendsOnScrollListener(a)); 
+    	
+    }
 
 	private Facebook mFb;
 	private Handler mHandler;
@@ -456,7 +446,6 @@ private final class LoginDialogListener implements DialogListener {
 		Log.d(TAG,"If you are reading this, it's because friends data is null, friendsData=" + friendsData);
 		return super.onRetainNonConfigurationInstance();
 	}
-
 	
 	public Context getContext() {
 		return this.getBaseContext();

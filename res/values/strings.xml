@@ -13,6 +13,7 @@
 	<string name="login">Login</string>    
 	<string name="logout">Logout</string>
 	<string name="sync">Sync</string>
+	<string name="all_friends">All Friends</string>
 
 	<string name="CHANGE_DAY_1">1 Day (Kin)</string>
 	<string name="CHANGE_DAY_4">4 Days (Harmonic, Time Cell)</string>
