@@ -32,6 +32,8 @@
 	<string name="CHANGE_DAY_365">365 Days (Year)</string>
 	<string name="about_text">About</string>
 	
+	<string name="tzolkin">Tzolkin</string>
+	
 	<string name="about_info">
 	This is a DreamSpell application for Android, adapted by Damien Joldersma (White Cosmic Dog,	 kin 130).
 	I was greatly inspired by Starroot\'s Daily DreamSpell Oracle. And of course the Law of Time Foundation.

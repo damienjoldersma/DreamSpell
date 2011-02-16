@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/tzolkin_table"
+	android:layout_height="fill_parent"
+		android:layout_width="fill_parent"
+	android:background="@drawable/backrepeat"
+	android:tileMode="repeat"
+	android:padding="3dip"
+	android:stretchColumns="1"> 
+
+</TableLayout>

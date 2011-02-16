@@ -144,6 +144,8 @@ public class DreamSpell extends Activity
 	private static final int FRIENDS_ID = Menu.FIRST+2;
 	private static final int ORACLE_ID = Menu.FIRST+3;
 	private static final int ABOUT_ID = Menu.FIRST+4;
+	private static final int TZOLKIN_ID = Menu.FIRST+5;
+	
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) 
@@ -154,6 +156,7 @@ public class DreamSpell extends Activity
 		menu.add(0, FRIENDS_ID,0, R.string.goto_friends);
 		menu.add(0, ORACLE_ID,0, R.string.goto_oracle);
 		menu.add(0, ABOUT_ID,0, R.string.about_text);
+		menu.add(0, TZOLKIN_ID,0, R.string.tzolkin);
 		return true;
 	}
 
@@ -186,6 +189,12 @@ public class DreamSpell extends Activity
         	myIntent2.setClassName("org.joldersma.damien.DreamSpell", "org.joldersma.damien.DreamSpell.About");
         	//myIntent.putExtra("com.android.samples.SpecialValue", "Hello, Joe!"); // key/value pair, where key needs current package prefix.
         	startActivity(myIntent2);
+        	return true;
+        case TZOLKIN_ID:
+        	Intent myIntent3 = new Intent();
+        	myIntent3.setClassName("org.joldersma.damien.DreamSpell", "org.joldersma.damien.DreamSpell.Tzolkin");
+        	//myIntent.putExtra("com.android.samples.SpecialValue", "Hello, Joe!"); // key/value pair, where key needs current package prefix.
+        	startActivity(myIntent3);
         	return true;
         }
         
