@@ -60,12 +60,15 @@ public class Tzolkin extends Activity {
 				kin = (seal + ((tone-1) * 20)) % 13;
 				if ( kin == 0 ) kin = 13; // hack hack but otherwise 1-12 work, but 13 is 0 - I have poor math skills
 				
+				int kinNumber = (seal + ((tone-1) * 20));
+				boolean today = DreamSpellUtil.getKin() == kinNumber;
+				
 				/* Create a TextView to be the row-content. */
 				TextView textView = new TextView(this);
 				textView.setText(String.format("%s",kin));
 				textView.setGravity(Gravity.CENTER);
 				textView.setLayoutParams(new LayoutParams(21,40));
-				textView.setTextColor(Color.BLACK);
+				textView.setTextColor(today ? Color.RED : Color.BLACK);
 				//textView.setPadding(1, 1, 1, 1);
 				/* Add TextView to row. */
 				tr.addView(textView);
