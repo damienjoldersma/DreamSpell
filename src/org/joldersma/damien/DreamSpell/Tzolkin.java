@@ -29,7 +29,7 @@ public class Tzolkin extends Activity {
 		/* Find Tablelayout defined in main.xml */
 		TableLayout tl = (TableLayout)findViewById(R.id.tzolkin_table);
 		int kin = 1;
-		for (int seal = 1; seal <= 20; seal++)
+		for (int seal = 0; seal < 20; seal++)
 		{
 			/* Create a new row to be added. */
 			TableRow tr = new TableRow(this);
@@ -41,7 +41,7 @@ public class Tzolkin extends Activity {
 					TableRow.LayoutParams.WRAP_CONTENT));
 			
 			ImageView imageView = new ImageView(this);
-			imageView.setImageResource(AndroidUtil.getGlyphResource(seal));
+			imageView.setImageResource(AndroidUtil.getGlyphResource(seal+1));
 			imageView.setScaleType(ScaleType.FIT_XY);
 		
 			imageView.setLayoutParams(new LayoutParams(40,40));
@@ -53,19 +53,18 @@ public class Tzolkin extends Activity {
 			/* Add TextView to row. */
 			tr.addView(imageView);
 			
-			for (int tone = 1; tone <= 13; tone++) {
-				
+			for (int column = 0; column < 13; column++) {
 				Log.d(TAG, "Going to add kin text view: ");
 				
-				kin = (seal + ((tone-1) * 20)) % 13;
-				if ( kin == 0 ) kin = 13; // hack hack but otherwise 1-12 work, but 13 is 0 - I have poor math skills
+				int kinIndex = (seal + ((column) * 20));
+				int tone = kinIndex % 13 + 1;
 				
-				int kinNumber = (seal + ((tone-1) * 20));
-				boolean today = DreamSpellUtil.getKin() == kinNumber;
+				
+				boolean today = DreamSpellUtil.getKin() == kinIndex + 1;
 				
 				/* Create a TextView to be the row-content. */
 				TextView textView = new TextView(this);
-				textView.setText(String.format("%s",kin));
+				textView.setText(String.format("%s",tone));
 				textView.setGravity(Gravity.CENTER);
 				textView.setLayoutParams(new LayoutParams(21,40));
 				textView.setTextColor(today ? Color.RED : Color.BLACK);
