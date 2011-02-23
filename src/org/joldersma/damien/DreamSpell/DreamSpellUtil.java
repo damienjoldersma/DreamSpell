@@ -708,6 +708,24 @@ public class DreamSpellUtil {
 		return null;
 	}
 	
+	public static boolean isPortal(int kin)
+	{
+		return ( kin == 1 || kin == 20 || 
+			     kin == 22 || kin == 39 ||
+			     kin == 43 || kin == 58 ||
+			     kin == 64 || kin == 77 ||
+			     kin == 85 || kin == 96 ||
+			     (kin >= 106 && kin <= 115) ||
+			     (kin == 88 || kin == 69 || kin == 50 || kin == 51 || kin == 72 || kin == 93 ) ||
+			     (kin == 168 || kin == 189 || kin == 210 || kin == 211 || kin == 192 || kin == 173 ) ||
+			     (kin >= 146 && kin <= 155) ||
+			     kin == 165 || kin == 176 ||
+			     kin == 184 || kin == 197 ||
+			     kin == 203 || kin == 218 ||
+			     kin == 222 || kin == 239 ||
+			     kin == 241 || kin == 260 );
+	}
+	
 	/*
 	public static int Tone {
 		get {

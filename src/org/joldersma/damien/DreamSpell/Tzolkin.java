@@ -44,12 +44,12 @@ public class Tzolkin extends Activity {
 			imageView.setImageResource(AndroidUtil.getGlyphResource(seal+1));
 			imageView.setScaleType(ScaleType.FIT_XY);
 		
-			imageView.setLayoutParams(new LayoutParams(40,40));
+			imageView.setLayoutParams(new LayoutParams(41,19));
 //			imageView.setLayoutParams(new LayoutParams(
 //								LayoutParams.FILL_PARENT,
 //								LayoutParams.WRAP_CONTENT));
 			
-			imageView.setPadding(3, 1, 3, 1);
+			imageView.setPadding(9, 1, 10, 1);
 			/* Add TextView to row. */
 			tr.addView(imageView);
 			
@@ -59,18 +59,33 @@ public class Tzolkin extends Activity {
 				int kinIndex = (seal + ((column) * 20));
 				int tone = kinIndex % 13 + 1;
 				
-				
 				boolean today = DreamSpellUtil.getKin() == kinIndex + 1;
+				boolean portal = DreamSpellUtil.isPortal(kinIndex + 1);
+				TableLayout tableLayout = new TableLayout(this);
+				tableLayout.setBackgroundColor(Color.BLACK);
+				TableRow tableRow = new TableRow(this);
+				
+				tableRow.setLayoutParams(new TableRow.LayoutParams(
+						TableRow.LayoutParams.FILL_PARENT,
+						TableRow.LayoutParams.WRAP_CONTENT));
+				
+				LayoutParams layoutParams = new LayoutParams(19,19);
+				layoutParams.setMargins(1, 1, 1, 1);
 				
 				/* Create a TextView to be the row-content. */
 				TextView textView = new TextView(this);
+				textView.setBackgroundColor(today ? Color.GREEN : portal ? Color.BLACK : Color.WHITE);
 				textView.setText(String.format("%s",tone));
 				textView.setGravity(Gravity.CENTER);
-				textView.setLayoutParams(new LayoutParams(21,40));
-				textView.setTextColor(today ? Color.RED : Color.BLACK);
+				textView.setLayoutParams(layoutParams);
+				textView.setTextColor((today || portal) ? Color.WHITE : Color.BLACK);
 				//textView.setPadding(1, 1, 1, 1);
+				
 				/* Add TextView to row. */
-				tr.addView(textView);
+				tableRow.addView(textView);
+				tableLayout.addView(tableRow);
+				//tr.addView(textView);
+				tr.addView(tableLayout);
 			
 			}
 		
