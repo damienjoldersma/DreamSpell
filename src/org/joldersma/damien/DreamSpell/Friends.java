@@ -951,40 +951,19 @@ private final class LoginDialogListener implements DialogListener {
 						}
 				}
 		}
-		
-		 public void onScroll(AbsListView view,
-			        int firstVisible, int visibleCount, int totalCount) {
 
-			        boolean loadMore = /* maybe add a padding */
-			            firstVisible + visibleCount >= totalCount;
+		public void onScroll(AbsListView view, int firstVisible, int visibleCount, int totalCount) 
+		{
 
-			        if(loadMore && adapter != null ) {
-			        	Log.d(TAG,"Increasing adapter count to 3");
-			            adapter.count += 3; // visibleCount; // or any other amount
-			            adapter.notifyDataSetChanged();
-			        }
-			    }
+			boolean loadMore = firstVisible + visibleCount >= totalCount; /* maybe add a padding */
+			
+			if(loadMore && adapter != null ) 
+			{
+				Log.d(TAG,"Increasing adapter count to 3");
+				adapter.count += 3; // visibleCount; // or any other amount
+				adapter.notifyDataSetChanged();
+			}
+		}
 
-			    public void onScrollStateChanged(AbsListView v, int s) { }
-
-				
-
-//			    class Aleph0 extends BaseAdapter {
-//			        int count =10; /* starting amount */
-//			        public int getCount() { return count; }
-//			        public Object getItem(int pos) { return pos; }
-//			        public long getItemId(int pos) { return pos; }
-//
-//			        public View getView(int pos, View v, ViewGroup p) {
-//			                TextView view = new TextView(Test.this);
-//			                view.setText("entry " + pos);
-//			                return view;
-//			        }
-//			        
-//					public View getView(int position, View convertView,
-//							ViewGroup parent) {
-//						// TODO Auto-generated method stub
-//						return null;
-//					}
-//			    }
+		public void onScrollStateChanged(AbsListView v, int s) { }
 }

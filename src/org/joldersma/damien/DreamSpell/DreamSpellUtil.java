@@ -13,55 +13,34 @@ import android.util.Log;
 public class DreamSpellUtil {
 
 	public static final String TAG = "DreamSpell";
+	
+	static String[][] tones,seals;
+	static String[] oracleTextDefinition;
+	
+	static double y,x,rem;
+	static int cont,i,loopstart,daydist;
+	static int byear = 0, bmonth = 0, bday = 0;
+	static int yseal = 0, ytone = 0, magseal = 0, kin = 0;
+	static int tone = 0, seal = 0, guide = 0, antipode = 0, occult = 0, analog = 0;
 
+	static Date currentDate;
+	static int[] gmonth = new int[] { 0,31,28,31,30,31,30,6,31,30,31,30,31 };
+
+	
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
-		
-
-		System.out.println("Hello Dream World!");
-		
+	public static void main(String[] args) 
+	{
 		DreamSpellUtil.Calc();
-		
-//		System.out.println("Name: " + DreamSpellUtil.GetName(DreamSpellUtil.getSeal()));
-		
-//		System.out.println("Tone: " + DreamSpellUtil.getTone() + " " + 
-//				DreamSpellUtil.getTones()[DreamSpellUtil.getTone()][0] + " " +
-//				DreamSpellUtil.GetToneAction(DreamSpellUtil.getTone()) + " " +
-//				DreamSpellUtil.GetToneEssence(DreamSpellUtil.getTone()) + " " +
-//				DreamSpellUtil.GetTonePower(DreamSpellUtil.getTone())
-//		);
-//		
-//		System.out.println("Seal: " + DreamSpellUtil.getSeal() + " " + 
-//				DreamSpellUtil.getSeals()[DreamSpellUtil.getSeal()][0] + " " +
-//				DreamSpellUtil.GetAction() + " " +
-//				DreamSpellUtil.GetEssence() + " " +
-//				DreamSpellUtil.GetPower()
-//		);
-		
-//		System.out.println("Analog: " + DreamSpellUtil.getAnalog());
-//		System.out.println("Occult: " + DreamSpellUtil.getOccult());
-//		System.out.println("Antipode: " + DreamSpellUtil.getAntipode());
-//		System.out.println("Guide: " + DreamSpellUtil.getGuide());
-		
-		//System.out.println("Year: " + DreamSpellUtil.get);
-		
 		System.out.println("CurrentDate: " + DreamSpellUtil.getCurrentDate());
-		
-//		int kin = 0;
-//		for (int seal = 1; seal <= 20; seal++)
-//		{
-//			for (int tone = 1; tone <= 13; tone++)		
-//			{
-//				kin++;
-//				System.out.println(String.format("Kin: %s, Seal: %s, Tone: %s",kin,seal,tone));
-//				
-//			}
-//		}
-		
-		//buildKinLookup(null);
-		
+	}
+	
+	public static void init(Resources res)
+	{
+		tones = getToneResources(res);
+		seals = getSealResources(res);
+		oracleTextDefinition = getOracleTextDefinitionResources(res);
 	}
 
 	public static void buildKinLookup(SQLiteDatabase db) {
@@ -86,26 +65,12 @@ public class DreamSpellUtil {
 			int occult = DreamSpellUtil.getOccult();
 			int antipode = DreamSpellUtil.getAntipode();
 			int guide = DreamSpellUtil.getGuide();
-			
-			System.out.println(String.format("date: %s, kin: %s, seal: %s, tone: %s, analog: %s, occult: %s, antipode: %s, guide: %s",
-					date,kin,seal,tone,analog,occult,antipode,guide));
-			
-			//System.out.println(String.format("%s,%s,%s,%s,%s,%s,%s",
-			//		kin,seal,tone,analog,occult,antipode,guide));
-			
+
 			db.execSQL(String.format("INSERT INTO KIN_LOOKUP (seal,tone,analog,occult,antipode,guide) VALUES (%s,%s,%s,%s,%s,%s);",
 					seal,tone,analog,occult,antipode,guide));
-			
 		}
-		
-		
 	}
-
-	static double y,x,rem;
-	static int cont,i,loopstart,daydist;
-	static int byear = 0, bmonth = 0, bday = 0;
-	static int yseal = 0, ytone = 0, magseal = 0, kin = 0;
-	static int tone = 0, seal = 0, guide = 0, antipode = 0, occult = 0, analog = 0;
+	
 	public static int getDaydist() {
 		return daydist;
 	}
@@ -215,68 +180,40 @@ public class DreamSpellUtil {
 		DreamSpellUtil.seals = seals;
 	}
 
-	static Date currentDate;
-	
-	static int[] gmonth = new int[] { 0,31,28,31,30,31,30,6,31,30,31,30,31 };
-	
-	//static String [] seals = new String[] { "Unknown","Red Dragon","White Wind","Blue Night","Yellow Seed","Red Serpent","White World-Bridger","Blue Hand","Yellow Star","Red Moon","White Dog","Blue Monkey","Yellow Human","Red Skywalker","White Wizard","Blue Eagle","Yellow Warrior","Red Earth","White Mirror","Blue Storm","Yellow Sun" }; 
+	public static String[][] getToneResources(Resources res)
+	{
+		// TONE NAME,CREATIVE POWER,FUNCTION,ACTION
+		String[] tones_raw = res.getStringArray(R.array.tones);
 		
-	static String[][] tones = new String[][]
-	{ 
-		// Tone, Power, Action, Essence, Daily Meditation
-		{"Unknown"," ", " "," "," "},
-		{"Magnetic","Unify", "Purpose","Attraction","What is this wavespell's Goal?"},
-		{"Lunar","Polarize", "Challenge","Stabilizing","What are the Obstacles for this wavespell's goal?"},
-		{"Electric","Activate", "Service","Bonding","How can this wavespell's goal be Obtained?"},
-		{"Self-Existing","Define", "Form","Measuring","What is the form of the action to obtain the wavespell goal?"},
-		{"Overtone","Empower", "Radiance","Command","Gather Resources."},
-		{"Rythmic","Organize", "Equality","Balance","Administer Challenge."},
-		{"Resonant","Channel", "Attunement","Inspiring","Attune Service to action."},
-		{"Galactic","Harmonize", "Integrity","Modeling","Action Attains form."},
-		{"Solar","Pulse", "Intention","Realizing","Action set in Motion."},
-		{"Planetary","Perfect", "Manifestation","Producing","Action and Challenge are meet."},
-		{"Spectral","Dissolve", "Liberation","Release","Action dissolves service."},
-		{"Crystal","Dedicate", "Cooperation","Universalize","Round Table meets."},
-		{"Cosmic","Endure", "Presence","Transcend","Return to Magnetic (tone 1)."} 
-	};
+		String[][] tones = new String[14][5];
+		for (int i = 0; i < tones_raw.length; i++) {
+			String t = tones_raw[i];
+			String[] values = t.split(",");
+			tones[i] = values;
+		}
+		
+		return tones;
+	}
 
-	static String[][] seals = new String[][] 
-	{ 			
-		// Seal, Name, Action, Essence, Power
-		{"Unknown"," "," "," "," "},
-		{"Red Dragon","IMIX","Nurtures","Being","Birth"}, 
-		{"White Wind","IK","Communicates","Breath","Spirit"}, 
-		{"Blue Night","AKBAL","Dreams","Intuition","Abundance"}, 
-		{"Yellow Seed","KAN","Targets","Awareness","Flowering (ideas)"}, 
-		{"Red Serpent","CHICCHAN","Survives","Awareness","Life-force (instinct)"}, 
-		{"White World-Bridger","CIMI","Equalizes","Opportunity","Death (span dimensions)"},
-		{"Blue Hand","MANIK","Knows","Healing","Accomplishment (heals)"}, 
-		{"Yellow Star","LAMAT","Beautifies","Art","Elegance"}, 
-		{"Red Moon","MULAC","Purifies","Flow","Universal Water"}, 
-		{"White Dog","OC","Loves","Loyalty","Heart (truth)"}, 
-		{"Blue Monkey","CHUEN","Plays","Illusion","Magic"},
-		{"Yellow Human","EB","Influences","Wisdom","Free Will"}, 
-		{"Red Skywalker","BEN","Explores","Wisdom","Space"}, 
-		{"White Wizard","IX","Enchants","Receptivity","Timelessness"}, 
-		{"Blue Eagle","MEN","Creates","Mind","Vision"}, 
-		{"Yellow Warrior","CIB","Questions","Fearlessness","Intelligence"},
-		{"Red Earth","CABAN","Evolves","Synchronicity","Navigation"}, 
-		{"White Mirror","ETZNAB","Reflects","Order","Endlessness"}, 
-		{"Blue Storm","CAUAC","Catalyzes","Energy","Self-Generation"}, 
-		{"Yellow Sun","AHAU","Enlightens","Life","Universal Fire"}
-	};		
+	public static String[][] getSealResources(Resources res)
+	{
+		// GLYPH,MAYAN NAME,COLOR,ACTION,CREATIVE POWER,FUNCTION
+		String[] seals_raw = res.getStringArray(R.array.seals);
 		
-	static String[] oracleTextDefinition = new String[] 
-	{                                                                                                  
-		"The seal of the day is the basis of life destiny, with power of the solar tribe.",
-		"The seal of the year is the basis of life destiny, with the power of the solar tribe.",
-		"The seal for the Guide of the day modifies the oracle reading in Outcome.",
-		"The seal for the Anitpode of the day modifies the oracle reading with Challenging power (strengthening memory, reconstruction).", 
-		"The seal for the Occult of the day modifies the oracle reading with Hidden power (the unexpected).",
-		"The seal for the Analog of the day modifies the oracle reading with Like-Minded power (galactic-solar planetary power).",
-		"The seal for the Wavespell sets the emphasis of the thirteen day, thirteen tone cycle."
-	};
-	
+		String[][] seals = new String[21][7];
+		for (int i = 0; i < seals_raw.length; i++) {
+			String g = seals_raw[i];
+			String[] values = g.split(",");
+			seals[i] = values;
+		}
+		
+		return seals;
+	}
+
+	public static String[] getOracleTextDefinitionResources(Resources res)
+	{
+		return res.getStringArray(R.array.oracle_text_definition);
+	}
 	
 	public static String getAffirmation(Resources res)
 	{
@@ -328,17 +265,17 @@ public class DreamSpellUtil {
 		 affirmation_tones[getTone()-1][0],affirmation_tones[getTone()-1][2],
 		 guidePower);
 	}
-	// TONE,POWER,FUNCTION,ACTION
-	// GLYPH,MAYAN NAME,COLOR,ACTION,POWER,FUNCTION
 	
 	public static String getSealDefinition(int s)
 	{
+		// GLYPH,MAYAN NAME,COLOR,ACTION,POWER,FUNCTION
 		return String.format("%s (%s) %s and emphasizes %s",
 				seals[s][0],seals[s][1],seals[s][2],seals[s][4]);
 	}
 	
 	public static String getToneDefinition(int t)
 	{
+		// TONE,POWER,FUNCTION,ACTION
 		return String.format("Tone %s %s, creative power to %s %s, action of %s",
 				t,tones[t][0],tones[t][1],tones[t][2],tones[t][3]);
 	}
@@ -513,44 +450,17 @@ public class DreamSpellUtil {
 	
 	public static void Calc(Date date)
 	{			
-		//Date d = new Date(2008,7,26);
-		//System.out.println("Day Out Of Time: " + d.ToString("d"));
-		//System.out.println("Day Out Of Time day of year: " + d.DayOfYear);				
-		
 		setCurrentDate(date);
-		
-////		System.out.println("-- Year Seal: " + DreamSpellUtil.CalcYearSeal());
-////		System.out.println("-- Year Tone: " + DreamSpellUtil.CalcYearTone());
-////		System.out.println("-- Distance From Day Out Of Time: " + DreamSpellUtil.CalcDistanceFromDayOutOfTime());
-////		System.out.println("-- Year Seal: " + DreamSpellUtil.CalcSeal());
-////		System.out.println("-- Year Tone: " + DreamSpellUtil.CalcTone());
-		
 		DreamSpellUtil.CalcYearSeal();
 		DreamSpellUtil.CalcYearTone();
 		DreamSpellUtil.CalcDistanceFromDayOutOfTime();
 		DreamSpellUtil.CalcSeal();
 		DreamSpellUtil.CalcTone();
-		
-		/*DreamSpellUtil.CalcYearSeal();
-		DreamSpellUtil.CalcYearTone();
-		DreamSpellUtil.CalcDistanceFromDayOutOfTime();
-		DreamSpellUtil.CalcSeal();
-		DreamSpellUtil.CalcTone();
-		*/
-		
-		DreamSpellUtil.CalcOracle();
-//		System.out.println("-- Guide: " + DreamSpellUtil.getGuide());
-//		System.out.println("-- Antiopde: " + DreamSpellUtil.getAntipode());
-//		System.out.println("-- Analog: " + DreamSpellUtil.getAnalog());
-//		System.out.println("-- Occult: " + DreamSpellUtil.getOccult());
-//		System.out.println("-- Kin: " + DreamSpellUtil.getKin());			
+		DreamSpellUtil.CalcOracle();		
 	}
 	
 	public static int CalcYearSeal()
 	{
-//		System.out.println("DreamSpellUtil.CalcYearSeal: getCurrentDate is " + getCurrentDate());
-//		System.out.println("DreamSpellUtil.CalcYearSeal: getCurrentDate.getYear is " + getCurrentDate());
-		
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(getCurrentDate());
 		
@@ -558,15 +468,9 @@ public class DreamSpellUtil {
 		bmonth = cal.get(GregorianCalendar.MONTH)+1;
 		bday = cal.get(GregorianCalendar.DAY_OF_MONTH);
 		
-//		System.out.println("byear: " + byear);
-//		System.out.println("bmonth: " + bmonth);
-//		System.out.println("bday: " + bday);			
-		
 		//     calc year seal 
 		if((bmonth<7)||((bmonth==7)&&(bday<26)))byear--;      
-//		System.out.println("byear after --: " + byear);
 		yseal=4+(15*(calcyseal(byear)-1));
-//		System.out.println("yseal: " + yseal);
 		if(yseal==34)yseal=14;
 		if(yseal==49)yseal=9;
 		
@@ -710,121 +614,20 @@ public class DreamSpellUtil {
 	
 	public static boolean isPortal(int kin)
 	{
-		return ( kin == 1 || kin == 20 || 
-			     kin == 22 || kin == 39 ||
-			     kin == 43 || kin == 58 ||
-			     kin == 64 || kin == 77 ||
-			     kin == 85 || kin == 96 ||
-			     (kin >= 106 && kin <= 115) ||
-			     (kin == 88 || kin == 69 || kin == 50 || kin == 51 || kin == 72 || kin == 93 ) ||
-			     (kin == 168 || kin == 189 || kin == 210 || kin == 211 || kin == 192 || kin == 173 ) ||
-			     (kin >= 146 && kin <= 155) ||
-			     kin == 165 || kin == 176 ||
-			     kin == 184 || kin == 197 ||
-			     kin == 203 || kin == 218 ||
-			     kin == 222 || kin == 239 ||
-			     kin == 241 || kin == 260 );
+		return (kin == 1 || kin == 20 || 
+				kin == 22 || kin == 39 ||
+				kin == 43 || kin == 58 ||
+				kin == 64 || kin == 77 ||
+				kin == 85 || kin == 96 ||
+				(kin >= 106 && kin <= 115) ||
+				(kin == 88 || kin == 69 || kin == 50 || kin == 51 || kin == 72 || kin == 93 ) ||
+				(kin == 168 || kin == 189 || kin == 210 || kin == 211 || kin == 192 || kin == 173 ) ||
+				(kin >= 146 && kin <= 155) ||
+				kin == 165 || kin == 176 ||
+				kin == 184 || kin == 197 ||
+				kin == 203 || kin == 218 ||
+				kin == 222 || kin == 239 ||
+				kin == 241 || kin == 260 );
 	}
-	
-	/*
-	public static int Tone {
-		get {
-			return tone;
-		}
-		set {
-			tone = value;
-		}
-	}
-	
-	public static int Seal {
-		get {
-			return seal;
-		}
-		set {
-			seal = value;
-		}
-	}
-	
-	public static int Occult {
-		get {
-			return occult;
-		}
-		set {
-			occult = value;
-		}
-	}
-	
-	public static int Kin {
-		get {
-			return kin;
-		}
-		set {
-			kin = value;
-		}
-	}
-	
-	public static int Guide {
-		get {
-			return guide;
-		}
-		set {
-			guide = value;
-		}
-	}
-	
-	public static int Daydist {
-		get {
-			return daydist;
-		}
-		set {
-			daydist = value;
-		}
-	}
-	
-	public static int Antipode {
-		get {
-			return antipode;
-		}
-		set {
-			antipode = value;
-		}
-	}
-	
-	public static int Analog {
-		get {
-			return analog;
-		}
-		set {
-			analog = value;
-		}
-	}
-
-	public static DateTime CurrentDate {
-		get {
-			return currentDate;
-		}
-		set {
-			currentDate = value;
-		}
-	}
-
-	public static String[,] Seals {
-		get {
-			return seals;
-		}
-		set {
-			seals = value;
-		}
-	}
-
-	public static String[,] Tones {
-		get {
-			return tones;
-		}
-		set {
-			tones = value;
-		}
-	}
-	*/
 }
 
