@@ -16,7 +16,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -56,6 +58,7 @@ public class Friends extends Activity implements OnScrollListener, OnItemClickLi
 	public static final String APP_ID = "32395165793";
 	private Facebook mFacebook;
 	private AsyncFacebookRunner mAsyncRunner;
+	boolean loggedIn = false;
 	
 	private DataHelper dh;
 
@@ -84,12 +87,24 @@ public class Friends extends Activity implements OnScrollListener, OnItemClickLi
 		 	
 		 	try
 		 	{
+		 		Log.d(TAG,"Going to restore facebook session");
 		 		SessionStore.restore(mFacebook, this);
+		 		Log.d(TAG,"Restored facebook session");
+		 		
 		 	}
 		 	catch (Exception e)
 		 	{
 		 		Log.e(TAG,"Error trying to restore session",e);
 		 	}
+		 	
+		 	if ( mFacebook.isSessionValid() )
+		 	{
+		 		loggedIn = true;
+		 		Log.d(TAG,"Valid facebook session");
+		 	}
+		 	else
+		 		Log.d(TAG,"No valid facebook session");
+		 	
 			SessionEvents.addAuthListener(new SampleAuthListener());
 			SessionEvents.addLogoutListener(new SampleLogoutListener());
 			
@@ -167,29 +182,13 @@ public class Friends extends Activity implements OnScrollListener, OnItemClickLi
 		TabHost myTabHost = (TabHost)this.findViewById(R.id.tabhost);
 		myTabHost.setup();
 		
-		listView1 = new ListView(Friends.this);
 		listView2 = new ListView(Friends.this);
 		listView3 = new ListView(Friends.this);
 		listView4 = new ListView(Friends.this);
 		listView5 = new ListView(Friends.this);
 		listView6 = new ListView(Friends.this);
 		listView7 = new ListView(Friends.this);
-		
-		TabSpec ts = myTabHost.newTabSpec("TAB_TAG_1");
-		ts.setIndicator("All");
-		ts.setContent(new TabHost.TabContentFactory(){
-			public View createTabContent(String tag)
-			{
-				adapter = new FriendListFacebookAdapter(Friends.this,Friends.this, friendsData, R.layout.friend_view,
-						new String[] { "name","birthday","picture"}, new int[] {R.id.friendViewText, R.id.friendViewImage});
-				listView1.setAdapter(adapter);
-				listView1.setOnScrollListener(Friends.this); 
-				listView1.setOnItemClickListener(Friends.this);
-				return listView1;
-			}
-		});
-		myTabHost.addTab(ts);
-		
+				
 		TabSpec ts1 = myTabHost.newTabSpec("TAB_TAG_2");
 		ts1.setIndicator("Seal");
 		ts1.setContent(new TabHost.TabContentFactory(){
@@ -197,9 +196,13 @@ public class Friends extends Activity implements OnScrollListener, OnItemClickLi
 			{
 				DreamSpellUtil.Calc(DreamSpell.getCurrentDate());
 				List<Map<String,String>> data = dh.select("seal",DreamSpellUtil.getSeal());
-				ListAdapter a = new FriendListFacebookAdapter(Friends.this,Friends.this, data, R.layout.friend_view,
+				FriendListFacebookAdapter a = new FriendListFacebookAdapter(Friends.this,Friends.this, data, R.layout.friend_view,
 						new String[] { "name","birthday","picture"}, new int[] {R.id.friendViewText, R.id.friendViewImage});
 				listView2.setAdapter(a);
+				listView2.setItemsCanFocus(true);
+				listView2.setOnItemClickListener(new FriendsOnItemClickListener(Friends.this));
+				listView2.setOnScrollListener(new FriendsOnScrollListener(a)); 
+				
 				return listView2;
 			}
 		});
@@ -212,9 +215,12 @@ public class Friends extends Activity implements OnScrollListener, OnItemClickLi
 			{
 				DreamSpellUtil.Calc(DreamSpell.getCurrentDate());
 				List<Map<String,String>> data = dh.select("tone",DreamSpellUtil.getTone());
-				ListAdapter a = new FriendListFacebookAdapter(Friends.this,Friends.this, data, R.layout.friend_view,
+				FriendListFacebookAdapter a = new FriendListFacebookAdapter(Friends.this,Friends.this, data, R.layout.friend_view,
 						new String[] { "name","birthday","picture"}, new int[] {R.id.friendViewText, R.id.friendViewImage});
 				listView3.setAdapter(a);
+				listView3.setItemsCanFocus(true);
+				listView3.setOnItemClickListener(new FriendsOnItemClickListener(Friends.this));
+				listView3.setOnScrollListener(new FriendsOnScrollListener(a)); 
 				return listView3;
 			}
 		});
@@ -227,9 +233,12 @@ public class Friends extends Activity implements OnScrollListener, OnItemClickLi
 			{
 				DreamSpellUtil.Calc(DreamSpell.getCurrentDate());
 				List<Map<String,String>> data = dh.select("seal",DreamSpellUtil.getAnalog());
-				ListAdapter a = new FriendListFacebookAdapter(Friends.this,Friends.this, data, R.layout.friend_view,
+				FriendListFacebookAdapter a = new FriendListFacebookAdapter(Friends.this,Friends.this, data, R.layout.friend_view,
 						new String[] { "name","birthday","picture"}, new int[] {R.id.friendViewText, R.id.friendViewImage});
 				listView4.setAdapter(a);
+				listView4.setItemsCanFocus(true);
+				listView4.setOnItemClickListener(new FriendsOnItemClickListener(Friends.this));
+				listView4.setOnScrollListener(new FriendsOnScrollListener(a)); 
 				return listView4;
 			}
 		});
@@ -242,9 +251,12 @@ public class Friends extends Activity implements OnScrollListener, OnItemClickLi
 			{
 				DreamSpellUtil.Calc(DreamSpell.getCurrentDate());
 				List<Map<String,String>> data = dh.select("seal",DreamSpellUtil.getOccult());
-				ListAdapter a = new FriendListFacebookAdapter(Friends.this,Friends.this, data, R.layout.friend_view,
+				FriendListFacebookAdapter a = new FriendListFacebookAdapter(Friends.this,Friends.this, data, R.layout.friend_view,
 						new String[] { "name","birthday","picture"}, new int[] {R.id.friendViewText, R.id.friendViewImage});
 				listView5.setAdapter(a);
+				listView5.setItemsCanFocus(true);
+				listView5.setOnItemClickListener(new FriendsOnItemClickListener(Friends.this));
+				listView5.setOnScrollListener(new FriendsOnScrollListener(a)); 
 				return listView5;
 			}
 		});
@@ -257,9 +269,12 @@ public class Friends extends Activity implements OnScrollListener, OnItemClickLi
 			{
 				DreamSpellUtil.Calc(DreamSpell.getCurrentDate());
 				List<Map<String,String>> data = dh.select("seal",DreamSpellUtil.getAntipode());
-				ListAdapter a = new FriendListFacebookAdapter(Friends.this,Friends.this, data, R.layout.friend_view,
+				FriendListFacebookAdapter a = new FriendListFacebookAdapter(Friends.this,Friends.this, data, R.layout.friend_view,
 						new String[] { "name","birthday","picture"}, new int[] {R.id.friendViewText, R.id.friendViewImage});
 				listView6.setAdapter(a);
+				listView6.setItemsCanFocus(true);
+				listView6.setOnItemClickListener(new FriendsOnItemClickListener(Friends.this));
+				listView6.setOnScrollListener(new FriendsOnScrollListener(a)); 
 				return listView6;
 			}
 		});
@@ -267,33 +282,86 @@ public class Friends extends Activity implements OnScrollListener, OnItemClickLi
 		
 		TabSpec ts6 = myTabHost.newTabSpec("TAB_TAG_6");
 		ts6.setIndicator("Guide");
+		
 		ts6.setContent(new TabHost.TabContentFactory(){
 			public View createTabContent(String tag)
 			{
 				DreamSpellUtil.Calc(DreamSpell.getCurrentDate());
 				List<Map<String,String>> data = dh.select("seal",DreamSpellUtil.getGuide());
-				ListAdapter a = new FriendListFacebookAdapter(Friends.this,Friends.this, data, R.layout.friend_view,
+				FriendListFacebookAdapter a = new FriendListFacebookAdapter(Friends.this,Friends.this, data, R.layout.friend_view,
 						new String[] { "name","birthday","picture"}, new int[] {R.id.friendViewText, R.id.friendViewImage});
 				listView7.setAdapter(a);
+				listView2.setItemsCanFocus(true);
+				listView7.setOnItemClickListener(new OnItemClickListener() {
+						public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+						AlertDialog.Builder adb=new AlertDialog.Builder(Friends.this);
+						adb.setTitle("LVSelectedItemExample");
+						adb.setMessage("Selected Item is = "+a.getItemAtPosition(position));
+						adb.setPositiveButton("Ok", null);
+						adb.show();
+					}
+				 });
+				listView7.setOnScrollListener(new FriendsOnScrollListener(a)); 
 				return listView7;
 			}
 		});
 		myTabHost.addTab(ts6);
 		
+		myTabHost.getTabWidget().getChildAt(0).getLayoutParams().width = 60;
+		myTabHost.getTabWidget().getChildAt(1).getLayoutParams().width = 60;
+		myTabHost.getTabWidget().getChildAt(2).getLayoutParams().width = 60;
+		myTabHost.getTabWidget().getChildAt(3).getLayoutParams().width = 60;
+		myTabHost.getTabWidget().getChildAt(4).getLayoutParams().width = 80;
+		myTabHost.getTabWidget().getChildAt(5).getLayoutParams().width = 60;
+		
+		myTabHost.getTabWidget().getChildAt(0).getLayoutParams().height = 30;
+		myTabHost.getTabWidget().getChildAt(1).getLayoutParams().height = 30;
+		myTabHost.getTabWidget().getChildAt(2).getLayoutParams().height = 30;
+		myTabHost.getTabWidget().getChildAt(3).getLayoutParams().height = 30;
+		myTabHost.getTabWidget().getChildAt(4).getLayoutParams().height = 30;
+		myTabHost.getTabWidget().getChildAt(5).getLayoutParams().height = 30;
 	}
 	
 	private static final int LOGIN_ID = Menu.FIRST;
 	private static final int SYNC_ID = Menu.FIRST+1;
+	private static final int ALL_FRIENDS_ID = Menu.FIRST+2;
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) 
 	{
 		super.onCreateOptionsMenu(menu);
-		menu.add(0, LOGIN_ID,0, R.string.login);
-		menu.add(0, SYNC_ID,0, R.string.sync);
+//		menu.add(0, LOGIN_ID,0, loggedIn ? R.string.logout : R.string.login);
+//		menu.add(0, SYNC_ID,0, R.string.sync);
+//		menu.add(0, ALL_FRIENDS_ID,0, R.string.all_friends);
+		updateMenu(menu);
 		return true;
 	}
+	
+	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
 
+		Log.d(TAG,"OnPrepareOptionsMenu fired!");
+		menu.clear();
+		
+		updateMenu(menu);
+		
+		return super.onPrepareOptionsMenu(menu);
+	}
+
+	public void updateMenu(Menu menu)
+	{
+		if ( loggedIn )
+		{
+			menu.add(0, LOGIN_ID,0, R.string.logout);
+			menu.add(0, SYNC_ID,0, R.string.sync);
+		}
+		else
+		{
+			menu.add(0, LOGIN_ID,0, R.string.login);
+		}
+		
+		menu.add(0, ALL_FRIENDS_ID,0, R.string.all_friends);
+	}
     @Override
 	public boolean onMenuItemSelected(int featureId, MenuItem item) 
     {
@@ -305,7 +373,10 @@ public class Friends extends Activity implements OnScrollListener, OnItemClickLi
         case SYNC_ID:
         	doSync();
         	return true;
-        }
+	    case ALL_FRIENDS_ID:
+	    	showAllFriends();
+	    	return true;
+	    }
         return super.onMenuItemSelected(featureId, item);
 	}
     
@@ -315,12 +386,28 @@ public class Friends extends Activity implements OnScrollListener, OnItemClickLi
 		    SessionEvents.onLogoutBegin();
 		    AsyncFacebookRunner asyncRunner = new AsyncFacebookRunner(mFb);
 		    asyncRunner.logout(getContext(), new LogoutRequestListener());
+		    
+		    // Update menu
+		    
 		} else {
 			Log.d(TAG,"buttonOnClick listener - session is not valid going to login,");
 		    mFb.authorize(mActivity, mPermissions, new LoginDialogListener());
 		}
 	}
 
+    public void showAllFriends()
+    {
+    	setContentView(R.layout.all_friends);
+    	
+    	ListView allFriendsList = (ListView)this.findViewById(R.id.all_friends_list);
+    	
+    	FriendListFacebookAdapter a = new FriendListFacebookAdapter(Friends.this,Friends.this, friendsData, R.layout.friend_view,
+				new String[] { "name","birthday","picture"}, new int[] {R.id.friendViewText, R.id.friendViewImage});
+    	allFriendsList.setAdapter(a);
+
+    	allFriendsList.setOnScrollListener(new FriendsOnScrollListener(a)); 
+    	
+    }
 
 	private Facebook mFb;
 	private Handler mHandler;
@@ -365,6 +452,7 @@ private final class LoginDialogListener implements DialogListener {
             // not the background thread
             mHandler.post(new Runnable() {
                 public void run() {
+                	Log.d(TAG,"OnLogoutFinish");
                     SessionEvents.onLogoutFinish();
                 }
             });
@@ -377,18 +465,28 @@ private final class LoginDialogListener implements DialogListener {
         	Log.d(TAG, "SessionListener onAuthSucceed!");
             //setImageResource(R.drawable.logout_button);
            SessionStore.save(mFb, getContext()	);
+           loggedIn = true;
         }
 
         public void onAuthFail(String error) {
         	Log.d(TAG, "SessionListener onAuthFail=" + error);
+        	loggedIn = false;
         }
         
         public void onLogoutBegin() {
         }
         
         public void onLogoutFinish() {
+        	Log.d(TAG,"My SessionListener onLogoutFinish");
             SessionStore.clear(getContext());
             //setImageResource(R.drawable.login_button);
+            AlertDialog.Builder adb=new AlertDialog.Builder(Friends.this);
+			adb.setTitle("Facebook Logout");
+			adb.setMessage("You've been logged out!");
+			adb.setPositiveButton("Ok", null);
+			adb.show();
+            
+        	loggedIn = false;
         }
     }
 	
@@ -402,7 +500,6 @@ private final class LoginDialogListener implements DialogListener {
 		Log.d(TAG,"If you are reading this, it's because friends data is null, friendsData=" + friendsData);
 		return super.onRetainNonConfigurationInstance();
 	}
-
 	
 	public Context getContext() {
 		return this.getBaseContext();
@@ -741,6 +838,9 @@ private final class LoginDialogListener implements DialogListener {
 //										mText.setText("Hello there, " + name + "!");
 //								}
 //						});
+			Log.d(TAG,"Going to dismiss dialog1");
+			dialog.dismiss();
+			
 			} catch (JSONException e) {
 					Log.w(TAG, "JSON Error in response: " + e.toString());
 					Log.w(TAG,e);
@@ -751,8 +851,11 @@ private final class LoginDialogListener implements DialogListener {
 					e.printStackTrace();
 			}
 		}
-		
+		ProgressDialog dialog = null;
 		private void doSync() {
+			dialog = ProgressDialog.show(Friends.this, "", 
+                    "Loading. Please wait...", true);
+			
 			Log.d(TAG,"DreamSpell now with new and improved me/friends?fields=id,name,picture,birthday!");
 			Bundle params = new Bundle();
 //						//String[] fields = { "facebookId","name","picture" };
@@ -765,6 +868,7 @@ private final class LoginDialogListener implements DialogListener {
 							Bundle params = new Bundle();
 							params.putString("fields", "id,name,picture,birthday");
 					mAsyncRunner.request("me/friends", params, new SampleFriendsListener());
+					
 				}
 			}.start();
 		}
@@ -847,40 +951,19 @@ private final class LoginDialogListener implements DialogListener {
 						}
 				}
 		}
-		
-		 public void onScroll(AbsListView view,
-			        int firstVisible, int visibleCount, int totalCount) {
 
-			        boolean loadMore = /* maybe add a padding */
-			            firstVisible + visibleCount >= totalCount;
+		public void onScroll(AbsListView view, int firstVisible, int visibleCount, int totalCount) 
+		{
 
-			        if(loadMore && adapter != null ) {
-			        	Log.d(TAG,"Increasing adapter count to 3");
-			            adapter.count += 3; // visibleCount; // or any other amount
-			            adapter.notifyDataSetChanged();
-			        }
-			    }
+			boolean loadMore = firstVisible + visibleCount >= totalCount; /* maybe add a padding */
+			
+			if(loadMore && adapter != null ) 
+			{
+				Log.d(TAG,"Increasing adapter count to 3");
+				adapter.count += 3; // visibleCount; // or any other amount
+				adapter.notifyDataSetChanged();
+			}
+		}
 
-			    public void onScrollStateChanged(AbsListView v, int s) { }
-
-				
-
-//			    class Aleph0 extends BaseAdapter {
-//			        int count =10; /* starting amount */
-//			        public int getCount() { return count; }
-//			        public Object getItem(int pos) { return pos; }
-//			        public long getItemId(int pos) { return pos; }
-//
-//			        public View getView(int pos, View v, ViewGroup p) {
-//			                TextView view = new TextView(Test.this);
-//			                view.setText("entry " + pos);
-//			                return view;
-//			        }
-//			        
-//					public View getView(int position, View convertView,
-//							ViewGroup parent) {
-//						// TODO Auto-generated method stub
-//						return null;
-//					}
-//			    }
+		public void onScrollStateChanged(AbsListView v, int s) { }
 }

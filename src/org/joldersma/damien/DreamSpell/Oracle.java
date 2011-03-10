@@ -103,17 +103,5 @@ public class Oracle extends Activity {
 		
 		TextView wavespellDefText = (TextView) findViewById(R.id.oracle_wavespell_def);
 		wavespellDefText.setText(DreamSpellUtil.getOracleDefinition(7));
-		
-		
-		
-		
-//		<TextView android:id="@+id/oracle_seal_def"
-//		<TextView android:id="@+id/oracle_guide_def"
-//		<TextView android:id="@+id/oracle_antipode_def"
-//		<TextView android:id="@+id/oracle_occult_def"
-//		<TextView android:id="@+id/oracle_analog_def"
-//		<TextView android:id="@+id/oracle_wavespell_def"
-//		<TextView android:id="@+id/oracle_year_def"
-
 	}
 }

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="hello">Hello World, DreamSpell!</string>
 	<string name="app_name">DreamSpell</string>
 	<string name="date_title">Date</string>    
 	<string name="date_name">Name</string> 
@@ -9,10 +8,14 @@
 	<string name="goto_today">Today</string>    
 	<string name="goto_day">Find</string>    
 	<string name="goto_friends">Friends</string>
+	<string name="goto_oracle">Oracle</string>
+	<string name="about_text">About</string>
+	<string name="tzolkin">Tzolkin</string>
 
 	<string name="login">Login</string>    
 	<string name="logout">Logout</string>
 	<string name="sync">Sync</string>
+	<string name="all_friends">All Friends</string>
 
 	<string name="CHANGE_DAY_1">1 Day (Kin)</string>
 	<string name="CHANGE_DAY_4">4 Days (Harmonic, Time Cell)</string>
@@ -29,86 +32,124 @@
 	<string name="CHANGE_DAY_260">260 Days (Tzolkin Spin)</string>
 	<string name="CHANGE_DAY_364">364 Days (13 Moons)</string>
 	<string name="CHANGE_DAY_365">365 Days (Year)</string>
-	<string name="about_text">About</string>
 	
-	<string name="about_info">
-	This is a DreamSpell application for Android, adapted by Damien Joldersma (White Cosmic Dog,	 kin 130).
-	I was greatly inspired by Starroot\'s Daily DreamSpell Oracle. And of course the Law of Time Foundation.
-	And also StarShip Plaza, amazing.  I also used Photon.net\'s charts and resources.
+	<string name="oracle_affirmation_title">Daily Affirmation</string>
+	<string name="oracle_seal_title">Seal of the Day, Destiny</string>
+	<string name="oracle_tone_title">Tone of the day</string>
+	<string name="oracle_guide_title">Guide of the Day, effecting Outcome</string>
+	<string name="oracle_antipode_title">Antipode of the Day, the Challenging focus</string>
+	<string name="oracle_occult_title">Occult of the Day, the Hidden power</string>
+	<string name="oracle_analog_title">Analog of the Day, the Like-Minded power</string>
+	<string name="oracle_wavespell_tone_title">Tone one starts the Wavespell</string>
+	<string name="oracle_wavespell_seal_title">Seal for this Wavespell</string>
+	<string name="oracle_year_tone_title">Tone of the Year</string>
+	<string name="oracle_year_seal_title">Seal of the Year, Destiny</string>
 	
-	http://www.starroot.com/cgi/daycalc.pl, by Orion kin 66
+	<string name="oracle_seal_text">kin seal</string>
+	<string name="oracle_tone_text">kin tone</string>
+	<string name="oracle_guide_text">guide</string>
+	<string name="oracle_antipode_text">antipode</string>
+	<string name="oracle_occult_text">occult</string>
+	<string name="oracle_analog_text">analog</string>
+	<string name="oracle_wavespell_tone_text">wavespell tone</string>
+	<string name="oracle_wavespell_seal_text">wavespell seal</string>
+	<string name="oracle_year_tone_text">year tone</string>
+	<string name="oracle_year_seal_text">year seal</string>
 	
-	"The Mayan Dreamspell calendar by Jose Arguelles is based on the Mayan Tzolkin."
-	</string>
-	
-	<string name="oracle_affirmation">
-	</string>
-	
-		<string name="goto_oracle">Oracle</string>
-		
-		<string name="oracle_affirmation_title">Daily Affirmation</string>
-		<string name="oracle_seal_title">Seal of the Day, Destiny</string>
-		<string name="oracle_tone_title">Tone of the day</string>
-		<string name="oracle_guide_title">Guide of the Day, effecting Outcome</string>
-		<string name="oracle_antipode_title">Antipode of the Day, the Challenging focus</string>
-		<string name="oracle_occult_title">Occult of the Day, the Hidden power</string>
-		<string name="oracle_analog_title">Analog of the Day, the Like-Minded power</string>
-		<string name="oracle_wavespell_tone_title">Tone one starts the Wavespell</string>
-		<string name="oracle_wavespell_seal_title">Seal for this Wavespell</string>
-		<string name="oracle_year_tone_title">Tone of the Year</string>
-		<string name="oracle_year_seal_title">Seal of the Year, Destiny</string>
-		
-		<string name="oracle_seal_text">kin seal</string>
-		<string name="oracle_tone_text">kin tone</string>
-		<string name="oracle_guide_text">guide</string>
-		<string name="oracle_antipode_text">antipode</string>
-		<string name="oracle_occult_text">occult</string>
-		<string name="oracle_analog_text">analog</string>
-		<string name="oracle_wavespell_tone_text">wavespell tone</string>
-		<string name="oracle_wavespell_seal_text">wavespell seal</string>
-		<string name="oracle_year_tone_text">year tone</string>
-		<string name="oracle_year_seal_text">year seal</string>
-		
-		<string name="oracle_daily_meditation">Meditation</string>
-	
-<string-array name="affirmation_tones">
-<!--TONE #,TONE NAME,CREATIVE POWER,FUNCTION,ACTION-->
-<item>magnetic,unify,purpose,Attracting</item>
-<item>lunar,polarize,challenge,Stabilizing</item>
-<item>electric,activate,service,Bonding</item>
-<item>self existing,define,form,Measuring</item>
-<item>overtone,empower,radiance,Commanding</item>
-<item>rhythmic,organize,equality,Balancing</item>
-<item>resonant,channel,attunement,Inspiring</item>
-<item>galactic,harmonize,integrity,Modeling</item>
-<item>solar,pulse,intention,Realizing</item>
-<item>planetary,perfect,manifestation,Producing</item>
-<item>spectral,dissolve ,liberation,Releasing</item>
-<item>crystal,dedicate,cooperation,Universalizing</item>
-<item>cosmic,endure,presence,Transcending</item>
-</string-array>
+	<string name="oracle_daily_meditation">Meditation</string>
 
-<string-array name="affirmation_glyphs">
-<!-- GLYPH,MAYAN NAME,COLOR,ACTION,CREATIVE POWER,FUNCTION,TIMECELL-->
-<item>dragon,Imix,red,nurture,birth,being,input</item>
-<item>wind,Ik,white,communicate,spirit,breath,input</item>
-<item>night,Akbal,blue,dream,abundance,intuition,input</item>
-<item>seed,Kan,yellow,target,flowering,awareness,input</item>
-<item>serpent,Chicchan,red,survive,life force,instinct,store</item>
-<item>worldbridger,Cimi,white,equalize,death,opportunity,store</item>
-<item>hand,Manik,blue,know,accomplishment,healing,store</item>
-<item>star,Lamat,yellow,beautify,elegance,art,store</item>
-<item>moon,Mulac,red,purify,universal water,flow,process</item>
-<item>dog,Oc,white,love,heart,loyalty,process</item>
-<item>monkey,Chuen,blue,play,magic,illusion,process</item>
-<item>human,Eb,yellow,influence,free will,wisdom,process</item>
-<item>skywalker,Ben,red,explore,space,wakefulness,output</item>
-<item>wizard,Ix,white,enchant,timelessness,receptivity,output</item>
-<item>eagle,Men,blue,create,vision,mind,output</item>
-<item>warrior,Cib,yellow,question,intelligence,fearlessness,output</item>
-<item>earth,Caban,red,evolve,navigation,synchronicity,matrix</item>
-<item>mirror,Etznab,white,reflect,endlessness,order,matrix</item>
-<item>storm,Cauac,blue,catalyze,self-generation,energy,matrix</item>
-<item>sun,Ahau,yellow,enlighten,universal fire,life,matrix</item>
-</string-array>
+	<string-array name="affirmation_tones">
+	<!--TONE #,TONE NAME,CREATIVE POWER,FUNCTION,ACTION-->
+	<item>magnetic,unify,purpose,Attracting</item>
+	<item>lunar,polarize,challenge,Stabilizing</item>
+	<item>electric,activate,service,Bonding</item>
+	<item>self existing,define,form,Measuring</item>
+	<item>overtone,empower,radiance,Commanding</item>
+	<item>rhythmic,organize,equality,Balancing</item>
+	<item>resonant,channel,attunement,Inspiring</item>
+	<item>galactic,harmonize,integrity,Modeling</item>
+	<item>solar,pulse,intention,Realizing</item>
+	<item>planetary,perfect,manifestation,Producing</item>
+	<item>spectral,dissolve ,liberation,Releasing</item>
+	<item>crystal,dedicate,cooperation,Universalizing</item>
+	<item>cosmic,endure,presence,Transcending</item>
+	</string-array>
+
+	<string-array name="affirmation_glyphs">
+	<!-- GLYPH,MAYAN NAME,COLOR,ACTION,CREATIVE POWER,FUNCTION,TIMECELL-->
+	<item>dragon,Imix,red,nurture,birth,being,input</item>
+	<item>wind,Ik,white,communicate,spirit,breath,input</item>
+	<item>night,Akbal,blue,dream,abundance,intuition,input</item>
+	<item>seed,Kan,yellow,target,flowering,awareness,input</item>
+	<item>serpent,Chicchan,red,survive,life force,instinct,store</item>
+	<item>worldbridger,Cimi,white,equalize,death,opportunity,store</item>
+	<item>hand,Manik,blue,know,accomplishment,healing,store</item>
+	<item>star,Lamat,yellow,beautify,elegance,art,store</item>
+	<item>moon,Mulac,red,purify,universal water,flow,process</item>
+	<item>dog,Oc,white,love,heart,loyalty,process</item>
+	<item>monkey,Chuen,blue,play,magic,illusion,process</item>
+	<item>human,Eb,yellow,influence,free will,wisdom,process</item>
+	<item>skywalker,Ben,red,explore,space,wakefulness,output</item>
+	<item>wizard,Ix,white,enchant,timelessness,receptivity,output</item>
+	<item>eagle,Men,blue,create,vision,mind,output</item>
+	<item>warrior,Cib,yellow,question,intelligence,fearlessness,output</item>
+	<item>earth,Caban,red,evolve,navigation,synchronicity,matrix</item>
+	<item>mirror,Etznab,white,reflect,endlessness,order,matrix</item>
+	<item>storm,Cauac,blue,catalyze,self-generation,energy,matrix</item>
+	<item>sun,Ahau,yellow,enlighten,universal fire,life,matrix</item>
+	</string-array>
+	
+	<string-array name="tones">
+		<!-- Tone, Power, Action, Essence, Daily Meditation -->
+		<item>Unknown,,,,</item>
+		<item>Magnetic,Unify, Purpose,Attraction,What is this wavespell\'s Goal?</item>
+		<item>Lunar,Polarize, Challenge,Stabilizing,What are the Obstacles for this wavespell\'s goal?</item>
+		<item>Electric,Activate, Service,Bonding,How can this wavespell\'s goal be Obtained?</item>
+		<item>Self-Existing,Define, Form,Measuring,What is the form of the action to obtain the wavespell goal?</item>
+		<item>Overtone,Empower, Radiance,Command,Gather Resources.</item>
+		<item>Rythmic,Organize, Equality,Balance,Administer Challenge.</item>
+		<item>Resonant,Channel, Attunement,Inspiring,Attune Service to action.</item>
+		<item>Galactic,Harmonize, Integrity,Modeling,Action Attains form.</item>
+		<item>Solar,Pulse, Intention,Realizing,Action set in Motion.</item>
+		<item>Planetary,Perfect, Manifestation,Producing,Action and Challenge are meet.</item>
+		<item>Spectral,Dissolve, Liberation,Release,Action dissolves service.</item>
+		<item>Crystal,Dedicate, Cooperation,Universalize,Round Table meets.</item>
+		<item>Cosmic,Endure, Presence,Transcend,Return to Magnetic (tone 1).</item> 
+	</string-array>
+	
+	<string-array name="seals">
+		<!-- Seal, Name, Action, Essence, Power -->
+		<item>Unknown,,,,</item>
+		<item>Red Dragon,IMIX,Nurtures,Being,Birth</item>
+		<item>White Wind,IK,Communicates,Breath,Spirit</item>
+		<item>Blue Night,AKBAL,Dreams,Intuition,Abundance</item>
+		<item>Yellow Seed,KAN,Targets,Awareness,Flowering (ideas)</item>
+		<item>Red Serpent,CHICCHAN,Survives,Awareness,Life-force (instinct)</item>
+		<item>White World-Bridger,CIMI,Equalizes,Opportunity,Death (span dimensions)</item>
+		<item>Blue Hand,MANIK,Knows,Healing,Accomplishment (heals)</item>
+		<item>Yellow Star,LAMAT,Beautifies,Art,Elegance</item>
+		<item>Red Moon,MULAC,Purifies,Flow,Universal Water</item>
+		<item>White Dog,OC,Loves,Loyalty,Heart (truth)</item>
+		<item>Blue Monkey,CHUEN,Plays,Illusion,Magic</item>
+		<item>Yellow Human,EB,Influences,Wisdom,Free Will</item>
+		<item>Red Skywalker,BEN,Explores,Wisdom,Space</item>
+		<item>White Wizard,IX,Enchants,Receptivity,Timelessness</item>
+		<item>Blue Eagle,MEN,Creates,Mind,Vision</item>
+		<item>Yellow Warrior,CIB,Questions,Fearlessness,Intelligence</item>
+		<item>Red Earth,CABAN,Evolves,Synchronicity,Navigation</item>
+		<item>White Mirror,ETZNAB,Reflects,Order,Endlessness</item>
+		<item>Blue Storm,CAUAC,Catalyzes,Energy,Self-Generation</item>
+		<item>Yellow Sun,AHAU,Enlightens,Life,Universal Fire</item>
+	</string-array>
+	
+	<string-array name="oracle_text_definition">
+		<item>The seal of the day is the basis of life destiny, with power of the solar tribe.</item>
+		<item>The seal of the year is the basis of life destiny, with the power of the solar tribe.</item>
+		<item>The seal for the Guide of the day modifies the oracle reading in Outcome.</item>
+		<item>The seal for the Anitpode of the day modifies the oracle reading with Challenging power (strengthening memory, reconstruction).</item> 
+		<item>The seal for the Occult of the day modifies the oracle reading with Hidden power (the unexpected).</item>
+		<item>The seal for the Analog of the day modifies the oracle reading with Like-Minded power (galactic-solar planetary power).</item>
+		<item>The seal for the Wavespell sets the emphasis of the thirteen day, thirteen tone cycle.</item>
+	</string-array>
+	
 </resources>

@@ -62,7 +62,8 @@ public class DreamSpell extends Activity
 		Log.d(TAG,"** ON CREATE **");
 		setContentView(R.layout.main);
 
-		
+		// Initalize DreamSpellUtil
+		DreamSpellUtil.init(getResources());
 		
 		// Check for bundle extra 
 		Intent intent = getIntent();
@@ -108,11 +109,8 @@ public class DreamSpell extends Activity
          registerForContextMenu(findViewById(R.id.date_title));
 	}
 	
-	
-	
 	@Override
 	protected void onRestart() {
-		// TODO Auto-generated method stub
 		super.onRestart();
 		Log.d(TAG,"onRestart");
 		calc();
@@ -120,21 +118,18 @@ public class DreamSpell extends Activity
 
 	@Override
 	protected void onRestoreInstanceState(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onRestoreInstanceState(savedInstanceState);
 		Log.d(TAG,"onRestoreInstanceState");
 	}
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		Log.d(TAG,"onResume");
 	}
 
 	@Override
 	protected void onStart() {
-		// TODO Auto-generated method stub
 		super.onStart();
 		Log.d(TAG,"onStart");
 	}
@@ -144,7 +139,8 @@ public class DreamSpell extends Activity
 	private static final int FRIENDS_ID = Menu.FIRST+2;
 	private static final int ORACLE_ID = Menu.FIRST+3;
 	private static final int ABOUT_ID = Menu.FIRST+4;
-	
+	private static final int TZOLKIN_ID = Menu.FIRST+5;
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) 
 	{
@@ -154,6 +150,7 @@ public class DreamSpell extends Activity
 		menu.add(0, FRIENDS_ID,0, R.string.goto_friends);
 		menu.add(0, ORACLE_ID,0, R.string.goto_oracle);
 		menu.add(0, ABOUT_ID,0, R.string.about_text);
+		menu.add(0, TZOLKIN_ID,0, R.string.tzolkin);
 		return true;
 	}
 
@@ -170,45 +167,28 @@ public class DreamSpell extends Activity
         	return true;
         case FRIENDS_ID:
         	Intent myIntent = new Intent();
-        	myIntent.setClassName("org.joldersma.damien.DreamSpell", "org.joldersma.damien.DreamSpell.Friends"); // TEST
-        	//myIntent.setClassName("org.joldersma.damien.DreamSpell", "org.joldersma.damien.DreamSpell.FriendGroups"); // TEST
-        	//myIntent.putExtra("com.android.samples.SpecialValue", "Hello, Joe!"); // key/value pair, where key needs current package prefix.
+        	myIntent.setClassName("org.joldersma.damien.DreamSpell", "org.joldersma.damien.DreamSpell.Friends");
         	startActivity(myIntent);    
         	return true;
         case ORACLE_ID:
         	Intent myIntent1 = new Intent();
         	myIntent1.setClassName("org.joldersma.damien.DreamSpell", "org.joldersma.damien.DreamSpell.Oracle");
-        	//myIntent.putExtra("com.android.samples.SpecialValue", "Hello, Joe!"); // key/value pair, where key needs current package prefix.
         	startActivity(myIntent1);
         	return true;
         case ABOUT_ID:
         	Intent myIntent2 = new Intent();
         	myIntent2.setClassName("org.joldersma.damien.DreamSpell", "org.joldersma.damien.DreamSpell.About");
-        	//myIntent.putExtra("com.android.samples.SpecialValue", "Hello, Joe!"); // key/value pair, where key needs current package prefix.
         	startActivity(myIntent2);
+        	return true;
+        case TZOLKIN_ID:
+        	Intent myIntent3 = new Intent();
+        	myIntent3.setClassName("org.joldersma.damien.DreamSpell", "org.joldersma.damien.DreamSpell.Tzolkin");
+        	startActivity(myIntent3);
         	return true;
         }
         
         return super.onMenuItemSelected(featureId, item);
 	}
-    
-    
-//	<string name="CHANGE_DAY_1">1 Day (Kin)</string>
-//	<string name="CHANGE_DAY_4">4 Days (Harmonic, Time Cell)</string>
-//	<string name="CHANGE_DAY_5">5 Days (Chromatic, Clans)</string>
-//	<string name="CHANGE_DAY_7">7 Days (Week) </string>
-//	<string name="CHANGE_DAY_13">13 Days (Wave Spell)</string>
-//	<string name="CHANGE_DAY_14">14 Days (Two Weeks)</string>
-//	<string name="CHANGE_DAY_20">20 Days (Harmonic Run, Tzolkin Column)</string>
-//	<string name="CHANGE_DAY_28">28 Days (Moon)</string>
-//	<string name="CHANGE_DAY_30">30 Days (Month)</string>
-//	<string name="CHANGE_DAY_31">31 Days (Month)</string>
-//	<string name="CHANGE_DAY_53">52 Days (Castle)</string>
-//	<string name="CHANGE_DAY_65">65 Days (Tzolkin Galactic Season)</string>
-//	<string name="CHANGE_DAY_260">260 Days (Tzolkin Galactic Spin)</string>
-//	<string name="CHANGE_DAY_364">364 Days (13 Moons)</string>
-//	<string name="CHANGE_DAY_365">365 Days (Year)</string>
-
 
 	private static final int CHANGE_DAY_1 = Menu.FIRST+10;
 	private static final int CHANGE_DAY_4 = Menu.FIRST+11;
@@ -227,13 +207,10 @@ public class DreamSpell extends Activity
 	private static final int CHANGE_DAY_365 = Menu.FIRST+23;
 	
 	@Override
-	public void onCreateContextMenu(ContextMenu menu, View v,
-			ContextMenuInfo menuInfo) {
-		// TODO Auto-generated method stub
-		
+	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) 
+	{
 		Log.d(TAG,"onCreateContextMenu going!");
 		
-		//super.onCreateContextMenu(menu, v, menuInfo);
 		menu.setHeaderTitle("Swipe Time Travel");
 		menu.add(0, CHANGE_DAY_1,0, R.string.CHANGE_DAY_1);
 		menu.add(0, CHANGE_DAY_4,0, R.string.CHANGE_DAY_4);
@@ -253,22 +230,14 @@ public class DreamSpell extends Activity
 
 	@Override
 	public void onContextMenuClosed(Menu menu) {
-		// TODO Auto-generated method stub
-		
 		Log.d(TAG,"onContextMenuClosed going!");
 		super.onContextMenuClosed(menu);
-		
-		
 	}
 
-	
-	
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
-		// TODO Auto-generated method stub
 		Log.d(TAG,"onContextItemSelected going! "  + item.getItemId());
-		//return super.onContextItemSelected(item);
-		
+
 		switch(item.getItemId()) 
 		{
 		case CHANGE_DAY_1:
@@ -297,14 +266,10 @@ public class DreamSpell extends Activity
 		return super.onContextItemSelected(item);
 	}
 
-
-
 	@Override
-    public boolean onSearchRequested() {
+	public boolean onSearchRequested() {
 		Log.d(TAG, "onSearchRequested!");
-		
 		showDialog(DATE_DIALOG_ID);
-		
 		return true;
 	}
 		
@@ -405,25 +370,21 @@ public class DreamSpell extends Activity
 	            // right to left swipe
 	            if(e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) 
 	            {
-	                //Toast.makeText(SelectFilterActivity.this, "Left Swipe", Toast.LENGTH_SHORT`enter code here`).show();
 	            	Log.d(TAG, "MyGestureDetector Left Swipe");
 	            	removeDay(SWIPE_DAYS);
 	            }  
 	            else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) 
 	            {
-	                //Toast.makeText(SelectFilterActivity.this, "Right Swipe", Toast.LENGTH_SHORT).show();
 	            	Log.d(TAG, "MyGestureDetector Right Swipe");
 	            	addDay(SWIPE_DAYS);
 	            }
 	            else if(e1.getY() - e2.getY() > SWIPE_MIN_DISTANCE && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) 
 	            {
-	                //Toast.makeText(SelectFilterActivity.this, "Left Swipe", Toast.LENGTH_SHORT`enter code here`).show();
 	            	Log.d(TAG, "MyGestureDetector Up Swipe");
 	            	removeDay(SWIPE_DAYS);
 	            }  
 	            else if (e2.getY() - e1.getY() > SWIPE_MIN_DISTANCE && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) 
 	            {
-	                //Toast.makeText(SelectFilterActivity.this, "Right Swipe", Toast.LENGTH_SHORT).show();
 	            	Log.d(TAG, "MyGestureDetector Down Swipe");
 	            	addDay(SWIPE_DAYS);
 	            }
@@ -445,7 +406,6 @@ public class DreamSpell extends Activity
 	 	{
 			Log.d(TAG,"onTouchEvent! ");
 			
-			//GestureDetector gestureDetector = new GestureDetector(gestureListener);
 			if ( gestureDetector.onTouchEvent(event) )
 			{
 				Log.d(TAG,"onTouchEvent case1");

@@ -44,6 +44,14 @@
               
 			</intent-filter>
 		</activity>
+		
+		<activity android:name=".Tzolkin"
+                  android:label="@string/tzolkin">
+			<intent-filter>
+               <action android:name="android.intent.action.MAIN" />
+              
+			</intent-filter>
+		</activity>
 
 </application>
 
