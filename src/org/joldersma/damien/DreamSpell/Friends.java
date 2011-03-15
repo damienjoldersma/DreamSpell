@@ -307,19 +307,19 @@ public class Friends extends Activity implements OnScrollListener, OnItemClickLi
 		});
 		myTabHost.addTab(ts6);
 		
-		myTabHost.getTabWidget().getChildAt(0).getLayoutParams().width = 60;
-		myTabHost.getTabWidget().getChildAt(1).getLayoutParams().width = 60;
-		myTabHost.getTabWidget().getChildAt(2).getLayoutParams().width = 60;
-		myTabHost.getTabWidget().getChildAt(3).getLayoutParams().width = 60;
-		myTabHost.getTabWidget().getChildAt(4).getLayoutParams().width = 80;
-		myTabHost.getTabWidget().getChildAt(5).getLayoutParams().width = 60;
+		myTabHost.getTabWidget().getChildAt(0).getLayoutParams().width = 90;
+		myTabHost.getTabWidget().getChildAt(1).getLayoutParams().width = 90;
+		myTabHost.getTabWidget().getChildAt(2).getLayoutParams().width = 90;
+		myTabHost.getTabWidget().getChildAt(3).getLayoutParams().width = 90;
+		myTabHost.getTabWidget().getChildAt(4).getLayoutParams().width = 110;
+		myTabHost.getTabWidget().getChildAt(5).getLayoutParams().width = 90;
 		
-		myTabHost.getTabWidget().getChildAt(0).getLayoutParams().height = 30;
-		myTabHost.getTabWidget().getChildAt(1).getLayoutParams().height = 30;
-		myTabHost.getTabWidget().getChildAt(2).getLayoutParams().height = 30;
-		myTabHost.getTabWidget().getChildAt(3).getLayoutParams().height = 30;
-		myTabHost.getTabWidget().getChildAt(4).getLayoutParams().height = 30;
-		myTabHost.getTabWidget().getChildAt(5).getLayoutParams().height = 30;
+		myTabHost.getTabWidget().getChildAt(0).getLayoutParams().height = 60;
+		myTabHost.getTabWidget().getChildAt(1).getLayoutParams().height = 60;
+		myTabHost.getTabWidget().getChildAt(2).getLayoutParams().height = 60;
+		myTabHost.getTabWidget().getChildAt(3).getLayoutParams().height = 60;
+		myTabHost.getTabWidget().getChildAt(4).getLayoutParams().height = 60;
+		myTabHost.getTabWidget().getChildAt(5).getLayoutParams().height = 60;
 	}
 	
 	private static final int LOGIN_ID = Menu.FIRST;
