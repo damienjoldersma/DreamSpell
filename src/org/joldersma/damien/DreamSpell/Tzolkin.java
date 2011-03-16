@@ -44,12 +44,12 @@ public class Tzolkin extends Activity {
 			imageView.setImageResource(AndroidUtil.getGlyphResource(seal+1));
 			imageView.setScaleType(ScaleType.FIT_XY);
 		
-			imageView.setLayoutParams(new LayoutParams(41,19));
+			imageView.setLayoutParams(new LayoutParams(54,30));
 //			imageView.setLayoutParams(new LayoutParams(
 //								LayoutParams.FILL_PARENT,
 //								LayoutParams.WRAP_CONTENT));
 			
-			imageView.setPadding(9, 1, 10, 1);
+			imageView.setPadding(10, 1, 14, 1);
 			/* Add TextView to row. */
 			tr.addView(imageView);
 			
@@ -69,7 +69,7 @@ public class Tzolkin extends Activity {
 						TableRow.LayoutParams.FILL_PARENT,
 						TableRow.LayoutParams.WRAP_CONTENT));
 				
-				LayoutParams layoutParams = new LayoutParams(19,19);
+				LayoutParams layoutParams = new LayoutParams(30,30);
 				layoutParams.setMargins(1, 1, 1, 1);
 				
 				/* Create a TextView to be the row-content. */
