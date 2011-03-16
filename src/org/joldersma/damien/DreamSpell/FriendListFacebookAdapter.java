@@ -57,7 +57,7 @@ public class FriendListFacebookAdapter extends SimpleAdapter {
     private static LayoutInflater inflater=null;
     public ImageLoader imageLoader; 
     
-    int count = 6; /* starting amount */
+    int count = 10; /* starting amount */
 //    public int getCount() { return count; }
 //    public Object getItem(int pos) { return pos; }
 //    public long getItemId(int pos) { return pos; }

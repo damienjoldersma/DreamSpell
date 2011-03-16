@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
 		android:layout_width="fill_parent"
-		android:layout_height="70px"
+		android:layout_height="80px"
 		android:stretchColumns="1">
 	<TableRow android:background="@drawable/bgclouds" 
 		android:layout_height="65px" 
@@ -9,20 +9,21 @@
 
 		<ImageView android:id="@+id/friendViewImage"
 			android:scaleType="fitXY"
-			android:layout_width="70px"
-			android:layout_height="70px"
+			android:layout_width="80px"
+			android:layout_height="80px"
 			android:padding="5px"
 			android:src="@drawable/hunabku_light" />
 
 		<TextView android:text="@+id/friendViewText"
 			android:id="@+id/friendViewText"
+			android:textSize="15sp"
 			android:textColor="#000"
-			android:padding="25px" 
-			android:width="0dip"
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"/>
+			android:padding="5px" 
+			android:layout_width="20px"
+			android:layout_height="fill_parent"/>
 
 		<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			android:padding="5px"
 			android:layout_width="fill_parent"
 			android:layout_height="fill_parent">
 			<TableRow > 
