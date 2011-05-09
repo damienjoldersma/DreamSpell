@@ -24,7 +24,7 @@
 			</div>
 			<emg:DreamSpell.FriendGroups/>			
 		</emg:Pane>
-		<emg:Pane Label="Friends" ClassName="FriendsTab" Id="Friends">	
+		<emg:Pane Label="Friends" ClassName="FriendsTab" Id="Friends" Visible="False">	
 			<h2>Dream Friends</h2>
 	
 			<div class="clearfix">

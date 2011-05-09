@@ -174,6 +174,7 @@ using System.Web.SessionState;
 						log.Debug("looking at pane: " + pane.Id);
 						if ( pane.Id == "Me" || pane.Id == "Friends" )
 						{
+							log.Debug("found either Me or Friends, going apply None: " + pane.Id);
 							pane.AppendClass("none");
 						
 							//HtmlElement li = pane.FindAncestor
@@ -193,7 +194,7 @@ using System.Web.SessionState;
 						HtmlElement li = (HtmlElement)obj;
 						log.Debug("looking at key: " + li.Id + " " + li.TagName + " " + li.ClassName);
 					
-						if ( li.ClassName == "MeTab" || li.ClassName == "FriendTab" )
+						if ( li.ClassName == "MeTab" || li.ClassName == "FriendsTab" )
 						{
 							li.AppendClass("none");
 						
