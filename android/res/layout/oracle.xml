@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:background="@drawable/bgclouds"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	
+	<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+			android:scrollbarTrackVertical="@drawable/scrollbar_vertical_track"
+			android:scrollbarThumbVertical="@drawable/scrollbar_vertical_thumb"
+			android:scrollbarTrackHorizontal="@drawable/scrollbar_vertical_track"
+			android:scrollbarThumbHorizontal="@drawable/scrollbar_vertical_thumb"
+			android:scrollbarSize="12dip" 
+			android:layout_height="wrap_content" android:layout_width="match_parent">
+	
+	<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:id="@+id/oracleTable"
+		android:layout_height="fill_parent"
+			android:layout_width="fill_parent"
+		android:background="@drawable/backrepeat"
+		android:tileMode="repeat"
+		android:padding="3dip"
+		android:stretchColumns="1"> 
+		
+			<TableRow>
+			<TextView android:id="@+id/oracle_affirmation_title"
+								android:layout_width="fill_parent"
+								android:layout_height="fill_parent"
+								android:layout_weight="1"
+								android:textSize="16sp"
+								android:padding="3dip"
+								android:gravity="left"
+								android:textColor="#000000"
+								android:text="@string/oracle_affirmation_title"/>
+		</TableRow>
+
+		<TableRow>
+			<TextView android:id="@+id/oracle_affirmation"
+								android:layout_width="fill_parent"
+								android:layout_height="fill_parent"
+								android:layout_weight="1"
+								android:textSize="12sp"
+								android:padding="3dip"
+								android:gravity="left"
+								android:textColor="#000000"/>
+		</TableRow>
+		
+		<View android:layout_margin="3dip" android:layout_height="2dp" android:layout_width="fill_parent" android:background="#777"/>
+		
+		<TableRow>
+			<TextView android:id="@+id/oracle_seal_title"
+								android:layout_width="fill_parent"
+								android:layout_height="fill_parent"
+								android:layout_weight="1"
+								android:textSize="16sp"
+								android:padding="3dip"
+								android:gravity="left"
+								android:textColor="#000000"
+								android:text="@string/oracle_seal_title"/>
+		</TableRow>
+		
+		<TableRow>
+			<ImageView android:id="@+id/seal"
+								 android:layout_gravity="left"
+								 android:src="@drawable/glyph4"/>	
+		</TableRow>
+
+		<TableRow>
+			<TextView android:id="@+id/oracle_seal_text"
+								android:layout_width="fill_parent"
+								android:layout_height="fill_parent"
+								android:layout_weight="1"
+								android:textSize="12sp"
+								android:padding="3dip"
+								android:gravity="left"
+								android:textColor="#000000"
+								android:text="@string/oracle_seal_text"/>
+		</TableRow>
+		
+		<TableRow>
+			<TextView android:id="@+id/oracle_seal_def"
+								android:layout_width="fill_parent"
+								android:layout_height="fill_parent"
+								android:layout_weight="1"
+								android:textSize="12sp"
+								android:padding="3dip"
+								android:gravity="left"
+								android:textColor="#000000"
+								android:text=""/>
+		</TableRow>
+		
+		<View android:layout_margin="3dip" android:layout_height="2dp" android:layout_width="fill_parent" android:background="#777"/>
+		
+		<TableRow>
+			<TextView android:id="@+id/oracle_tone_title"
+								android:layout_width="fill_parent"
+								android:layout_height="fill_parent"
+								android:layout_weight="1"
+								android:textSize="16sp"
+								android:padding="3dip"
+								android:gravity="left"
+								android:textColor="#000000"
+								android:text="@string/oracle_tone_title"/>
+		</TableRow>
+		
+		<TableRow>
+			<ImageView android:id="@+id/tone"
+								 android:scaleType="center"
+								 android:padding="3dip"
+								 android:layout_height="wrap_content"
+								 android:layout_gravity="left"
+								 android:src="@drawable/tone13" 
+								 android:layout_width="match_parent"/>
+		</TableRow>
+		
+		<TableRow>
+			<TextView android:id="@+id/oracle_tone_text"
+								android:layout_width="fill_parent"
+								android:layout_height="fill_parent"
+								android:layout_weight="1"
+								android:textSize="12sp"
+								android:padding="3dip"
+								android:gravity="left"
+								android:textColor="#000000"
+						 		android:text="@string/oracle_tone_text"/>
+		</TableRow>
+		
+		<TableRow>
+			<TextView android:id="@+id/oracle_daily_meditation"
+			 					android:layout_width="fill_parent"
+		 						android:layout_height="fill_parent"
+								android:layout_weight="1"
+								android:textSize="12sp"
+								android:padding="3dip"
+								android:gravity="left"
+								android:textColor="#000000"
+						 		android:text="@string/oracle_daily_meditation"/>
+		</TableRow>
+		
+		<View android:layout_margin="3dip" android:layout_height="2dp" android:layout_width="fill_parent" android:background="#777"/>
+		
+		<TableRow>
+			<TextView android:id="@+id/oracle_guide_title"
+								android:layout_width="fill_parent"
+								android:layout_height="fill_parent"
+								android:layout_weight="1"
+								android:textSize="16sp"
+								android:padding="3dip"
+								android:gravity="left"
+								android:textColor="#000000"
+								android:text="@string/oracle_guide_title"/>
+		</TableRow>
+	
+		<TableRow>
+			<ImageView android:id="@+id/guide"
+								 android:scaleType="center"
+								 android:layout_height="wrap_content"
+								 android:layout_gravity="left"
+								 android:src="@drawable/glyph2"/>
+		</TableRow>
+
+		<TableRow>
+			<TextView android:id="@+id/oracle_guide_text"
+				 					android:layout_width="fill_parent"
+				 						android:layout_height="fill_parent"
+										android:layout_weight="1"
+										android:textSize="12sp"
+										android:padding="3dip"
+										android:gravity="left"
+										android:textColor="#000000"
+							 		android:text="@string/oracle_guide_text"/>
+		</TableRow>
+		
+		<TableRow>
+			<TextView android:id="@+id/oracle_guide_def"
+								android:layout_width="fill_parent"
+								android:layout_height="fill_parent"
+								android:layout_weight="1"
+								android:textSize="12sp"
+								android:padding="3dip"
+								android:gravity="left"
+								android:textColor="#000000"
+								android:text=""/>
+		</TableRow>
+		
+		<View android:layout_margin="3dip" android:layout_height="2dp" android:layout_width="fill_parent" android:background="#777"/>
+		
+		<TableRow>
+			<TextView android:id="@+id/oracle_antipode_title"
+								android:layout_width="fill_parent"
+								android:layout_height="fill_parent"
+								android:layout_weight="1"
+								android:textSize="16sp"
+								android:padding="3dip"
+								android:gravity="left"
+								android:textColor="#000000"
+								android:text="@string/oracle_antipode_title"/>
+		</TableRow>
+		
+		<TableRow>
+			<ImageView android:id="@+id/antipode"
+								 android:layout_gravity="left"
+								 android:src="@drawable/glyph3" android:adjustViewBounds="true"/>
+		</TableRow>
+			
+		<TableRow>
+		<TextView android:id="@+id/oracle_antipode_text"
+				 					android:layout_width="fill_parent"
+				 						android:layout_height="fill_parent"
+										android:layout_weight="1"
+										android:textSize="12sp"
+										android:padding="3dip"
+										android:gravity="left"
+										android:textColor="#000000"
+							 		android:text="@string/oracle_antipode_text"/>
+		</TableRow>
+		
+		<TableRow>
+			<TextView android:id="@+id/oracle_antipode_def"
+								android:layout_width="fill_parent"
+								android:layout_height="fill_parent"
+								android:layout_weight="1"
+								android:textSize="12sp"
+								android:padding="3dip"
+								android:gravity="left"
+								android:textColor="#000000"
+								android:text=""/>
+		</TableRow>
+		
+		<View android:layout_margin="3dip" android:layout_height="2dp" android:layout_width="fill_parent" android:background="#777"/>
+		
+		<TableRow>
+			<TextView android:id="@+id/oracle_occult_title"
+								android:layout_width="fill_parent"
+								android:layout_height="fill_parent"
+								android:layout_weight="1"
+								android:textSize="16sp"
+								android:padding="3dip"
+								android:gravity="left"
+								android:textColor="#000000"
+								android:text="@string/oracle_occult_title"/>
+		</TableRow>
+		
+		<TableRow>
+			<ImageView android:id="@+id/occult"
+								 android:layout_gravity="left"
+								 android:src="@drawable/glyph6"/>
+		</TableRow>
+	
+		<TableRow>
+		<TextView android:id="@+id/oracle_occult_text"
+				 					android:layout_width="fill_parent"
+				 						android:layout_height="fill_parent"
+										android:layout_weight="1"
+										android:textSize="12sp"
+										android:padding="3dip"
+										android:gravity="left"
+										android:textColor="#000000"
+							 		android:text="@string/oracle_occult_text"/>
+		</TableRow>
+		
+		<TableRow>
+			<TextView android:id="@+id/oracle_occult_def"
+								android:layout_width="fill_parent"
+								android:layout_height="fill_parent"
+								android:layout_weight="1"
+								android:textSize="12sp"
+								android:padding="3dip"
+								android:gravity="left"
+								android:textColor="#000000"
+								android:text=""/>
+		</TableRow>
+		
+		<View android:layout_margin="3dip" android:layout_height="2dp" android:layout_width="fill_parent" android:background="#777"/>
+		
+		<TableRow>
+			<TextView android:id="@+id/oracle_analog_title"
+								android:layout_width="fill_parent"
+								android:layout_height="fill_parent"
+								android:layout_weight="1"
+								android:textSize="16sp"
+								android:padding="3dip"
+								android:gravity="left"
+								android:textColor="#000000"
+								android:text="@string/oracle_analog_title"/>
+		</TableRow>
+		
+		<TableRow>
+			<ImageView android:id="@+id/analog"
+								 android:layout_gravity="left"
+								 android:src="@drawable/glyph5"/>	
+		</TableRow>
+		
+		<TableRow>
+		<TextView android:id="@+id/oracle_analog_text"
+				 					android:layout_width="fill_parent"
+				 						android:layout_height="fill_parent"
+										android:layout_weight="1"
+										android:textSize="12sp"
+										android:padding="3dip"
+										android:gravity="left"
+										android:textColor="#000000"
+							 		android:text="@string/oracle_analog_text"/>
+		</TableRow>
+		
+		<TableRow>
+			<TextView android:id="@+id/oracle_analog_def"
+								android:layout_width="fill_parent"
+								android:layout_height="fill_parent"
+								android:layout_weight="1"
+								android:textSize="12sp"
+								android:padding="3dip"
+								android:gravity="left"
+								android:textColor="#000000"
+								android:text=""/>
+		</TableRow>
+		
+		<View android:layout_margin="3dip" android:layout_height="2dp" android:layout_width="fill_parent" android:background="#777"/>
+		
+		<TableRow>
+			<TextView android:id="@+id/oracle_wavespell_tone_title"
+								android:layout_width="fill_parent"
+								android:layout_height="fill_parent"
+								android:layout_weight="1"
+								android:textSize="16sp"
+								android:padding="3dip"
+								android:gravity="left"
+								android:textColor="#000000"
+								android:text="@string/oracle_wavespell_tone_title"/>
+		</TableRow>
+		
+		<TableRow>
+			<ImageView android:id="@+id/wavespell_tone"
+								 android:layout_gravity="left"
+								 android:src="@drawable/tone1"/>	
+		</TableRow>
+		
+		<TableRow>
+		<TextView android:id="@+id/oracle_wavespell_tone_text"
+				 					android:layout_width="fill_parent"
+				 						android:layout_height="fill_parent"
+										android:layout_weight="1"
+										android:textSize="12sp"
+										android:padding="3dip"
+										android:gravity="left"
+										android:textColor="#000000"
+							 		android:text="@string/oracle_wavespell_tone_text"/>
+		</TableRow>
+		
+		<View android:layout_margin="3dip" android:layout_height="2dp" android:layout_width="fill_parent" android:background="#777"/>
+		
+		<TableRow>
+			<TextView android:id="@+id/oracle_wavespell_seal_title"
+								android:layout_width="fill_parent"
+								android:layout_height="fill_parent"
+								android:layout_weight="1"
+								android:textSize="16sp"
+								android:padding="3dip"
+								android:gravity="left"
+								android:textColor="#000000"
+								android:text="@string/oracle_wavespell_seal_title"/>
+		</TableRow>
+		
+		<TableRow>
+			<ImageView android:id="@+id/wavespell_seal"
+								 android:layout_gravity="left"
+								 android:src="@drawable/glyph1"/>	
+		</TableRow>
+		
+		<TableRow>
+		<TextView android:id="@+id/oracle_wavespell_seal_text"
+				 					android:layout_width="fill_parent"
+				 						android:layout_height="fill_parent"
+										android:layout_weight="1"
+										android:textSize="12sp"
+										android:padding="3dip"
+										android:gravity="left"
+										android:textColor="#000000"
+							 		android:text="@string/oracle_wavespell_seal_text"/>
+		</TableRow>
+		
+		<TableRow>
+			<TextView android:id="@+id/oracle_wavespell_def"
+								android:layout_width="fill_parent"
+								android:layout_height="fill_parent"
+								android:layout_weight="1"
+								android:textSize="12sp"
+								android:padding="3dip"
+								android:gravity="left"
+								android:textColor="#000000"
+								android:text=""/>
+		</TableRow>
+		
+		<View android:layout_margin="3dip" android:layout_height="2dp" android:layout_width="fill_parent" android:background="#777"/>
+		
+		<TableRow>
+			<TextView android:id="@+id/oracle_year_tone_title"
+								android:layout_width="fill_parent"
+								android:layout_height="fill_parent"
+								android:layout_weight="1"
+								android:textSize="16sp"
+								android:padding="3dip"
+								android:gravity="left"
+								android:textColor="#000000"
+								android:text="@string/oracle_year_tone_title"/>
+		</TableRow>
+		
+		<TableRow>
+			<ImageView android:id="@+id/oracle_year_tone"
+								 android:layout_gravity="left"
+								 android:src="@drawable/tone1"/>	
+		</TableRow>
+		
+		<TableRow>
+			<TextView android:id="@+id/oracle_year_tone_text"
+								android:layout_width="fill_parent"
+								android:layout_height="fill_parent"
+								android:layout_weight="1"
+								android:textSize="12sp"
+								android:padding="3dip"
+								android:gravity="left"
+								android:textColor="#000000"
+								android:text="@string/oracle_year_tone_text"/>
+		</TableRow>
+		
+		<View android:layout_margin="3dip" android:layout_height="2dp" android:layout_width="fill_parent" android:background="#777"/>
+		
+		<TableRow>
+			<TextView android:id="@+id/oracle_year_seal_title"
+								android:layout_width="fill_parent"
+								android:layout_height="fill_parent"
+								android:layout_weight="1"
+								android:textSize="16sp"
+								android:padding="3dip"
+								android:gravity="left"
+								android:textColor="#000000"
+								android:text="@string/oracle_year_seal_title"/>
+		</TableRow>
+		
+		<TableRow>
+			<ImageView android:id="@+id/oracle_year_seal"
+								 android:layout_gravity="left"
+								 android:src="@drawable/glyph1"/>	
+		</TableRow>
+		
+		<TableRow>
+		<TextView android:id="@+id/oracle_year_seal_text"
+							android:layout_width="fill_parent"
+							android:layout_height="fill_parent"
+							android:layout_weight="1"
+							android:textSize="12sp"
+							android:padding="3dip"
+							android:gravity="left"
+							android:textColor="#000000"
+							android:text="@string/oracle_year_seal_text"/>
+		</TableRow>
+		
+		<TableRow>
+			<TextView android:id="@+id/oracle_year_def"
+								android:layout_width="fill_parent"
+								android:layout_height="fill_parent"
+								android:layout_weight="1"
+								android:textSize="12sp"
+								android:padding="3dip"
+								android:gravity="left"
+								android:textColor="#000000"
+								android:text=""/>
+		</TableRow>
+	</TableLayout>
+
+	</ScrollView>
+
+</LinearLayout>
