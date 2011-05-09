@@ -1,0 +1,17 @@
+<Widget xmlns:emg="http://www.emergetk.com/">
+  <h2>Role Name</h2>
+  <div class="clearfix">
+    <div class="col">
+      <div class="formElement">
+        <emg:PlaceHolder Id="NameLabel"/><br />
+        <emg:PlaceHolder Id="NameInput"/>
+      </div>
+    </div>	
+  </div>
+  
+  <div class="buttonPane">
+		<emg:PlaceHolder Id="SubmitButton"/>
+		<emg:PlaceHolder Id="CancelButton"/>
+		<emg:PlaceHolder Id="DeleteButton"/>
+	</div>
+</Widget>

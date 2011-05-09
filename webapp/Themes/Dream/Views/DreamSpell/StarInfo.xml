@@ -1,0 +1,31 @@
+<Widget xmlns:emg="http://www.emergetk.com/" Id="StarInfo" ClassName="star-info">
+
+<table>
+<tr>
+  <td><b>Tone:</b> {Tone.Name}<br/><i>{Tone.Action}, {Tone.Power}, {Tone.Essence}</i></td>
+  <td><img width="50" src="/Images/tone{Tone}.gif" title="{Tone.Name} - {Tone.Power},{Tone.Action},{Tone.Essence}"/></td>
+</tr>
+<tr>
+  <td><b>Seal:</b> {Seal.Name}<br/><i>{Seal.Action}, {Seal.Power}, {Seal.Essence}</i></td>
+  <td><img width="50" src="/Images/glyph{Seal}.gif" title="{Seal.Name}"/></td>
+</tr>
+<tr>
+  <td><b>Guide:</b> {Guide.Name}<br/><i>{Guide.Action}, {Guide.Power}, {Guide.Essence}</i></td>
+  <td><img width="50" src="/Images/glyph{Guide}.gif" title="{Guide.Name}"/></td>
+</tr>
+<tr>
+  <td><b>Focus:</b> {Antipode.Name}<br/><i>{Antipode.Action}, {Antipode.Power}, {Antipode.Essence}</i></td>
+  <td><img width="50" src="/Images/glyph{Antipode}.gif" title="{Antipode.Name}"/></td>
+</tr>
+<tr>
+  <td><b>Ally:</b> {Analog.Name}<br/><i>{Analog.Action}, {Analog.Power}, {Analog.Essence}</i></td>
+  <td><img width="50" src="/Images/glyph{Analog}.gif" title="{Analog.Name}"/></td>
+</tr>
+<tr>
+  <td><b>Secret:</b> {Occult.Name}<br/><i>{Occult.Action}, {Occult.Power}, {Occult.Essence}</i></td>
+  <td><img width="50" src="/Images/glyph{Occult}.gif" title="{Occult.Name}"/></td>
+</tr>
+
+</table>
+
+</Widget>

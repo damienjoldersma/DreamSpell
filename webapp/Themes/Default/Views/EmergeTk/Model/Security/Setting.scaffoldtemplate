@@ -1,0 +1,15 @@
+<Widget xmlns:emg="http://www.emergetk.com/">
+	<div class="field fieldDataValue">
+		<strong>DataValue</strong> : {DataValue}
+	</div>	
+	<div class="field fieldDataKey">
+		<strong>DataKey</strong> : {DataKey}
+	</div>	
+	<div class="field fieldCreated">
+		<strong>Created</strong> : {Created}
+	</div>
+	<div class="buttonPane">
+		<emg:PlaceHolder Id="EditPlaceHolder"/>
+		<emg:PlaceHolder Id="DeletePlaceHolder"/>		
+	</div>
+</Widget>

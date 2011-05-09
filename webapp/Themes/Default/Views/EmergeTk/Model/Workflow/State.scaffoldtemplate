@@ -1,0 +1,9 @@
+<Widget xmlns:emg="http://www.emergetk.com/">
+    <div class="panel-summary clearfix">
+        <div class="name">{Name}</div>
+        <div class="buttonPane">
+            <emg:PlaceHolder Id="EditPlaceHolder"/>
+            <emg:PlaceHolder Id="DeletePlaceHolder"/>
+        </div>
+    </div>
+</Widget>

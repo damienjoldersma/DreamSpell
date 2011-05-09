@@ -1,0 +1,1 @@
+Unzip all the files together in a new folder.  View "oracle.htm".   Requires a Javascript enabled browser.  solartrain@yahoo.com .  oracle version 2

@@ -1,0 +1,12 @@
+<Widget xmlns:emg="http://www.emergetk.com/">
+  <div class="panel-summary clearfix">
+    <div class="name">{Name}</div>
+    <emg:Repeater Type="EmergeTk.Model.Security.Permission" ClassName="permission-list" DataSource="Permissions" TagName="Div" BodyTagName="div" TemplateTagName="strong">
+    	{Name}
+    </emg:Repeater>
+    <div class="buttonPane">
+      <emg:PlaceHolder Id="EditPlaceHolder"/>
+      <emg:PlaceHolder Id="DeletePlaceHolder"/>
+    </div>
+  </div>
+</Widget>

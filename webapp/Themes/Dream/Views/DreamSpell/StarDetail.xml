@@ -1,0 +1,40 @@
+<Widget xmlns:emg="http://www.emergetk.com/" Id="StarDetail" ClassName="star-detail">
+
+<div class="star-detail-container">
+	<emg:Pane Id="StarSummaryPicture" ClassName="star-summary-picture">
+		<img src="{PictureUrl}"/>
+		<br/>		
+		{FirstName}				
+	</emg:Pane>
+<center>
+<table>
+<tr>
+  <td></td>
+  <td><img src="/Images/tone{Tone}.gif" title="{Tone.Name} - {Tone.Power},{Tone.Action},{Tone.Essence}"/></td>
+  <td></td>
+</tr>
+<tr>
+  <td></td>
+  <td><img src="/Images/glyph{Guide}.gif" title="{Guide.Name}"/></td>
+  <td></td>
+</tr>
+<tr>
+  <td><img src="/Images/glyph{Antipode}.gif" title="{Antipode.Name}"/></td>
+  <td><img src="/Images/glyph{Seal}.gif" title="{Seal.Name}"/></td>
+  <td><img src="/Images/glyph{Analog}.gif" title="{Analog.Name}"/></td>
+</tr>
+<tr>
+  <td></td>
+  <td><img src="/Images/glyph{Occult}.gif" title="{Occult.Name}"/></td>
+  <td></td>
+</tr>
+
+</table>
+Kin #{Kin}
+<br/>
+{DreamName}
+</center>
+
+</div>
+
+</Widget>

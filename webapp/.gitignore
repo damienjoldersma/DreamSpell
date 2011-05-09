@@ -1,0 +1,13 @@
+bin
+*.dll.mdb
+*.pidb
+*.svn
+*.test-cache
+log4net.log*
+SolrQueries.log*
+*.pdb
+*.config
+*.dll
+*.userprefs
+*.user
+

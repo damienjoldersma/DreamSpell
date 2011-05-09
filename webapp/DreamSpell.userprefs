@@ -1,0 +1,44 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../emergeTk/addins/SolrSearchProvider/SolrSearchProvider.cs" ctype="Workbench">
+    <Files>
+      <File FileName="../emergeTk-trunk/Admin/Admin.cs" Line="60" Column="1" />
+      <File FileName="../emergeTk-trunk/Widgets/Html/Lists/Scaffold.cs" Line="175" Column="6" />
+      <File FileName="../emergeTk-trunk/Context.cs" Line="1" Column="1" />
+      <File FileName="../../emergeTk/server/Widgets/Html/Layout/TabPane.cs" Line="1" Column="1" />
+      <File FileName="../../emergeTk/server/ImageUtil.cs" Line="37" Column="15" />
+      <File FileName="Classes/Main.cs" Line="5" Column="7" />
+      <File FileName="../emergeTk-trunk/Logging/EmergeTkLog.cs" Line="5" Column="7" />
+      <File FileName="Log4Net.config" Line="78" Column="32" />
+      <File FileName="../../emergeTk/addins/SolrSearchProvider/SolrSearchProvider.cs" Line="16" Column="46" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="DreamSpell" expanded="True">
+            <Node name="References" expanded="True" />
+          </Node>
+          <Node name="emergetk" expanded="True">
+            <Node name="References" expanded="True" />
+          </Node>
+          <Node name="EnyimCacheProvider" expanded="True" />
+          <Node name="ProtobufSerializer" expanded="True" />
+          <Node name="SolrSearchProvider" expanded="True" selected="True">
+            <Node name="References" expanded="True" />
+          </Node>
+          <Node name="WebServiceProvider" expanded="True" />
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" ActiveRuntime="Mono 2.10.2" ctype="Workspace" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches ctype="PinnedWatchStore" />
+</Properties>

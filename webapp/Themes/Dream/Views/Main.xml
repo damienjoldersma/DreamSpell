@@ -1,0 +1,56 @@
+<Context xmlns:emg="http://www.emergetk.com/" Id="Main" ClassName="Main">
+	<img src="/Images/hunabku.jpg" style="height:90px; width:90px; float:left; border:1px solid black; margin-left:10px; margin-top:-40px;"/>
+
+	<h1>DreamSpell</h1>
+	
+	<br/>
+
+	<emg:DreamSpell.StarSummary Id="StarHeader" ClientId="StarHeader"/>
+	
+
+		<emg:TabPane Id="tabs">
+		<emg:Pane Label="Today" ClassName="TodayTab" Id="Today">				
+			<div class="clearfix">
+			<emg:Label Text="Today is " ClassName="DateLabel"/>
+			<emg:DreamSpell.StarInfo/>
+			<emg:DreamSpell.StarDetail/>				
+			</div>
+			<emg:DreamSpell.FriendGroups/>
+		</emg:Pane>
+		<emg:Pane Label="Me" ClassName="MeTab" Id="Me" Visible="False">	
+			<div class="clearfix">
+			<emg:DreamSpell.StarInfo/>
+			<emg:DreamSpell.StarDetail/>
+			</div>
+			<emg:DreamSpell.FriendGroups/>			
+		</emg:Pane>
+		<emg:Pane Label="Friends" ClassName="FriendsTab" Id="Friends">	
+			<h2>Dream Friends</h2>
+	
+			<div class="clearfix">
+				<emg:DreamSpell.FriendList/>
+			</div>
+		</emg:Pane>
+		<emg:Pane Label="Galatic Spin">		
+			<emg:DreamSpell.GalacticSpinCycleView/>
+		</emg:Pane>
+		<emg:Pane Label="Oracle">		
+			<iframe src="/oracle/oracle.htm" width="700" height="500"/>
+		</emg:Pane>	
+		<emg:Pane Label="Information">		
+			<H2>For More Information</H2>
+			<hr/>
+			<P align="left">
+			<ul>
+				<li><a href="http://www.starroot.com/cgi/daycalc.pl">Star Root - The Original DreamSpell Oracle</a> - this is what I based this software off of, all images and credit goes to the good folks at StarRoot.com</li>
+				<li><a href="http://www.tortuga.com/">http://www.tortuga.com/</a> - Planet Art Network</li>
+				<li><a href="http://www.lawoftime.org">http://www.lawoftime.org</a> - Galactic Research Institute of the Foundation for the Law of Time</li>
+				<li><a href="http://www.13moon.com/time-is-art.htm">http://www.13moon.com</a> - Time is art</li>	
+		        <li><a href="http://www.photon.net/13moon.php">Photon.Net 13 Moon Tool</a> - an awesome Galactic Overlay</li>
+			</ul>
+			</P>
+		</emg:Pane>
+	</emg:TabPane>
+
+	
+</Context>

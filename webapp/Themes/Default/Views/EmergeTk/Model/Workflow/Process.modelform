@@ -1,0 +1,37 @@
+<Widget xmlns:emg="http://www.emergetk.com/">
+    <div class="col">
+        <div class="formElement">
+            <emg:PlaceHolder Id="NameLabel"/><br />
+            <emg:PlaceHolder Id="NameInput"/>
+        </div>
+        <div class="formElement">
+            <emg:PlaceHolder Id="PayloadTypeFriendlyNameLabel"/><br />
+            <emg:PlaceHolder Id="PayloadTypeFriendlyNameInput"/>
+        </div>
+        <div class="formElement">
+            <!--emg:PlaceHolder Id="PayloadTypeLabel"/><br /-->
+            <emg:PlaceHolder Id="PayloadTypeInput"/>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="formElement">
+            <emg:PlaceHolder Id="OperationsLabel"/><br />
+            <emg:PlaceHolder Id="OperationsInput"/>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="formElement">
+            <emg:PlaceHolder Id="PermittedStatesLabel"/><br />
+            <emg:PlaceHolder Id="PermittedStatesInput"/>
+        </div>
+    </div>
+
+        <div class="buttonPane">
+            <emg:PlaceHolder Id="SubmitButton"/>
+            <emg:PlaceHolder Id="CancelButton"/>
+            <emg:PlaceHolder Id="DeleteButton"/>
+        </div>
+
+</Widget>

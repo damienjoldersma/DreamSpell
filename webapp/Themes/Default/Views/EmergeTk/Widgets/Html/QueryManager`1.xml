@@ -1,0 +1,36 @@
+<Widget xmlns:emg="http://www.emergetk.com/" Label="Query Options">
+	<emg:TabPane ClassName="queryTabs">
+	     <emg:Pane Label="Filters" Id="FilterPane">
+			<ol emg:Id="filterList">
+            </ol>
+			<div class = "buttonQuery">
+				<emg:Image Url="Icons/icon_refresh.gif" OnClick="OnRefreshClick" Tip="Refresh" Id="RefreshButton"/>
+			</div>
+		 </emg:Pane>
+		 <emg:Pane Label="Sorts" Id="SortPane" ClassName="clearfix">
+		 <div>
+		 		<p>Drag items from Available Columns to Sorted Columns to add sorts.  Drag back into the Available Columns to remove.</p>
+
+		</div>
+	    	<div class="sortedDiv">
+				<h3>Sorted Columns</h3>
+				<ol emg:Id="sortedOL" class="sorted">
+					
+				</ol>
+			</div>
+			<div class="unsortedDiv">
+				<h3>Available Columns</h3>
+				<ol emg:Id="unsortedUL" class="unsorted">
+					
+				</ol>
+			</div>		
+			<div class = "buttonQuery">
+					<img src="/EmergeTk/Images/Icons/icon_refresh.gif" emg:OnClick="OnRefreshClick" title="Refresh" emg:Id="RefreshButton"/>
+				</div>
+
+	    </emg:Pane>
+
+	</emg:TabPane>
+	
+
+</Widget>

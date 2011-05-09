@@ -1,0 +1,10 @@
+<Widget xmlns:emg="http://www.emergetk.com/" ClassName="filecontroller">
+    <emg:Pane Visible="False">Id: {Id} Operation: {Operation}</emg:Pane>
+	<div><emg:Pane Id="viewPane" Visible="False">
+		<emg:Link Id="downloadLink" Url="{RelativeUrl}?v={Version}" Text="{RelativeUrl}"/> ({FriendlySize})
+		<emg:LinkButton Label="remove" OnClick="Remove"/>
+	</emg:Pane></div>
+	<emg:Pane Id="uploadPane">
+		<emg:FileUpload Id="uploader"/>
+	</emg:Pane>
+</Widget>

@@ -1,0 +1,20 @@
+<Widget xmlns:emg="http://www.emergetk.com/" Id="StarSummary" ClassName="star-summary">
+	<center>
+	<div style="vertical-align:bottom" class="clearfix">
+	<emg:Pane Id="StarSummaryPicture{FacebookId}" ClassName="star-summary-picture">
+		<img src="{PictureUrl}"/>				
+	</emg:Pane>
+	<emg:Pane Id="StarSummaryDream{FacebookId}" ClassName="star-summary-dream">
+		<img src="/Images/tone{Tone}.gif" title="{Tone.Name} - {Tone.Power},{Tone.Action},{Tone.Essence}"/><br/>
+		<img src="/Images/glyph{Seal}.gif" title="{Seal.Name}"/>	
+		<emg:HoverBox HoverContainer="StarSummaryDream{FacebookId}" ClassName="hover">
+			<div class="hover-content">
+				<emg:DreamSpell.StarDetail/>
+			</div><!--hover-content-->
+		</emg:HoverBox>	
+	</emg:Pane>
+	</div>	
+	<emg:Label ClassName="FirstName" Text="{FirstName}"/>		
+	<emg:Label ClassName="DreamName" Text="{DreamName}"/>	
+	</center>
+</Widget>

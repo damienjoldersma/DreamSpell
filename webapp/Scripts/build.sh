@@ -1,0 +1,1 @@
+tar zcvf DreamSpell.tar.gz * --exclude data.db --exclude .svn --exclude Storage --exclude \*.log\* --exclude \*.gz --exclude \*~ --exclude web.config --exclude config.local --exclude Log4Net.config --exclude JobFiles --exclude \*.mdp --exclude \*.usertasks

@@ -1,0 +1,15 @@
+<Widget xmlns:emg="http://www.emergetk.com/">
+  <div class="editFieldInput editFieldName">
+	<label>Username</label>
+	{NameInput}
+  </div>
+
+  <div class="editFieldInput editFieldPlaintTextPassword">
+	{PlainTextPasswordInput}
+  </div>
+
+  <emg:ToggleBox Label="Roles" VisibleTo="root">
+       <emg:PlaceHolder Id="PermissionsLabel"/>
+        <emg:PlaceHolder Id="RolesInput"/>
+     </emg:ToggleBox>
+</Widget>

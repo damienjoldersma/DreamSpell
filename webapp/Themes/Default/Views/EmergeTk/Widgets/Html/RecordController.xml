@@ -1,0 +1,11 @@
+<Widget xmlns:emg="http://www.emergetk.com/" ClassName="recordcontroller">
+	<label><emg:SelectItem Id="Choose" Group="state" OnClick="Toggle" Mode="Single" Selected="True"/> Choose </label>
+	<label><emg:SelectItem Id="New" Group="state" OnClick="Toggle" Mode="Single"/> New </label>
+	<emg:Pane Id="ChoosePane">
+	
+	</emg:Pane>
+	<emg:Pane Id="NewPane" Visible="False">
+	
+	</emg:Pane>
+	
+</Widget>

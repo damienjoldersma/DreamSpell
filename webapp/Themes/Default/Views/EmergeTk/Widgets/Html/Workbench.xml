@@ -1,0 +1,29 @@
+<Widget xmlns:emg="http://www.emergetk.com/" ClassName="workbench">
+	<h2>Workbench</h2>
+	<emg:Pane Id="SelectProcess">		
+		<emg:Repeater Type="EmergeTk.Model.Workflow.Process" Id="AvailableProcesses">
+			<h1>{PayloadTypeFriendlyName} Actions</h1>
+			<emg:LinkButton OnClick="ShowTasks" Label="View {PayloadTypeFriendlyName} Operations"/>
+			<!--<emg:LinkButton OnClick="NewTask" Label="New {PayloadTypeFriendlyName} Process"/>-->
+			<hr/>
+		</emg:Repeater>
+	</emg:Pane>
+	<emg:Pane Id="SelectTask" Visible="False">
+		<h3>Task List</h3>
+		<emg:LinkButton Label="refresh" OnClick="Refresh"/>
+		<emg:Repeater Type="EmergeTk.Model.Workflow.OperationState" Id="TaskList" BodyTagName="table" TemplateTagName="tr">			
+			<td><emg:LinkButton OnClick="CheckOut" Label="Check out"/></td>
+			<td>{Task}</td>
+			<td>{Operation.Name}</td>
+			<td>{Status}</td>
+		</emg:Repeater>
+		<emg:LinkButton Id="DoneWithListButton" OnClick="ShowSelectProcess" Label="I'm done with this task list."/>
+	</emg:Pane>
+
+	<emg:Pane Id="WorkPane" Visible="False">
+		<emg:Pane Id="EditorContainer"/>
+		<emg:Pane Id="DefaultButtons">
+			<emg:LinkButton OnClick="OperationCancel" Label="Cancel Operation"/>
+		</emg:Pane>
+	</emg:Pane>
+</Widget>

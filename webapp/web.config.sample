@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<configuration>
+  <!-- This enables parsing the mono.aspnet section that follows -->
+  <configSections>
+    <sectionGroup name="mono.aspnet">
+      <section name="acceptEncoding" type="Mono.Http.Configuration.AcceptEncodingSectionHandler, Mono.Http, Version=1.0.5000.0, PublicKeyToken=0738eb9f132ed756" />
+    </sectionGroup>
+  </configSections>
+  <connectionStrings />
+  <system.web>
+    <!-- 
+            Set compilation debug="true" to insert debugging 
+            symbols into the compiled page. Because this 
+            affects performance, set this value to true only 
+            during development.
+        -->
+    <compilation debug="true" batch="True" numRecompilesBeforeAppRestart="15">
+      <assemblies>
+        <!--<add assembly="MySql.Data"/>-->
+        <!--				
+			<add assembly="System.Data.SQLite, Version=1.0.36.1, Culture=neutral, PublicKeyToken=DB937BC2D44FF139"/>
+			<add assembly="Microsoft.JScript, Version=8.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A"/>
+			<add assembly="Microsoft.Vsa, Version=8.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A"/>
+			<add assembly="System.Transactions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089"/>
+			-->
+      </assemblies>
+    </compilation>
+    <!--
+            The <authentication> section enables configuration 
+            of the security authentication mode used by 
+            ASP.NET to identify an incoming user. 
+        -->
+    <authentication mode="Windows" />
+    <!--
+            The <customErrors> section enables configuration 
+            of what to do if/when an unhandled error occurs 
+            during the execution of a request. Specifically, 
+            it enables developers to configure html error pages 
+            to be displayed in place of a error stack trace.
+
+        <customErrors mode="RemoteOnly" defaultRedirect="GenericErrorPage.htm">
+            <error statusCode="403" redirect="NoAccess.htm" />
+            <error statusCode="404" redirect="FileNotFound.htm" />
+        </customErrors>
+        -->
+    <httpHandlers>
+      <add verb="*" path="*.xml" type="EmergeTk.ContextHandler,EmergeTk" />
+      <add verb="*" path="*.context" type="EmergeTk.ContextHandler,EmergeTk" />
+    </httpHandlers>
+    <httpModules>
+      <add type="EmergeTk.Router,EmergeTk" name="EmergeTk" />
+      <add name="AcceptEncodingModule" type="Mono.Http.Modules.AcceptEncodingModule, Mono.Http, Version=1.0.5000.0, PublicKeyToken=0738eb9f132ed756" />
+    </httpModules>
+    <httpRuntime maxRequestLength="16096" />
+    <customErrors mode="Off" />
+    <pages validateRequest="false" />
+    <sessionState timeout="100" />
+  </system.web>
+  <appSettings>
+    <!-- SPECIFIC APP SETTINGS-->
+    <add key="SOMEKEY" value="SOMEVALUE" />
+    <!--END SPECIFC APP SETTINGS-->
+    <add key="Theme" value="Dream" />
+    <add key="cometPortNumber" value="6668" />
+    <add key="DefaultDataProvider" value="EmergeTk.Model.Providers.MySqlProvider" />
+    <add key="mysqlConnectionString" value="Database=DreamSpell;Server=127.0.0.1;Port=3306;uid=root;Password=password" />
+    <add key="sqlServerConnectionString" value="Data Source=MYSTIC\SQLEXPRESS;Initial Catalog=emergetk;Integrated Security=True;Pooling=False" />
+    <add key="MonoServerDefaultIndexFiles" value="DreamSpell/Main" />
+    <add key="EnableNotifications" value="True" />
+    <add key="MailServer" value="localhost" />
+    <add key="NotificationsFromDomain" value="localhost" />
+    <add key="IsSingleServer" value="True" />
+    <add key="EnableCaching" value="True" />
+    <add key="log4net.Internal.Debug" value="true" />
+    <add key="LowerCaseTableNames" value="true" />
+    <add key="apikey" value="" />
+		<add key="apisecret" value="" />
+  </appSettings>
+  <system.diagnostics>
+    <trace autoflush="true">
+      <listeners>
+        <add name="textWriterTraceListener" type="System.Diagnostics.TextWriterTraceListener" initializeData="log4net-debug.log" />
+      </listeners>
+    </trace>
+  </system.diagnostics>
+  <mono.aspnet>
+    <acceptEncoding>
+      <!-- Change disabled to 'no' to enable gzip content encoding
+	       By default it is disabled. -->
+      <add encoding="gzip" type="Mono.Http.GZipWriteFilter, Mono.Http, Version=1.0.5000.0, PublicKeyToken=0738eb9f132ed756" disabled="no" />
+    </acceptEncoding>
+  </mono.aspnet>
+</configuration>

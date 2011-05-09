@@ -1,0 +1,10 @@
+<Widget xmlns:emg="http://www.emergetk.com/" Id="FriendList" ClassName="friend-list">
+	<div class="details">
+		<h3>See who you're friends are on the DreamSpell calendar!</h3>
+	</div>
+
+	<emg:Repeater Type="DreamSpell.Model.DreamFolk" Id="Friends" ClassName="friend-list clearfix">
+	  <emg:DreamSpell.StarSummary/>			
+	</emg:Repeater>
+	
+</Widget>

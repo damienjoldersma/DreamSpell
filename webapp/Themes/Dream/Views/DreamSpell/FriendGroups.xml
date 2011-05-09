@@ -1,0 +1,68 @@
+<Widget xmlns:emg="http://www.emergetk.com/" Id="FriendGroups" ClassName="friend-groups">
+
+	<emg:Pane Id="Tones">
+	
+	<H2>Today's Tones</H2>
+
+	<hr/>
+
+	<emg:Repeater Id="toneList" Type="DreamSpell.Model.DreamFolk" >				
+		<emg:DreamSpell.StarSummary/>		
+	</emg:Repeater>	
+
+	</emg:Pane>
+
+	<emg:Pane Id="Seals">
+	
+	<H2>Today's Solar Tribe</H2>
+
+	<hr/>
+
+	<emg:Repeater Id="sealList" Type="DreamSpell.Model.DreamFolk" >				
+		<emg:DreamSpell.StarSummary/>		
+	</emg:Repeater>	
+
+	</emg:Pane>
+
+	<emg:Pane Id="Guides">
+	
+	<H2>Guides</H2>
+
+	<hr/>
+
+	<emg:Repeater Id="guideList" Type="DreamSpell.Model.DreamFolk" >				
+		<emg:DreamSpell.StarSummary/>		
+	</emg:Repeater>	
+
+	</emg:Pane>
+	<emg:Pane Id="Allies">
+
+	<h2>Allies</h2>
+	<hr/>
+
+	<emg:Repeater Id="alliesList" Type="DreamSpell.Model.DreamFolk" >
+		<emg:DreamSpell.StarSummary/>	
+	</emg:Repeater>	
+
+	</emg:Pane>
+	<emg:Pane Id="Secret">
+
+	<h2>Secret Strength</h2>
+	<hr/>
+
+	<emg:Repeater Id="secretList" Type="DreamSpell.Model.DreamFolk" >
+		<emg:DreamSpell.StarSummary/>	
+	</emg:Repeater>	
+	
+	</emg:Pane>
+	<emg:Pane Id="Focus">
+
+	<h2>Focus List</h2>
+	<hr/>
+
+	<emg:Repeater Id="focusList" Type="DreamSpell.Model.DreamFolk" >
+		<emg:DreamSpell.StarSummary/>	
+	</emg:Repeater>	
+	</emg:Pane>
+
+</Widget>

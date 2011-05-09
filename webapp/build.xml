@@ -1,0 +1,94 @@
+<project name="DreamSpell" default="build">
+
+    <taskdef resource="org/apache/ant/dotnet/antlib.xml">
+        <classpath>
+            <pathelement location="lib/ant-dotnet-1.0.jar"/>
+        </classpath>
+    </taskdef>
+
+    <property name="project" value="${ant.project.name}"/>
+    <property name="home" location="${basedir}"/>
+    <property name="src" location="${home}"/>
+    <property name="build" location="${home}/bin/debug"/>
+    <property name="dist"  location="${home}/bin"/>
+    <property name="lib"  location="${home}/lib"/>
+
+    <target name="help">
+	<echo>Hello World!</echo>
+    </target>
+
+    <target name="make" depends="clean,init,copy,compile" />
+
+    <target name="init">
+      <echo>$${project}=${project}</echo>
+      <echo>$${basedir}=${basedir}</echo>
+      <echo>$${home}=${home}</echo>
+      <echo>$${src}=${src}</echo>
+      <echo>$${dist}=${dist}</echo>
+      <echo>$${build}=${build}</echo>
+
+      <mkdir dir="${build}"/>
+      <mkdir dir="${dist}"/>
+    </target>
+
+    <target name="clean">
+      <delete dir="${build}"/>
+      <delete dir="${dist}"/>
+    </target>
+
+    <target name="compile" depends="init">
+	<csc srcdir="${src}" executable="gmcs" optimize="true" debug="false" warnLevel="4" unsafe="false" incremental="false" targettype="library" destfile="${dist}/${project}.dll" excludes="**/JobFiles/**.cs">
+	  <reference file="${lib}/ICSharpCode.SharpZipLib.dll"/>
+	  <reference file="${lib}/itextsharp.dll"/>
+	  <reference file="${lib}/Facebook.dll"/>
+	  <reference file="${lib}/log4net.dll"/>
+	  <reference file="${lib}/MySql.Data.dll"/>
+	  <reference file="${lib}/NPlot.dll"/>
+	  <reference file="${basedir}/../emergeTk-trunk/bin/EmergeTk.dll"/>
+     <reference file="${basedir}/../emergeTk-trunk/bin/Boo.Lang.CodeDom.dll"/>
+     <reference file="${basedir}/../emergeTk-trunk/bin/Boo.Lang.Compiler.dll"/>
+     <reference file="${basedir}/../emergeTk-trunk/bin/Boo.Lang.dll"/>
+     <reference file="${basedir}/../emergeTk-trunk/bin/Boo.Lang.Interpreter.dll"/>
+     <reference file="${basedir}/../emergeTk-trunk/bin/Boo.Lang.Parser.dll"/>
+     <reference file="${basedir}/../emergeTk-trunk/bin/Boo.Lang.Useful.dll"/>
+     <reference file="${basedir}/../emergeTk-trunk/bin/MySql.Data.dll"/>
+     <reference file="${basedir}/../emergeTk-trunk/bin/System.Data.SQLite.dll"/>  
+     <reference file="${basedir}/../emergeTk-trunk/lib/Lucene.Net.dll"/>
+     <reference file="/usr/local/lib/mono/2.0/System.Data.dll"/>  
+     <reference file="/usr/local/lib/mono/2.0/System.Drawing.dll"/>  
+     <reference file="/usr/local/lib/mono/2.0/System.Web.dll"/>  
+	  <define name="RELEASE"/>
+	  <define name="DEBUG" if="debug.property"/>
+	  <define name="def3" unless="def3.property"/>
+	</csc>
+    </target>
+
+    <target name="copy">
+ 	<copy todir="${dist}">
+            <fileset dir="${basedir}/../emergeTk-trunk/lib/" includes="**/*.dll"/>
+        </copy>
+        <copy todir="${dist}">
+            <fileset dir="${basedir}/../emergeTk-trunk/bin/" includes="**/*.dll"/>
+        </copy>
+        <copy todir="${dist}">
+            <fileset dir="${lib}" includes="**/*.dll"/>
+        </copy>
+    </target>
+    
+    <target name="update-build-number">
+        <echo>Build Number: ${label} ${cctimestamp}</echo>
+        <echo file="${home}/build.txt">${cctimestamp}L${label}</echo>
+     </target>
+     
+     <target name="build" depends="update-build-number,make">
+        <exec executable="${home}/Scripts/build.sh" dir="${home}" spawn="false"/>
+     </target>
+     
+  	 <target name="prop" depends="build">
+		<exec executable="/bin/bash" dir="${basedir}" output="prop.log">
+			<arg value="-c"/>
+			<arg value="./Scripts/prop.sh"/>
+		</exec>
+	</target>
+
+</project>

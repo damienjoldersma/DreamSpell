@@ -1,0 +1,374 @@
+/* Default Styles - this file will be automatically included */
+body {
+	margin:50px 0px; padding:0px;
+	
+	background:transparent url(/Images/bgclouds.jpg) repeat scroll 0 0;
+	}
+	
+.main {
+
+	text-align:left;
+	padding:15px;
+	border:1px dashed #333;
+	background-color:#eee;
+}
+
+
+.column
+{
+	width:47px;
+	float:left;
+}
+
+.row
+{
+	width:47px;
+	border: 1px solid black;
+	height:47px;
+}
+
+.row img, .column img
+{
+	width:42px;
+	
+}
+
+img
+{
+	padding:2px;
+}
+
+.column-label
+{
+	text-align:center;
+	margin-top:10px;
+	
+}
+
+.wavespell-label,.kin-label
+{
+	font-size:9px;
+	text-align:right;
+	padding-right:2px;
+	
+}
+
+.dream-person
+{
+	border:1px solid black;
+	float:left;
+	height:250px;
+	margin:5px;
+	padding:5px;
+	text-align:center;
+	width:84px;
+}
+
+.person
+{
+	width:50px;
+}
+
+.label-dreamspell-name
+{
+	font-size:12px;
+}
+
+.seal
+{
+	width: 50px;	
+}
+
+.tone
+{
+	width: 50px;
+}
+
+#StarHeader.star-summary
+{
+	/*background:#FFFFFF none repeat scroll 0 0;*/
+	border:1px solid black;
+	float:right;
+	font-size:12px;
+	height:88px;
+	margin-right:10px;
+	margin-top:-119px;
+	padding:3px;
+	width:130px;
+}
+
+h1
+{
+	margin-left:40px;
+}
+
+#StarHeader.star-summary .DreamName, #StarHeader.star-summary .FirstName
+
+{
+	 display:none; 
+}
+
+.MeTab .star-summary,
+.TodayTab .star-summary,
+.FriendsTab .star-summary
+{
+	background:#FFFFFF none repeat scroll 0 0;
+	border:1px solid black;
+	float:left;
+	padding:3px;
+	width:55px;
+	font-size:10px;
+	margin:10px;
+	height:250px;
+}
+
+.MeTab .star-detail,
+.TodayTab .star-detail,
+.FriendsTab .star-detail
+{
+	float:left;
+	width:360px;
+	
+}
+
+.friend-groups .star-detail
+{
+	width:250px;
+	float:none;
+}
+
+.star-summary img
+{
+	width:50px;
+}
+
+.MeTab .star-summary img, .Tab .star-summary img
+{
+	/* width:44px; */
+}
+
+.star-summary-picture
+{	
+	position:relative;
+	min-height:90px;
+}
+
+#StarHeader.star-summary .star-summary-picture
+{
+	
+	float:left;	
+}
+
+.MeTab .star-summary-picture
+{	
+	position:relative;
+	float:none;	
+}
+
+
+.star-summary-dream .hover
+{	
+	background:#FFFFFF none repeat scroll 0 0;
+	border:1px solid grey;
+	position:absolute;
+	
+	z-index:100;
+}
+
+.star-header-now .star-summary-dream .hover
+{	
+	left:165px;
+	top:0;
+}
+
+
+#StarHeader .star-summary-dream .hover
+{	
+	right:0;
+	top:0;
+}
+
+.friend-groups .star-summary-dream .hover
+{	
+	margin-left:-98px;
+	margin-top:-260px;
+}
+
+.friend-list .star-summary-dream .hover
+{	
+	margin-left:-191px;
+	margin-top:-150px;
+}
+
+
+.star-summary-dream
+{
+	text-align:center;	
+	float:center;
+
+}
+
+.MeTab .star-detail-container,
+.TodayTab .star-detail-container, 
+.FriendsTab .star-detail-container
+{	
+	width:250px;
+}
+
+.star-detail-container
+{
+	
+	width:200px;
+	margin-left:auto;
+	margin-right:auto;
+	z-index:-1;
+}
+
+
+
+div.TabContent {
+margin-left:auto;
+margin-right:auto;
+width:700px;
+  background: url(/Images/white50.png); /* pale weak blue */
+  border: solid 1px grey; /* obscure dull blue */
+
+/*
+filter: alpha(opacity=85);
+  -moz-opacity: 0.85;
+  opacity: 0.85;
+*/
+
+padding:10px; 	
+}
+
+.TabLabels
+{
+margin-left:auto;
+margin-right:auto;
+width:701px;
+}
+
+.TabContent .pane, img
+{
+	
+	filter: alpha(opacity=100);
+  -moz-opacity: 1;
+  opacity: 1;
+}
+
+.star-info table
+{
+	width:300px;
+	padding:5px;
+	float:right; 
+    margin:10px; 
+    border:1px solid black;
+}
+
+.DateLabel
+{
+	float:left;
+}
+
+.star-header-now
+{
+	border:1px solid black;
+	float:left;
+	font-size:10px;
+	height:94px;
+	margin:-40px 10px 10px;
+	text-align:center;
+	width:94px;
+}
+
+.star-header-now img
+{
+	width:50px;
+	float:none;
+}
+
+.star-header-now .star-summary-picture 
+{
+display:none;
+}
+
+.star-header-now .star-summary-dream 
+{
+	float:none;
+	text-align:center;
+	width:70px;
+}
+
+.star-header-now .DreamName
+{
+	display:none;
+}
+
+.star-info table
+{
+	text-align:left;
+}	
+
+.none
+{
+	display:none;
+}
+
+.TabLabels li
+{
+	/* margin-top:-1px; */
+}
+
+.TabLabels li.no-top-margin
+{
+	margin-top:4px;
+}
+
+.no-top-margin
+{
+	margin-top:4px;
+}
+
+.kin-today, .tone-today
+{
+	background:green;
+}
+
+.portal
+{
+	background:grey;
+}
+
+.star-header-now .hoverbox
+{
+margin-left:-165px;
+margin-top:0px;
+background:white;
+width:200px;
+border:1px solid black;
+}
+
+.TodayTab .star-detail-container .star-summary-picture, 
+.MeTab .star-detail-container .star-summary-picture
+{
+	display:none;
+}
+
+.TodayTab .friend-groups .star-detail-container .star-summary-picture,
+.MeTab .friend-groups .star-detail-container .star-summary-picture,
+.FriendsTab .friend-groups .star-detail-container .star-summary-picture
+{
+	display:block;
+	padding:10px;
+}
+
+.friend-list .item .star-summary
+{
+	/*
+    width: 150px;
+	height: 150px;
+	float: left;
+	*/
+}
+

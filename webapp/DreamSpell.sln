@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DreamSpell", "DreamSpell.csproj", "{E8536098-A424-4CC9-A414-33227DF54EE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "emergetk", "..\..\emergeTk\server\emergetk.csproj", "{52E41D18-8F12-430D-B5B5-43C7BBA18F61}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnyimCacheProvider", "..\..\emergeTk\addins\EnyimCacheProvider\EnyimCacheProvider.csproj", "{3E848E5D-BACB-43E8-B00C-82D18E455622}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolrSearchProvider", "..\..\emergeTk\addins\SolrSearchProvider\SolrSearchProvider.csproj", "{B6781C36-01AD-4F49-B4AE-A637945676F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebServiceProvider", "..\..\emergeTk\addins\WebServiceProvider\WebServiceProvider.csproj", "{2648AC85-2BB4-4DA0-AF7E-F43FA0D756DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtobufSerializer", "..\..\emergeTk\addins\ProtobufSerializer\ProtobufSerializer.csproj", "{91E45347-1107-4DEC-A95A-A6388878FF0D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2648AC85-2BB4-4DA0-AF7E-F43FA0D756DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2648AC85-2BB4-4DA0-AF7E-F43FA0D756DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2648AC85-2BB4-4DA0-AF7E-F43FA0D756DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2648AC85-2BB4-4DA0-AF7E-F43FA0D756DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E848E5D-BACB-43E8-B00C-82D18E455622}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E848E5D-BACB-43E8-B00C-82D18E455622}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E848E5D-BACB-43E8-B00C-82D18E455622}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E848E5D-BACB-43E8-B00C-82D18E455622}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52E41D18-8F12-430D-B5B5-43C7BBA18F61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52E41D18-8F12-430D-B5B5-43C7BBA18F61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52E41D18-8F12-430D-B5B5-43C7BBA18F61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52E41D18-8F12-430D-B5B5-43C7BBA18F61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91E45347-1107-4DEC-A95A-A6388878FF0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91E45347-1107-4DEC-A95A-A6388878FF0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91E45347-1107-4DEC-A95A-A6388878FF0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91E45347-1107-4DEC-A95A-A6388878FF0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6781C36-01AD-4F49-B4AE-A637945676F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6781C36-01AD-4F49-B4AE-A637945676F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6781C36-01AD-4F49-B4AE-A637945676F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6781C36-01AD-4F49-B4AE-A637945676F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8536098-A424-4CC9-A414-33227DF54EE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8536098-A424-4CC9-A414-33227DF54EE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8536098-A424-4CC9-A414-33227DF54EE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8536098-A424-4CC9-A414-33227DF54EE5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = DreamSpell.csproj
+		name = DreamSpell
+	EndGlobalSection
+EndGlobal

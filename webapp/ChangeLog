@@ -1,0 +1,199 @@
+2008-12-05  Damien Joldersma <damien@skullsquad.com> 
+
+	* Themes/Dream/Styles/styles.css, Themes/Dream/Views/Main.xml,
+	  Themes/Dream/Views/DreamSpell/FriendList.xml,
+	  App_Code/Model/DreamFolk.cs, App_Code/StarDetail.cs,
+	  App_Code/FriendList.cs, App_Code/Main.cs, App_Code/StarSummary.cs:
+	  Refactored Friends List
+
+2008-12-04  Damien Joldersma <damien@skullsquad.com> 
+
+	* DreamSpell.sln, Themes/Dream/Views/Main.xml,
+	  Themes/Dream/Views/DreamSpell/Main.xml, DreamSpell.csproj,
+	  App_Code/Main.cs: Fixed bugs
+
+2008-11-13  Damien Joldersma <damien@skullsquad.com> 
+
+	* App_Code/Model/DreamFolk.cs, App_Code/FriendList.cs,
+	  App_Code/Main.cs: Fixed some wierd bugs with invalid birthday
+	  records
+
+2008-11-13  Damien Joldersma <damien@skullsquad.com> 
+
+	* Themes/Dream/Styles/styles.css,
+	  Themes/Dream/Views/DreamSpell/StarSummary.xml,
+	  Themes/Dream/Views/DreamSpell/FriendGroups.xml,
+	  Themes/Dream/Views/DreamSpell/StarDetail.xml,
+	  App_Code/Model/DreamFolk.cs, App_Code/FriendGroups.cs: Added
+	  Today's Tones & Solar Tribe
+
+2008-11-10  Damien Joldersma <damien@skullsquad.com> 
+
+	* Themes/Dream/Styles/styles.css,
+	  Themes/Dream/Views/DreamSpell/Main.xml,
+	  Themes/Dream/Views/DreamSpell/StarSummary.xml,
+	  Themes/Dream/Views/DreamSpell/FriendGroups.xml,
+	  App_Code/GalacticSpinCycleView.cs, App_Code/Main.cs,
+	  App_Code/FriendGroups.cs: New galactic spin cycle with current day
+	  and dimensional portals; stand-alone mode with out facebook;
+	  star-summary style updates
+
+2008-11-03  Damien Joldersma <damien@skullsquad.com> 
+
+	* Themes/Dream/Views/DreamSpell/StarInfo.xml, App_Code/Model/Glyph.cs,
+	  App_Code/Model/DreamFolk.cs, App_Code/Model/Tone.cs,
+	  App_Code/DreamSpellUtil.cs: Added Glyph info
+
+2008-11-03  Damien Joldersma <damien@skullsquad.com> 
+
+	* App_Code/FriendGroups.cs: Fixed data binding bug
+
+2008-11-03  Damien Joldersma <damien@skullsquad.com> 
+
+	* Themes/Dream/Styles/styles.css: Style upgrades
+
+2008-11-03  Damien Joldersma <damien@skullsquad.com> 
+
+	* Themes/Dream/Styles/styles.css,
+	  Themes/Dream/Views/DreamSpell/Main.xml,
+	  Themes/Dream/Views/DreamSpell/StarInfo.xml,
+	  Themes/Dream/Views/DreamSpell/StarSummary.xml, DreamSpell.csproj,
+	  App_Code/StarDetail.cs, App_Code/Main.cs, App_Code/StarInfo.cs,
+	  App_Code/StarSummary.cs: Added StarInfo
+
+2008-11-02  Damien Joldersma <damien@skullsquad.com> 
+
+	* Themes/Dream/Styles/styles.css,
+	  Themes/Dream/Views/DreamSpell/Main.xml,
+	  Themes/Dream/Views/DreamSpell/FriendGroups.xml, DreamSpell.csproj,
+	  App_Code/Model/DreamFolk.cs, App_Code/Main.cs,
+	  App_Code/StarSummary.cs, App_Code/FriendGroups.cs: Added Friends to
+	  Now and logo
+
+2008-11-01  Damien Joldersma <damien@skullsquad.com> 
+
+	* Themes/Dream/Styles/styles.css,
+	  Themes/Dream/Views/DreamSpell/Main.xml,
+	  Themes/Dream/Views/DreamSpell/StarSummary.xml,
+	  App_Code/Model/DreamFolk.cs, App_Code/Main.cs: Added
+	  Guides,Allies,SecretList and FocusList 
+
+2008-11-01  Damien Joldersma <damien@skullsquad.com> 
+
+	* Themes/Dream/Styles/styles.css,
+	  Themes/Dream/Views/DreamSpell/Main.xml,
+	  Themes/Dream/Views/DreamSpell/StarSummary.xml,
+	  Themes/Dream/Views/DreamSpell/StarDetail.xml,
+	  App_Code/Model/DreamFolk.cs, App_Code/GalacticSpinCycleView.cs,
+	  App_Code/StarDetail.cs, App_Code/Main.cs,
+	  App_Code/DreamSpellUtil.cs: Major overhaul with tabs
+
+2008-10-31  Damien Joldersma <damien@skullsquad.com> 
+
+	* App_Code/Model/DreamFolk.cs, App_Code/FriendList.cs,
+	  App_Code/DreamSpellUtil.cs: Fix some name bugs
+
+2008-10-31  Damien Joldersma <damien@skullsquad.com> 
+
+	* App_Code/Main.cs: Take out of maintenance mode
+
+2008-10-31  Damien Joldersma <damien@skullsquad.com> 
+
+	* Themes/Dream/Views/DreamSpell/Main.xml: Take out maintenance mode
+
+2008-10-31  Damien Joldersma <damien@skullsquad.com> 
+
+	* App_Code/Main.cs: only me allowed to login!
+
+2008-10-31  Damien Joldersma <damien@skullsquad.com> 
+
+	* Themes/Dream/Views/DreamSpell/Main.xml, DreamSpell.csproj: Temp
+	  maintenance note
+
+2008-10-31  Damien Joldersma <damien@skullsquad.com> 
+
+	* App_Code/Model/Glyph.cs, App_Code/Model/DreamFolk.cs,
+	  App_Code/FriendList.cs, App_Code/Main.cs: Refine earlier refactor
+	  to allow updating and loading friends
+
+2008-10-31  Damien Joldersma <damien@skullsquad.com> 
+
+	* Themes/Dream/Views/DreamSpell/Main.xml,
+	  Themes/Dream/Views/DreamSpell/StarSummary.xml,
+	  Themes/Dream/Views/DreamSpell/StarDetail.xml, DreamSpell.csproj,
+	  App_Code/Model/Glyph.cs, App_Code/Model/DreamFolk.cs,
+	  App_Code/Model/Tone.cs, App_Code/GalacticSpinCycleView.cs,
+	  App_Code/FriendList.cs, App_Code/Main.cs,
+	  App_Code/DreamSpellUtil.cs: Huge refactor, changed all tones/glyphs
+	  from int to model object and added titles to images
+
+2008-10-29  Damien Joldersma <damien@skullsquad.com> 
+
+	* Themes/Dream/Styles/styles.css,
+	  Themes/Dream/Views/DreamSpell/StarSummary.xml,
+	  Themes/Dream/Views/DreamSpell/StarDetail.xml: Checked in hoverbox 
+
+2008-10-29  Damien Joldersma <damien@skullsquad.com> 
+
+	* App_Code/Model/DreamFolk.cs, App_Code/FriendList.cs,
+	  App_Code/DreamSpellUtil.cs: Few invite tweaks
+
+2008-10-29  Damien Joldersma <damien@skullsquad.com> 
+
+	* App_Code/Model/DreamFolk.cs, App_Code/FriendList.cs,
+	  App_Code/Main.cs: Fixed broken year bug, now when you update
+	  profile it will update dream friend record
+
+2008-10-28  Damien Joldersma <damien@skullsquad.com> 
+
+	* Themes/Dream/Styles/styles.css: style changes 
+
+2008-10-28  Damien Joldersma <damien@skullsquad.com> 
+
+	
+
+2008-10-27  Damien Joldersma <damien@skullsquad.com> 
+
+	* DreamSpell.sln, Themes/Dream/Styles/styles.css,
+	  Themes/Dream/Views/DreamSpell/Main.xml,
+	  Themes/Dream/Views/DreamSpell/StarDetail.xml, DreamSpell.csproj,
+	  App_Code/Model/DreamFolk.cs, App_Code/StarDetail.cs,
+	  App_Code/FriendList.cs, App_Code/Main.cs, App_Code/DreamFolk.cs,
+	  App_Code/DreamSpellUtil.cs: Added start detail, refactored layout
+
+2008-10-27  Damien Joldersma <damien@skullsquad.com> 
+
+	* App_Code/Model/DreamFolk.cs, App_Code/FriendList.cs: Finished getting
+	  cached users working
+
+2008-10-27  Damien Joldersma <damien@skullsquad.com> 
+
+	* DreamSpell.csproj, App_Code/Model/DreamFolk.cs,
+	  App_Code/FriendList.cs, App_Code/Main.cs,
+	  App_Code/DreamSpellUtil.cs: Added support to store facebook friends
+
+2008-10-22  Damien Joldersma <damien@skullsquad.com> 
+
+	* Themes/Dream/Styles/styles.css, App_Code/FriendList.cs: Style changes
+
+2008-10-22  Damien Joldersma <damien@skullsquad.com> 
+
+	
+
+2008-10-22  Damien Joldersma <damien@skullsquad.com> 
+
+	
+
+2008-10-22  Damien Joldersma <damien@skullsquad.com> 
+
+	
+
+2008-10-20  Damien Joldersma <damien@skullsquad.com> 
+
+	* App_Code/FriendList.cs: Added friend photos, formated birthdays
+
+2008-10-20  Damien Joldersma <damien@skullsquad.com> 
+
+	
+
+helloworld

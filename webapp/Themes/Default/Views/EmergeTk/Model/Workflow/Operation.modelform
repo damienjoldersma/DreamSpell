@@ -1,0 +1,46 @@
+<Widget xmlns:emg="http://www.emergetk.com/">
+
+    <div class="formElement">
+        <div class="col">
+            <emg:PlaceHolder Id="NameLabel"/>
+            <emg:PlaceHolder Id="NameInput"/>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="editFieldInput editFieldInputProcess formElement">
+            <emg:PlaceHolder Id="ProcessLabel"/>
+            <emg:PlaceHolder Id="ProcessInput"/>
+        </div>
+        <div class="editFieldInput editFieldInputEditWidget formElement">
+            <!--emg:PlaceHolder Id="EditWidgetLabel"/-->
+            <emg:PlaceHolder Id="EditWidgetInput"/>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="editFieldInput editFieldInputDefaultState formElement">
+            <emg:PlaceHolder Id="DefaultStateLabel"/>
+            <emg:PlaceHolder Id="DefaultStateInput"/>
+        </div>
+        <div class="editFieldInput editFieldInputArgument formElement">
+            <emg:PlaceHolder Id="ArgumentLabel"/>
+            <emg:PlaceHolder Id="ArgumentInput"/>
+        </div>
+    </div>
+
+    <div class="editFieldInput editFieldInputDependency">
+        <!--emg:PlaceHolder Id="DependencyLabel"/-->
+        <emg:PlaceHolder Id="DependencyInput"/>
+    </div>
+    <div class="editFieldInput editFieldInputPermissions">
+         <!--emg:PlaceHolder Id="PermissionsLabel"/-->
+        <emg:PlaceHolder Id="PermissionsInput"/>
+    </div>
+    <div class="buttonPane">
+        <emg:PlaceHolder Id="SubmitButton"/>
+        <emg:PlaceHolder Id="CancelButton"/>
+        <emg:PlaceHolder Id="DeleteButton"/>
+    </div>
+
+</Widget>

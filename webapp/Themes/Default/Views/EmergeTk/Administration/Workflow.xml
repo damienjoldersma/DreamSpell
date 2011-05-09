@@ -1,0 +1,34 @@
+<Widget xmlns:emg="http://www.emergetk.com/">	
+	<emg:TabPane Id="tabs">
+		<emg:Pane Label="Processes">
+			<emg:Scaffold Id="ProcessesScaffold" Type="EmergeTk.Model.Workflow.Process" DestructivelyEdit="True">
+				<emg:GridTemplate>
+					<h2>{Name}</h2>
+					<emg:PlaceHolder Id="EditPlaceHolder"/>
+					<emg:PlaceHolder Id="DeletePlaceHolder"/>
+					<hr/>
+				</emg:GridTemplate>
+			</emg:Scaffold>
+		</emg:Pane>
+		<emg:Pane Label="Operations">
+			<emg:Scaffold Id="OperationsScaffold" Type="EmergeTk.Model.Workflow.Operation" DestructivelyEdit="True">
+				<emg:GridTemplate>
+					<h2>{Name}</h2>
+					<emg:PlaceHolder Id="EditPlaceHolder"/>
+					<emg:PlaceHolder Id="DeletePlaceHolder"/>
+					<hr/>
+				</emg:GridTemplate>
+			</emg:Scaffold>		
+		</emg:Pane>
+		<emg:Pane Label="States">
+			<emg:Scaffold Id="StatesScaffold" Type="EmergeTk.Model.Workflow.State" DestructivelyEdit="True">
+				<emg:GridTemplate>
+					<h2>{Name}</h2>
+					<emg:PlaceHolder Id="EditPlaceHolder"/>
+					<emg:PlaceHolder Id="DeletePlaceHolder"/>
+					<hr/>
+				</emg:GridTemplate>
+			</emg:Scaffold>
+		</emg:Pane>
+	</emg:TabPane>
+</Widget>

@@ -1,0 +1,3 @@
+<Widget xmlns:emg="http://www.emergetk.com/" ClassName="SubmitTicket">
+	<emg:LinkButton OnClick="ShowTicketForm">Submit Ticket</emg:LinkButton>
+</Widget>

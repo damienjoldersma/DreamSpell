@@ -1,0 +1,499 @@
+<HTML><HEAD><TITLE> Mayan Day Dialer</TITLE>
+<script language="javascript1.1">
+<!--
+function gmonthdef(){
+  this[0]=0;this[1]=31;this[2]=28;this[3]=31;this[4]=30;this[5]=31;
+  this[6]=30;this[7]=6;this[8]=31;this[9]=30;this[10]=31;
+  this[11]=30;this[12]=31;
+}var gmonth = new gmonthdef();
+function sealdef(tmp,s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14,s15,s16,s17,s18,s19,s20){
+ this[0]=tmp;this[1]=s1; this[2]=s2; this[3]=s3; this[4]=s4; this[5]=s5; this[6]=s6;
+ this[7]=s7; this[8]=s8; this[9]=s9; this[10]=s10; this[11]=s11;
+ this[12]=s12; this[13]=s13; this[14]=s14; this[15]=s15; this[16]=s16;
+ this[17]=s17; this[18]=s18; this[19]=s19; this[20]=s20;
+}var sealref = new sealdef("0","Red Dragon","White Wind","Blue Night","Yellow Seed","Red Serpent","White World-Bridger","Blue Hand","Yellow Star","Red Moon","White Dog","Blue Monkey","Yellow Human","Red Skywalker","White Wizard","Blue Eagle","White Warrior","Red Earth","White Mirror","Blue Storm","Yellow Sun");
+function dimdef(s1,s2,s3,s4){ this[0]=s1;this[1]=s2;this[2]=s3;this[3]=s4;}
+function tonetexdef(){
+this[0]=" ";
+this[1]=new dimdef("Magnetic","Unify Purpose","Attraction","What is this wavespell's Goal?");
+this[2]=new dimdef("Lunar","Polarize Challenge","Stabilizing","What are the Obstacles for this wavespell's goal?");
+this[3]=new dimdef("Electric","Activate Service","Bonding","How can this wavespell's goal be Obtained?");
+this[4]=new dimdef("Self-Existing","Define Form","Measuring","What is the form of the action to obtain the wavespell goal?");
+this[5]=new dimdef("Overtone","Empower Radiance","Command","Gather Resources.");
+this[6]=new dimdef("Rythmic","Organize Equality","Balance","Administer Challenge.");
+this[7]=new dimdef("Resonant","Channel Attunement","Inspiring","Attune Service to action.");
+this[8]=new dimdef("Galactic","Harmonize Integrity","Modeling","Action Attains form.");
+this[9]=new dimdef("Solar","Pulse Intention","Realizing","Action set in Motion.");
+this[10]=new dimdef("Planetary","Perfect Manifestation","Producing","Action and Challenge are meet.");
+this[11]=new dimdef("Spectral","Dissolve Liberation","Release","Action dissolves service.");
+this[12]=new dimdef("Crystal","Dedicate Cooperation","Universalize","Round Table meets.");
+this[13]=new dimdef("Cosmic","Endure Presence","Transcend","Return to Magnetic (tone 1).");
+}var tonetext = new tonetexdef();
+function sealtexdef(){
+ this[0]=" ";
+this[1]="Red Dragon (IMIX) <u>Nurtures</u> and emphasizes <u>Birth</u>."; 
+this[2]="White Wind (IK) <u>Communicates</u> and empasizes <u>Spirit</u>."; 
+this[3]="Blue Night (AKBAL) <u>Dreams</u> and emphasizes <u>Abundance</u>."; 
+this[4]="Yellow Seed (KAN) <u>Targets</u> and emphsizes <u>Flowering (ideas)</u>."; 
+this[5]="Red Serpent (CHICCHAN) <u>Survives</u> and emphasizes <u>Life-force (instinct)</u>."; 
+this[6]="White World-Bridger(CIMI) <u>Equalizes</u> and emphasizes <u>Death (span dimensions)</u>.";
+this[7]="Blue Hand (MANIK) <u>Knows</u> and emphasizes <u>Accomplishment (heals)</u>."; 
+this[8]="Yellow Star (LAMAT) <u>Beautifies</u> and emphasizes <u>Elegance</u>."; 
+this[9]="Red Moon (MULAC) <u>Purifies</u> and emphasizes <u>Universal Water</u>."; 
+this[10]="White Dog (OC) <u>Loves</u> and emphasizes <u>Heart (truth)</u>."; 
+this[11]="Blue Monkey (CHUEN) <u>Plays</u> and emphasizes <u>Magic</u>.";
+this[12]="Yellow Human (EB) <u>Influences</u> and emphasizes <u>Free Will</u>."; 
+this[13]="Red Skywalker (BEN) <u>Explores</u> and emphasizes <u>Space</u>."; 
+this[14]="White Wizard (IX) <u>Enchants</u> and emphasizes <u>Timelessness</u>."; 
+this[15]="Blue Eagle (MEN) <u>Creates</u> and emphasizes <u>Vision</u>."; 
+this[16]="Yellow Warrior (CIB) <u>Questions</u> and emphasizes <u>Intelligence</u>.";
+this[17]="Red Earth (CABAN) <u>Evolves</u> and emphasizes <u>Navigation</u>."; 
+this[18]="White Mirror (ETZNAB) <u>Reflects</u> and emphasizes <u>Endlessness</u>."; 
+this[19]="Blue Storm (CAUAC) <u>Catalyzes</u> and emphasizes <u>Self-Generation</u>."; 
+this[20]="Yellow Sun (AHAU) <u>Enlightens</u> and emphasizes <u>Universal Fire</u>.";
+}var sealtext = new sealtexdef();
+function oractexdef(){
+this[0]="The seal of the day is the basis of life destiny, with power of the solar tribe.";
+this[1]="The seal of the year is the basis of life destiny, with the power of the solar tribe.";
+this[2]="The seal for the Guide of the day modifies the oracle reading in Outcome.";
+this[3]="The seal for the Anitpode of the day modifies the oracle reading with Challenging power (strengthening memory, reconstruction)."; 
+this[4]="The seal for the Occult of the day modifies the oracle reading with Hidden power (the unexpected).";
+this[5]="The seal for the Analog of the day modifies the oracle reading with Like-Minded power (galactic-solar planetary power).";
+this[6]="The seal for the Wavespell sets the emphasis of the thirteen day, thirteen tone cycle.";
+}var oracletext = new oractexdef();
+function infhdtexdef(){
+this[0]="Seal of the Day, Destiny";
+this[1]="Seal of the Year, Destiny";
+this[2]="Guide of the Day, effecting Outcome";
+this[3]="Antipode of the Day, the Challenging focus";
+this[4]="Occult of the Day, the Hidden power";
+this[5]="Analog of the Day, the Like-Minded power";
+this[6]="Seal for this Wavespell";
+}var infhead = new infhdtexdef();
+
+/*
+function spicdef(){
+ this[0]=new Image();
+ for(i=1;i<=20;i++)  this[i] = new Image(); 
+}var sealpic = new spicdef();
+
+
+function tpicdef(){
+ this[0]=new Image();
+ for(i=1;i<=13;i++)  this[i] = new Image(); 
+}var tonepic = new tpicdef();
+
+*/
+
+var reading=0;
+var renter=0,tone=0,ytone=0,magseal=0;
+var seal=0,yseal=0,guide=0,antipode=0,occult=0,analog=0;
+// var dunload=0;
+
+function clk(){  
+  var x,y,rem,loopstart,daydist,i;
+  var byear=1,bmonth=1,bday=1;
+
+//   // if(!dunload)return;
+//if(reading){
+//  parent.info.location.href="file:///D:/focus/oracle/info.htm";
+//  reading=0;
+//}
+//renter=0;
+//testinput(1,3000,0); 
+//testinput(1,12,1); 
+//if(!renter){
+//  if(eval(document.test2.month.value==7)) testinput(1,31,2);
+//  else testinput(1,gmonth[eval(document.test2.month.value)],2);
+//}
+//if(renter)return;
+
+byear=eval(document.test2.year.value);
+bmonth=eval(document.test2.month.value);
+bday=eval(document.test2.day.value);
+
+if (byear < 2000)
+  byear = byear + 1900;
+
+//     calc year seal 
+if((bmonth<7)||((bmonth==7)&&(bday<26)))byear--;      
+yseal=4+(15*(calcyseal(byear)-1));
+if(yseal==34)yseal=14;
+if(yseal==49)yseal=9;
+
+//alert(yseal);
+
+//     calc year tone
+    y=Math.abs(byear-1967);x=y/13; rem=x-Math.floor(x);
+    //z ytone=Math.round((rem*13)+1); 
+    rem=Math.floor((rem*13)+.5); 
+    ytone=Math.floor(rem+1);
+
+//z    if(byear<1967)ytone=Math.abs(Math.ceil(rem)*15-(Math.round((rem*13)+1)));
+			if(byear<1967){
+				ytone=Math.floor(Math.floor(.99999+(rem/13))*15-(rem+1));
+				if(ytone<0){ytone=(0-1)*ytone;}
+         }
+
+//alert(ytone);
+      
+//     calc distance from day out of time  
+loopstart=1;daydist=159;
+if(bmonth>7){loopstart=7;daydist=0;}
+else{ 
+  if((bday>=26)&&(bmonth==7)){
+    loopstart=7;daydist=-25;
+  }
+}
+for(i=loopstart;i<bmonth;i++) daydist+=gmonth[i]; 
+daydist+=bday-1; 
+//alert(daydist);
+
+//     calc tone and seal 
+seal=yseal;tone=ytone;
+for(i=1;i<=daydist;i++){
+  seal++;if(seal>20)seal=1;
+  tone++;if(tone>13)tone=1;
+}
+
+//alert("daydist: " + daydist);
+//alert("seal: "+ seal);
+//alert("tone: " + tone);
+
+//    calc oracle
+        if(seal>=tone) magseal=seal-tone+1;
+	else magseal=20+seal-tone+1;
+	guide=getguide(magseal,tone);
+        antipode=seal+10;
+	if(antipode>20) antipode=seal-10;
+	antipode=antipode;
+	analog=19-seal;	if(analog<=0)analog=analog+20;
+   	occult=21-seal;
+        kin=getkin(magseal,tone);
+        
+//alert("Guide: " + guide + " antipode: " + antipode  + " analog: " + analog + " occult: " + occult + " kin: " + kin);        
+
+//    show images
+document.guide.src ="glyph"+guide+".gif";
+document.antipode.src ="glyph"+antipode+".gif";
+document.seal.src ="glyph"+seal+".gif";
+document.analog.src ="glyph"+analog+".gif";
+document.occult.src ="glyph"+occult+".gif";
+document.tone.src ="tone"+tone+".gif";
+document.ytone.src ="tone"+ytone+".gif";
+document.yseal.src ="glyph"+yseal+".gif";
+document.magtone.src ="tone1.gif";
+document.magseal.src ="glyph"+magseal+".gif";
+/*
+document.guide.src =sealpic[guide].src;
+document.antipode.src =sealpic[antipode].src;
+document.seal.src =sealpic[seal].src;
+document.analog.src =sealpic[analog].src;
+document.occult.src =sealpic[occult].src;
+document.tone.src =tonepic[tone].src;
+document.ytone.src =tonepic[ytone].src;
+document.yseal.src =sealpic[yseal].src;
+document.magtone.src =tonepic[1].src;
+document.magseal.src =sealpic[magseal].src;
+*/
+// dunload=1;
+oracleout();
+}
+
+function testinput(left,right,testee){
+var tmp;
+tmp=parseInt(document.test2.elements[testee].value);
+if (isNaN(tmp)){
+  document.test2.elements[testee].value="**";
+  renter++;
+  alert("Please re-enter the date, use only numbers; January 2nd,1997 is: 1997 1 2 ")
+}
+else{
+ if(tmp==3900) tmp=2000;
+  document.test2.elements[testee].value=tmp;
+  if((tmp<left)||(tmp>right)){
+   alert("the value "+document.test2.elements[testee].value+" should be between "+left+" and "+right);
+   renter++;}
+}
+}
+
+function calcyseal(bthyear){
+var y,cont;
+  //alert("calcyseal for " + bthyear);
+  //alert("abs: " + (Math.abs(1965-bthyear)));
+  y=(Math.abs(1965-bthyear))/4;
+  //alert("before floor: " + y);
+  y=y-Math.floor(y);
+  //alert("after floor: " + y);
+  if(y){cont=calcyseal(bthyear+1);return(cont+1);}
+  else return(1);
+}
+
+function getkin(wvseal,ktone){
+var one23,next,sealone;
+one23 =3;
+sealone=1;
+for(i=0;sealone!=wvseal && (i<100);i++){
+  next=(20*(Math.floor(one23*1/3))-7);
+  one23++;
+  if(one23>3)one23=1;
+  sealone+=next;
+  if(sealone==14) one23=2;
+}
+return(i*13+ktone);
+}
+
+function getguide(sealone,tone){
+var one23,next;
+one23 =1;
+if(sealone<=7)one23++;
+if(sealone<=14)one23++;
+for(i=1;i<tone;i++){
+  next=(20*(Math.floor(one23*1/3))-7);
+  one23++;
+  if(one23>3)one23=1;
+  sealone+=next;
+  if(sealone==14) one23=2;
+}
+return(sealone);
+}
+
+function statclr(){
+  self.status="Mayan Dreamspell day finder";return true;
+}
+
+function cachegif(){
+statclr()
+today=new Date();
+myear = today.getYear();
+if (myear < 2000)
+  myear = myear + 1900;
+document.test2.year.value=myear;
+document.test2.month.value=today.getMonth()+1;
+document.test2.day.value=today.getDate();
+/*
+for(i=1;i<=20;i++) sealpic[i].src = "glyph"+i+".gif";
+for(i=1;i<=13;i++) tonepic[i].src = "tone"+i+".gif";
+*/
+//dunload=1;
+clk();
+}
+
+// frame 2 location** parent.info.location.href=
+//  parent.info.document.write(" ");
+
+
+
+function explain(spot,from){
+
+// if(!dunload)return;
+if(from) parent.info.document.write("<html><head><title>Mayan day finder information</title></head><body bgcolor='mediumaquamarine'><b>");
+else parent.info.document.write("<hr width='300' align='left'>");
+if(spot=='ytone'){
+    parent.info.document.write("<img name='inftone' src='tone"+ytone+".gif' width='100' height=30' border='0'><br>");
+    parent.info.document.write("Tone of the Year<br>");
+    parent.info.document.write("Tone "+ytone+" "+tonetext[ytone][0]+", creative power to <u>"+tonetext[ytone][1]+"</u>,action of <u>"+tonetext[ytone][2]+"</u>");
+//    parent.info.document.write("<br>Tones revolve in a thirteen day cycle");  
+}
+else if(spot=='tone'){
+   parent.info.document.write("<img name='inftone' src='tone"+tone+".gif' width='100' height=30' border='0'><br>");
+   parent.info.document.write("Tone of the day<br>"); 
+   parent.info.document.write("Tone "+tone+" "+tonetext[tone][0]+", creative power to <u>"+tonetext[tone][1]+"</u>,action of <u>"+tonetext[tone][2]+"</u>.  Daily meditation- "+tonetext[tone][3]);
+//   parent.info.document.write("<br>Tones revolve in a thirteen day cycle");  
+}
+else if(spot=='magtone'){
+   parent.info.document.write("<img name='inftone' src='tone1.gif' width='100' height=30' border='0'><br>");
+   parent.info.document.write("Tone one starts the Wavespell<br>"); 
+   parent.info.document.write("Tone 1 "+tonetext[1][0]+", creative power to <u>"+tonetext[1][1]+"</u>,action of <u>"+tonetext[1][2]+"</u>");
+ //  parent.info.document.write("<br>Tones revolve in a thirteen day cycle");  
+}
+else if(spot=='seal') {
+
+  parent.info.document.write("<img name='inftone' src='tone"+tone+".gif' width='100' height=30' border='0'><br>");
+  parent.info.document.write("Tone "+tone+"  "+tonetext[tone][0]+"<br>");
+  sealinfo(seal,0);
+  parent.info.document.write("<br>Kin "+kin+"   of 260 day cycle(20 wavespells of 13 tones).");
+}
+else if(spot=='yseal'){
+ parent.info.document.write("Tone "+ytone+"  "+tonetext[ytone][0]+"<br>");
+ parent.info.document.write("<img name='inftone' src='tone"+ytone+".gif' width='100' height=30' border='0'><br>");
+ sealinfo(yseal,1);}
+else if(spot=='magseal'){ 
+ parent.info.document.write("Tone "+1+"  "+tonetext[1][0]+"<br>");
+ parent.info.document.write("<img name='inftone' src='tone1.gif' width='100' height=30' border='0'><br>");
+ sealinfo(magseal,6);}
+else if(spot=='guide') sealinfo(guide,2);
+else if(spot=='antipode') sealinfo(antipode,3);
+else if(spot=='occult') sealinfo(occult,4);
+else if(spot=='analog') sealinfo(analog,5);
+if(from){
+  parent.info.document.write("</b></body></html>");
+  parent.info.document.close();}
+
+statclr();
+// cl_ear info
+reading=1;
+}
+
+function sealinfo(sealnum,kind){
+parent.info.document.write(infhead[kind]+"<br>");
+parent.info.document.write("<img name='infseal' src='glyph"+sealnum+".gif' width='100' height=100' border='0'>");
+parent.info.document.write("<br>"+sealtext[sealnum]+"<br>"+oracletext[kind]);
+//parent.info.document.write("<br>Seals revolve in a twenty day cycle");
+}
+
+function oracleout(){
+
+// if(!dunload)return;
+
+//location.href="#totop";
+parent.info.document.write("<html><head><title>Mayan day finder information</title></head><body bgcolor='mediumaquamarine'><b>");
+parent.info.document.write("<table width='300' border=0 cellspacing=0 cellpading=0>");
+parent.info.document.write("<tr><a name='infotop'><td width='100'></td></a>");
+parent.info.document.write("<td width='100'>");
+parent.info.document.write("<img name='tone' src='tone"+tone+".gif' align=bottom width='100' height='30' border='0'>");
+parent.info.document.write("</td></tr>");
+parent.info.document.write("<tr><td width='100'></td>");
+parent.info.document.write("<td width='100'>");
+parent.info.document.write("<img name='guide' src='glyph"+guide+".gif' align=bottom width='100' height='100' border='0'></td>");
+parent.info.document.write("<td width='100'></td>");
+parent.info.document.write("</tr>");
+parent.info.document.write("<tr><td width='100'>");
+parent.info.document.write("<img name='antipode' src='glyph"+antipode+".gif' align=bottom width='100' height='100' border='0'></td>");
+parent.info.document.write("<td width='100'>");
+parent.info.document.write("<img name='seal' src='glyph"+seal+".gif' align=bottom width='100' height='100' border='0'></td>");
+parent.info.document.write("<td width='100'>");
+parent.info.document.write("<img name='analog' src='glyph"+analog+".gif' align=bottom width='100' height='100' border='0'></td>");
+parent.info.document.write("</tr>");
+parent.info.document.write("<tr><td width='100'></td>");
+parent.info.document.write("<td width='100'>");
+parent.info.document.write("<img name='occult' src='glyph"+occult+".gif' align=bottom width='100' height='100' border='0'></td>");
+parent.info.document.write("<td width='100'></td>");
+parent.info.document.write("</tr>");
+parent.info.document.write("</table>");
+explain('seal',0);explain('tone',0);explain('guide',0);explain('antipode',0);
+explain('occult',0);explain('analog',0);explain('magtone',0);
+explain('magseal',0);explain('ytone',0);explain('yseal',0);
+parent.info.document.write("</b></body></html>");
+parent.info.document.close();
+parent.info.scroll(0,0);
+}
+
+/*
+parent.info.document.write("<tr><td height='30'></td></tr>");
+parent.info.document.write("<tr><td width='100'></td>");
+parent.info.document.write("<td width='100'>");
+parent.info.document.write("<img name='ytone' src='tone"+ytone+".gif' align=bottom width='100' height='30' border='0'></td>");
+parent.info.document.write("</tr>");
+parent.info.document.write("<tr><td width='100'></td>");
+parent.info.document.write("<td width='100'>");
+parent.info.document.write("<img name='yseal' src='glyph"+yseal+".gif' align=bottom width='100' height='100' border='0'></td>");
+parent.info.document.write("</tr>");
+*/
+
+
+function donot(){
+ renter=0;}
+
+function stabar(kind){
+// if(!dunload)return;
+st="";
+if(kind=='ytone'){tsvl=ytone;st="Year tone. ";}
+else if(kind=='tone'){tsvl=tone;st="Day tone. ";}
+else if(kind=='magtone'){tsvl=1;st="Wavespell tone. ";}
+else{
+  if(kind=='occult'){ tsvl=occult;inf=4;}
+  else if(kind=='seal') {tsvl=seal;inf=0;st="("+tonetext[tone][0]+") ";}
+  else if(kind=='guide') {tsvl=guide;inf=2;}
+  else if(kind=='antipode'){ tsvl=antipode;inf=3;}
+  else if(kind=='analog'){ tsvl=analog;inf=5;}
+  else if(kind=='magseal'){ tsvl=magseal;inf=6;st="("+tonetext[1][0]+") ";}
+  else if(kind=='yseal') {tsvl=yseal;inf=1;st="("+tonetext[ytone][0]+") ";}
+  tmp=st+sealref[tsvl]+" is the "+infhead[inf]+".";
+  self.status=tmp;return;
+}
+tmp=st+tsvl+" is "+tonetext[tsvl][0]+", "+tonetext[tsvl][1]+"-"+tonetext[tsvl][2];
+self.status=tmp;
+}
+
+function help(){
+
+//if(!confirm("In LaKe'ch\n Click the mouse once on 'Reading' for a PRINTABLE full oracle reading.  Partial oracle readings can be read or printed by clicking on the glyph images.  Click ok, below for more.")) return;
+if(!confirm("Enter a gregorian date using numbers, then click 'Dial' to see the Oracle for that date.  Partial oracle readings can be generated by clicking on the glyph images.  To PRINT a reading: click on the right frame then choose file/'print frame'")) return;
+}
+
+// -->
+</script>
+</HEAD>
+<BODY  onload="cachegif()" background="bgclouds.jpg">
+<table>
+<tr>
+<!-- <td rowspan="2" align="center"><b>Type<br>Numbers</b></td>  -->
+<td><b>Year</b></td>
+<td><b>Month</b></td>
+<td><b>Day</b></td>
+<form><td><INPUT TYPE="button" VALUE="Information" onclick="help()"></td></form>
+</tr>
+<tr>
+<FORM NAME="test2">
+<td><INPUT TYPE="TEXT" NAME="year" value="" size="4" MAXLENGTH="4"></td>
+<td><INPUT TYPE="TEXT" NAME="month" value="" size="4" MAXLENGTH="2"></td>
+<td><INPUT TYPE="TEXT" NAME="day" value="" size="4" MAXLENGTH="2"></td>
+<td><INPUT TYPE="button" VALUE="Dial" onclick="clk()">
+   <!--  <INPUT TYPE="button" VALUE="Reading" onclick="oracleout()"></form> -->
+</td>
+</tr>
+</table>
+<table width="300" border=0 cellspacing=0 cellpading=0>
+<tr><a name="totop"><td width="100"></td></a>
+<td width="100">
+<a href="javascript:donot();"  onclick="explain('tone',1)" onmouseover="stabar('tone');return true;" onmouseout="statclr()">
+<img name="tone" src="tone5.gif" align=bottom width="100" height="30" border="0"></a>
+</td></tr>
+<tr><td width="100"></td>
+<td width='100'>
+<a href="javascript:donot();"  onclick="explain('guide',1)" onmouseover="stabar('guide');return true;" onmouseout="statclr()">
+<img name='guide' src='glyph12.gif' align=bottom width='100' height='100' border="0"></td></a>
+<td width="100"></td>
+</tr>
+<tr><td width="100">
+<a href="javascript:donot();"  onclick="explain('antipode',1)" onmouseover="stabar('antipode');return true;" onmouseout="statclr()">
+<img name="antipode" src="glyph14.gif" align=bottom width="100" height="100" border="0"></td></a>
+<td width="100">
+<a href="javascript:donot();"  onclick="explain('seal',1)" onmouseover="stabar('seal');return true;" onmouseout="statclr()">
+<img name="seal" src="glyph4.gif" align=bottom width="100" height="100" border="0"></td></a>
+<td width="100">
+<a href="javascript:donot();"  onclick="explain('analog',1)" onmouseover="stabar('analog');return true;" onmouseout="statclr()">
+<img name="analog" src="glyph15.gif" align=bottom width="100" height="100" border="0"></td></a>
+</tr>
+<tr><td width="100"></td>
+<td width="100">
+<a href="javascript:donot();"  onclick="explain('occult',1)" onmouseover="stabar('occult');return true;" onmouseout="statclr()">
+<img name="occult" src="glyph17.gif" align=bottom width="100" height="100" border="0"></td></a>
+<td width="100"></td>
+</tr>
+<tr><td height="30"></td></tr>
+<tr><td width="100"></td>
+<td width="100">
+<a href="javascript:donot();" onclick="explain('magtone',1)" onmouseover="stabar('magtone');return true;" onmouseout="statclr()">
+<img name="magtone" src="tone1.gif" align=bottom width="100" height="30" border="0"></td></a>
+</tr>
+<tr><td width="100"></td>
+<td width="100">
+<a href="javascript:donot();" onclick="explain('magseal',1)" onmouseover="stabar('magseal');return true;" onmouseout="statclr()">
+<img name="magseal" src="glyph20.gif" align=bottom width="100" height="100" border="0"></td></a>
+</tr>
+<tr><td height="30"></td></tr>
+<tr><td width="100"></td>
+<td width="100">
+<a href="javascript:donot();" onclick="explain('ytone',1)" onmouseover="stabar('ytone');return true;" onmouseout="statclr()">
+<img name="ytone" src="tone5.gif" align=bottom width="100" height="30" border="0"></td></a>
+</tr>
+<tr><td width="100"></td>
+<td width="100">
+<a href="javascript:donot();" onclick="explain('yseal',1)" onmouseover="stabar('yseal');return true;" onmouseout="statclr()">
+<img name="yseal" src="glyph4.gif" align=bottom width="100" height="100" border="0"></td></a>
+</tr>
+</table>
+<!-- copyright november 1997 jonic -->
+</BODY></HTML>

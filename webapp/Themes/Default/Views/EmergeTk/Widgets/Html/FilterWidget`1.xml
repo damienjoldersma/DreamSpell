@@ -1,0 +1,6 @@
+<Widget xmlns:emg="http://www.emergetk.com/">
+    <label>Column <emg:DropDown Id="fieldDropDown" OnChanged="FieldSelectedHandler" /></label>
+    <label>Operation <emg:DropDown Id="filterOpDropDown" OnChanged="FilterOpSelectedHandler" /></label>
+    <label>Value <emg:PlaceHolder Id="filterValuePlaceHolder" /></label>
+	<emg:LinkButton Id="removeFilterLink" Label="[x]" OnClick="RemoveFilterHandler" Visible="false"/>
+</Widget>

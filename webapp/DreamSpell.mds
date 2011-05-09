@@ -1,0 +1,20 @@
+<Combine fileversion="2.0" name="DreamSpell">
+  <Configurations active="Debug">
+    <Configuration name="Debug" ctype="CombineConfiguration">
+      <Entry build="True" name="DreamSpell" configuration="Debug" />
+      <Entry build="True" name="emergetk" configuration="Debug" />
+    </Configuration>
+    <Configuration name="Release" ctype="CombineConfiguration">
+      <Entry build="True" name="DreamSpell" configuration="Release" />
+      <Entry build="True" name="emergetk" configuration="Release" />
+    </Configuration>
+  </Configurations>
+  <StartMode startupentry="DreamSpell" single="True">
+    <Execute type="None" entry="DreamSpell" />
+    <Execute type="None" entry="emergetk" />
+  </StartMode>
+  <Entries>
+    <Entry filename="DreamSpell.mdp" />
+    <Entry filename="../emergeTk-trunk/emergetk.mdp" />
+  </Entries>
+</Combine>

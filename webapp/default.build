@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<project name="DreamSpell" default="build">	
+	<property name="nant.settings.currentframework" value="mono-2.0"/>
+	<target name="build" description="Default build target">
+		<echo message="Running default build target." />
+		<csc output="bin/DreamSpell.dll" target="library" define="DreamSpell">
+			<sources>
+				<include name="**/*.cs"/>
+				<exclude name="bootstrap/**"/>
+			</sources>
+			<references>
+				<include name="bin/MySql.Data.dll"/>
+				<include name="bin/EmergeTk.dll"/>
+				<include name="Mono.Data.dll"/>
+				<include name="Mono.Data.SqliteClient.dll"/>
+				<include name="System.dll"/>
+				<include name="System.Data.dll"/>
+				<include name="System.Data.SQLite.dll"/>
+				<include name="System.Web.dll"/>
+				<include name="System.Xml.dll"/>
+				<include name="System.Drawing.dll"/>
+				<include name="bin/Boo.Lang.dll"/>
+				<include name="bin/Boo.Lang.Interpreter.dll"/>
+				<include name="bin/Boo.Lang.Compiler.dll"/>
+				<include name="lib/log4net.dll"/>
+				<include name="lib/Lucene.Net.dll"/>
+			</references>
+		</csc>
+	</target>
+</project>

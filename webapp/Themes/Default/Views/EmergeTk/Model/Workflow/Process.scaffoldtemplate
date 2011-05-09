@@ -1,0 +1,27 @@
+<Widget xmlns:emg="http://www.emergetk.com/">
+    <div class="panel-summary clearfix">
+        <div class="name">
+            <strong>Name</strong> : {Name}
+        </div>
+        <div class="buttonPane">
+            <emg:PlaceHolder Id="EditPlaceHolder"/>
+            <emg:PlaceHolder Id="DeletePlaceHolder"/>
+        </div>
+    </div>
+
+
+
+
+  <!--div class="field fieldOperations">
+    <strong>Operations</strong> : {Operations}
+  </div>
+  <div class="field fieldPermittedStates">
+    <strong>PermittedStates</strong> : {PermittedStates}
+  </div>
+  <div class="field fieldPayloadTypeFriendlyName">
+    <strong>PayloadTypeFriendlyName</strong> : {PayloadTypeFriendlyName}
+  </div>
+  <div class="field fieldPayloadType">
+    <strong>PayloadType</strong> : {PayloadType}
+  </div-->
+</Widget>

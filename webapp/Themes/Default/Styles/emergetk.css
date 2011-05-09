@@ -1,0 +1,434 @@
+D#loading {
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	text-align:center;
+}
+
+.ToggleBox {
+	border:1px solid #e8e8e8;
+	margin:5px 0;
+}
+
+.ToggleBox .toggleMain {
+	padding:3px;
+}
+
+.toggleTop {
+	padding:3px;
+	margin:0;
+	font-weight:bold;
+	font-size:11px;
+}
+
+.toggleTop div {
+	padding-left:18px;
+	cursor:pointer;
+}
+
+.toggleTop div.open {
+	background:url(/Themes/Default/Images/Icons/close-mini.png) no-repeat;
+	height:16px;
+}
+
+.toggleTop div.closed {
+	background:url(/Themes/Default/Images/Icons/expand.png) no-repeat;
+	height:16px;
+}
+
+.error { color:Red;font-weight:bold; padding:3px;}
+
+.textBox { padding-right:5px;}
+
+.sortedDiv, .unsortedDiv {
+	width:15em;
+	float:left;
+}
+
+.pager { text-align:right; }
+
+.lightbox .front {
+	
+	text-align:left;
+	padding:15px;
+	background:white;
+	border:1px solid #888;
+	overflow:auto;
+	clear:right;
+}
+
+.lightbox {
+	top:0px;
+	left:0px;
+	text-align:left;
+	width:100%;
+	height:100%;
+	position:absolute;
+}
+
+.lightbox .border {
+	position:relative;
+	top:60px;
+	margin:0pt auto;
+	width:620px;
+}
+
+.shadow {
+	height:100%;
+	left:3px;
+	position:absolute;
+	top:5px;
+	width:100%;
+}
+
+.lightbox h2 { 
+	padding:0px;
+	margin:0px;
+}
+
+.lightbox .back {
+	position:fixed;left:0;width:100%;top:0px;margin:0px;height:100%;background-color:#222;z-index:100;
+}
+
+.lightbox .help { float:right; width:260px; font-size:0.9em;}
+.lightbox .title { font-weight:bold; color:#333; }
+.lightbox .decorator { 
+	background:silver; 
+	z-index:201;
+	position:relative;
+	padding:4px; 
+	border:1px solid #444;
+	width:600px;
+	margin:0 auto;
+}
+	
+.closeLink { 
+	position:absolute;
+	right:-13px;
+	top:5px;
+	width:30px;
+}
+
+.Login label {
+	width:10em;
+	float:left;
+}
+
+.Login .username, .Login .password {
+	margin:0.5em 0;
+}
+
+/* Begin Theme Styles -- initial skin */
+
+	
+/* TABS */
+.TabContent {
+	padding: 10px; 
+	border:1px solid #ccc;
+}
+
+.TabLabels {
+	line-height:normal;
+	height: 29px;
+	margin-top:0;
+}
+.TabLabels ul {
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+
+.TabLabels li#current { 
+	background:white; border-left:1px solid #CCCCCC;
+	border-right:1px solid #CCCCCC;
+	border-top:1px solid #CCCCCC;
+}
+
+.TabLabels li {
+	float:left;
+	background:#aaa;
+	margin: 0;
+	margin-right: 6px;
+	padding:0;
+	padding: 2px 15px;
+	margin-top:5px;
+	line-height:21px;
+	height:20px;
+	-moz-border-radius-topleft:3px;
+	-moz-border-radius-topright:3px;
+	-webkit-border-top-left-radius:3px;
+	-webkit-border-top-right-radius:3px;
+	border-radius-topleft:3px;
+	border-radius-topright:3px;
+}
+
+.TabLabels li img 
+{
+	float:right;
+}
+
+.TabLabels a {
+	margin:0px;
+	height: 18px;
+	text-decoration: none;
+	color: #eee;
+	font-size: 0.9em;
+	font-weight:bold;
+}
+
+.TabLabels li:hover {
+	background: #ddd;
+}
+
+.TabLabels li:hover a {
+	color:#555;
+}
+
+.TabLabels li.disabled:hover {
+	background:none;
+}
+
+.TabLabels li:hover a.disabled {
+	
+}
+
+.TabLabels #current a {
+		color:#333;
+}TabContent
+		
+/* ADMIN Styles */
+
+.modelForm {
+	border:1px solid #ccc;
+	background:#efefef;
+	color: #222;
+	padding: 3px;
+	margin:2px;
+}
+
+
+/* ERRORS & WARNINGS */
+.caution {
+	background: #fff5bf;/*d66666*/
+	border: 1px dotted #64a9ff;
+	font-style: italic;
+}
+
+.Button { display:inline; }
+.Button a img { border:0; }
+
+.modelForm label  {
+	padding:0 5px;
+}
+
+.modelForm .editFieldTitle input, .modelForm .editFieldBody textarea {
+	width:500px;	
+}
+
+/*Notification Area*/
+.defaultNotificationArea {
+	background:#FFFEA5 none repeat scroll 0% 0%;
+	border:2px solid #795000;
+	font-size:0.8em;
+	left:30%;
+	margin:0pt auto;
+	padding:0.5em;
+	position:fixed;
+	top:5px;
+	width:40%;
+}
+
+.defaultNotificationArea .error {
+	font-weight:normal;
+}
+
+
+label.editFieldInput input,
+label.editFieldInput select {
+	margin-left:5px;
+}
+
+
+.query-manager .TabLabels { margin-top:0; }
+ 
+.showCompleted { color: #666; font-size:0.8em; margin-top:5px; }
+ 
+div.MessageBox { 	
+	position:absolute;
+}
+
+div.MessageBox {
+	background:#eee url(../Images/important-small.png) no-repeat scroll left center;
+	border:1px solid #333;
+	color:#333;
+	font-size:12px;
+	font-weight:normal;
+	left:0pt;
+	min-width:100px;
+	padding:10px 10px 10px 34px;
+	font-size: .9em;	
+	text-align:center;
+	top:-1em;
+	z-index:1;
+}
+
+.MessageBox a { 
+	margin-right:10px;
+	color: #333;
+}
+
+.pager .selected { font-weight:bold; color:black; text-decoration:none; }
+
+/* Image Upload Widget Styles */
+
+.ImageUpload {
+	width:100%;
+}
+
+.ImageUpload .Preview {
+	margin:5px auto;
+	clear:left;
+}
+
+.ImageUpload .Preview img {
+	max-height:300px;
+	max-width:300px;
+}
+
+.ImageUpload form {
+
+	clear:left;	
+}
+
+/* Clear Fix Element
+-------------------------------------------------------------------------  */
+* html .clearfix{height:1%;}
+.clearfix{display:inline-block;}
+.clearfix:after{clear:both;content:".";display:block;height:0;line-height:0;visibility:hidden;}
+html[xmlns] .clearfix{display:block;}
+
+.clearfix:after {
+    content: "."; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+}
+
+* html .clearfix {height: 1%;}
+.clearfix {display: block;}
+
+.dijitPopup {
+	font-size:0.7em;
+}
+
+
+/* DOJO DND */
+/*
+2
+3 there are basically all the classes you can set
+4 for the various dojo.dnd states and elements in
+5 their simplest form. hacking welcome.
+6
+7*/
+.dojoDndContainer {
+	min-height:10px;
+	background:white;
+	border:1px dashed #999;
+
+	
+}
+
+.dojoDndContainerOver {
+	 min-height:10px;
+	 cursor:pointer;
+	 background:white;
+	 border:1px dashed black;
+}
+
+.dojoDndItem {
+ padding:3px;
+}
+
+.dojoDndItemOver {
+ background: #ededed;
+ cursor:pointer;
+ 
+}
+
+.dojoDndItemSelected {
+ background: #ccf; color: #444;
+}
+
+.dojoDndItemAnchor {
+ 
+}
+
+.dojoDndItemOver .dojoDndItemSelected {
+ background: #ededed;
+}
+
+.dojoDndItemOver .dojoDndItemAnchor {
+ background: #ededed;
+}
+
+.dojoDndItemBefore {
+ border-top: 2px solid #369;
+}
+
+.dojoDndItemAfter {
+ border-bottom: 2px solid #369;
+}
+
+.dojoDndAvatar {
+ border:2px solid #ccc;
+ font-size: 75%;
+ -moz-border-radius:8pt 8pt;
+ radius:8pt;
+}
+
+.dojoDndAvatarHeader {
+ background: #aaa;
+}
+
+.dojoDndAvatarItem {
+ background: #fff;
+ border-bottom:1px solid #666;
+}
+
+.throbber
+{
+	background-image:url(../Images/loading.png);
+	width:18px;
+	height:18px;
+	position:absolute;
+	z-index:99999;
+}
+
+/* WORKBENCH STYLES */
+
+.workbench table {
+	border-collapse:collapse;	
+	width:100%;
+	margin:1em;
+} 
+
+.workbench tr.even {
+	background:#eee;
+}
+
+.workbench td {
+	border:1px solid #aaa;
+	padding:0.5em;
+}
+
+.permission-list span strong {
+	border:1px solid silver;
+	margin:2px 0.5em 2px;
+	padding:2px;
+	font-size:0.8em;
+	color:silver;
+	float:left;
+	display:block;
+}
