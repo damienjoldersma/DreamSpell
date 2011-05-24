@@ -1,0 +1,18 @@
+DreamSpell Android App
+----------------------
+
+This is a an Android app to explore DreamSpell.
+
+Install
+-------
+You can build this in eclipse after you have installed the Android SDK.
+
+
+DreamSpell WebApp 
+----------------------
+This is a an Mono Facebook App to explore the DreamSpell.
+
+
+Install
+-------
+You can build this in MonoDevelop after you have installed the Facebook SDK.
