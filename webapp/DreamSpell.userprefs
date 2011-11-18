@@ -1,44 +1,76 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../emergeTk/addins/SolrSearchProvider/SolrSearchProvider.cs" ctype="Workbench">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" ActiveRuntime="Mono 2.10.2" />
+  <MonoDevelop.Ide.DebuggingService>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Classes/FriendList.cs">
     <Files>
-      <File FileName="../emergeTk-trunk/Admin/Admin.cs" Line="60" Column="1" />
-      <File FileName="../emergeTk-trunk/Widgets/Html/Lists/Scaffold.cs" Line="175" Column="6" />
-      <File FileName="../emergeTk-trunk/Context.cs" Line="1" Column="1" />
-      <File FileName="../../emergeTk/server/Widgets/Html/Layout/TabPane.cs" Line="1" Column="1" />
-      <File FileName="../../emergeTk/server/ImageUtil.cs" Line="37" Column="15" />
-      <File FileName="Classes/Main.cs" Line="5" Column="7" />
-      <File FileName="../emergeTk-trunk/Logging/EmergeTkLog.cs" Line="5" Column="7" />
-      <File FileName="Log4Net.config" Line="78" Column="32" />
-      <File FileName="../../emergeTk/addins/SolrSearchProvider/SolrSearchProvider.cs" Line="16" Column="46" />
+      <File FileName="../git/emergeTk/server/Model/Providers/MySqlProvider.cs" Line="428" Column="14" />
+      <File FileName="Classes/Main.cs" Line="217" Column="40" />
+      <File FileName="web.config" Line="89" Column="93" />
+      <File FileName="Themes/Default/Scripts/client.js" Line="573" Column="29" />
+      <File FileName="Themes/Default/Scripts/client-facebook.js" Line="484" Column="14" />
+      <File FileName="../git/emergeTk/server/Context.cs" Line="496" Column="4" />
+      <File FileName="Themes/Dream/Views/DreamSpell/StarDetail.xml" Line="6" Column="10" />
+      <File FileName="Themes/Dream/Views/DreamSpell/StarSummary.xml" Line="7" Column="81" />
+      <File FileName="../git/emergeTk/server/Model/AbstractRecord.cs" Line="72" Column="15" />
+      <File FileName="Classes/Model/DreamFolk.cs" Line="65" Column="21" />
+      <File FileName="Classes/FriendList.cs" Line="189" Column="5" />
+      <File FileName="Themes/Dream/Views/DreamSpell/FriendList.xml" Line="1" Column="1" />
+      <File FileName="Themes/Dream/Views/Main.xml" Line="6" Column="21" />
+      <File FileName="Themes/Dream/Views/DreamSpell/StarInfo.xml" Line="1" Column="1" />
+      <File FileName="Themes/Dream/Views/DreamSpell/FriendGroups.xml" Line="5" Column="16" />
+      <File FileName="Themes/Dream/Styles/styles.css" Line="176" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="DreamSpell" expanded="True">
+            <Option id="ShowVersionControlOverlays" value="True" />
+            <Option id="ShowAllFiles" value="True" />
             <Node name="References" expanded="True" />
+            <Node name="Classes" expanded="True">
+              <Node name="Model" expanded="True" />
+              <Node name="FriendList.cs" selected="True" />
+            </Node>
+            <Node name="Themes" expanded="True">
+              <Node name="Default" expanded="True">
+                <Node name="Scripts" expanded="True">
+                  <Node name="dojo" expanded="True" />
+                </Node>
+                <Node name="Styles" expanded="True" />
+                <Node name="Views" expanded="True">
+                  <Node name="EmergeTk" expanded="True" />
+                </Node>
+              </Node>
+              <Node name="Dream" expanded="True">
+                <Node name="Styles" expanded="True" />
+                <Node name="Views" expanded="True">
+                  <Node name="DreamSpell" expanded="True" />
+                </Node>
+              </Node>
+            </Node>
           </Node>
           <Node name="emergetk" expanded="True">
+            <Node name="Model" expanded="True">
+              <Node name="Providers" expanded="True" />
+            </Node>
+          </Node>
+          <Node name="EmergeTkLib" expanded="True">
             <Node name="References" expanded="True" />
           </Node>
           <Node name="EnyimCacheProvider" expanded="True" />
           <Node name="ProtobufSerializer" expanded="True" />
-          <Node name="SolrSearchProvider" expanded="True" selected="True">
-            <Node name="References" expanded="True" />
-          </Node>
           <Node name="WebServiceProvider" expanded="True" />
         </State>
       </Pad>
       <Pad Id="ClassPad">
         <State expanded="True" selected="True" />
       </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State />
-      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" ActiveRuntime="Mono 2.10.2" ctype="Workspace" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches ctype="PinnedWatchStore" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

@@ -5,7 +5,6 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.50727</ProductVersion>
     <ProjectGuid>{E8536098-A424-4CC9-A414-33227DF54EE5}</ProjectGuid>
-    <ProjectTypeGuids>{349C5851-65DF-11DA-9384-00065B846F21};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AssemblyName>DreamSpell</AssemblyName>
     <SchemaVersion>2.0</SchemaVersion>
@@ -16,25 +15,35 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AspNet>
       <AspNet GenerateNonPartialCodeBehindMembers="false" />
     </AspNet>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="Execute" command="Scripts/restart.sh" workingdir="${ProjectDir}" externalConsole="true" />
+      </CustomCommands>
+    </CustomCommands>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
+    <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Release</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AspNet>
       <AspNet GenerateNonPartialCodeBehindMembers="false" />
     </AspNet>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\log4net.dll</HintPath>
@@ -43,47 +52,37 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\Facebook.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Web.Services" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="web.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>    
     <Content Include="Log4Net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Global.asax.cs" />
     <Compile Include="Default.aspx.cs" />
     <Compile Include="Default.aspx.designer.cs" />
-    <Compile Include="Classes\Main.cs" />
+    <Compile Include="Classes\Model\DreamFolk.cs" />
     <Compile Include="Classes\Model\Glyph.cs" />
-    <Compile Include="Classes\GlyphLabel.cs" />
     <Compile Include="Classes\Model\Tone.cs" />
-    <Compile Include="Classes\ToneLabel.cs" />
     <Compile Include="Classes\DreamSpellLog.cs" />
     <Compile Include="Classes\DreamSpellLogManager.cs" />
-    <Compile Include="Classes\GalacticSpinCycleView.cs" />
-    <Compile Include="Classes\FriendList.cs" />
     <Compile Include="Classes\DreamSpellUtil.cs" />
-    <Compile Include="Classes\StarDetail.cs" />
-    <Compile Include="Classes\StarSummary.cs" />
-    <Compile Include="Classes\Model\DreamFolk.cs" />
     <Compile Include="Classes\FriendGroups.cs" />
+    <Compile Include="Classes\FriendList.cs" />
+    <Compile Include="Classes\GalacticSpinCycleView.cs" />
+    <Compile Include="Classes\GlyphLabel.cs" />
+    <Compile Include="Classes\Main.cs" />
+    <Compile Include="Classes\StarDetail.cs" />
     <Compile Include="Classes\StarInfo.cs" />
+    <Compile Include="Classes\StarSummary.cs" />
+    <Compile Include="Classes\ToneLabel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
-  <!--  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v8.0\WebApplications\Microsoft.WebApplication.targets" />-->
-  <ProjectExtensions>
-    <MonoDevelop>
-      <Properties VerifyCodeBehindFields="true" VerifyCodeBehindEvents="true">
-        <XspParameters Port="8081" Address="127.0.0.1" SslMode="None" SslProtocol="Default" KeyType="None" CertFile="" KeyFile="" PasswordOptions="None" Password="" Verbose="true" />
-      </Properties>
-    </MonoDevelop>
-  </ProjectExtensions>
   <ItemGroup>
     <None Include="Scripts\create-database.sh" />
     <None Include="Scripts\makeSeed.sh" />
@@ -2072,23 +2071,23 @@
     <None Include="Themes\Dream\Views\Main.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\emergeTk\server\emergetk.csproj">
+    <ProjectReference Include="..\emergeTk\server\emergetk.csproj">
       <Project>{52E41D18-8F12-430D-B5B5-43C7BBA18F61}</Project>
       <Name>emergetk</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\emergeTk\addins\EnyimCacheProvider\EnyimCacheProvider.csproj">
+    <ProjectReference Include="..\git\emergeTk\addins\EmergeTkLib\EmergeTkLib.csproj">
+      <Project>{975E3A7F-60F9-4FEF-BC73-EC9F3F84A623}</Project>
+      <Name>EmergeTkLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\git\emergeTk\addins\EnyimCacheProvider\EnyimCacheProvider.csproj">
       <Project>{3E848E5D-BACB-43E8-B00C-82D18E455622}</Project>
       <Name>EnyimCacheProvider</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\emergeTk\addins\ProtobufSerializer\ProtobufSerializer.csproj">
+    <ProjectReference Include="..\git\emergeTk\addins\ProtobufSerializer\ProtobufSerializer.csproj">
       <Project>{91E45347-1107-4DEC-A95A-A6388878FF0D}</Project>
       <Name>ProtobufSerializer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\emergeTk\addins\SolrSearchProvider\SolrSearchProvider.csproj">
-      <Project>{B6781C36-01AD-4F49-B4AE-A637945676F0}</Project>
-      <Name>SolrSearchProvider</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\emergeTk\addins\WebServiceProvider\WebServiceProvider.csproj">
+    <ProjectReference Include="..\git\emergeTk\addins\WebServiceProvider\WebServiceProvider.csproj">
       <Project>{2648AC85-2BB4-4DA0-AF7E-F43FA0D756DA}</Project>
       <Name>WebServiceProvider</Name>
     </ProjectReference>

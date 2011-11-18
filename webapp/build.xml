@@ -44,16 +44,16 @@
 	  <reference file="${lib}/log4net.dll"/>
 	  <reference file="${lib}/MySql.Data.dll"/>
 	  <reference file="${lib}/NPlot.dll"/>
-	  <reference file="${basedir}/../emergeTk-trunk/bin/EmergeTk.dll"/>
-     <reference file="${basedir}/../emergeTk-trunk/bin/Boo.Lang.CodeDom.dll"/>
-     <reference file="${basedir}/../emergeTk-trunk/bin/Boo.Lang.Compiler.dll"/>
-     <reference file="${basedir}/../emergeTk-trunk/bin/Boo.Lang.dll"/>
-     <reference file="${basedir}/../emergeTk-trunk/bin/Boo.Lang.Interpreter.dll"/>
-     <reference file="${basedir}/../emergeTk-trunk/bin/Boo.Lang.Parser.dll"/>
-     <reference file="${basedir}/../emergeTk-trunk/bin/Boo.Lang.Useful.dll"/>
-     <reference file="${basedir}/../emergeTk-trunk/bin/MySql.Data.dll"/>
-     <reference file="${basedir}/../emergeTk-trunk/bin/System.Data.SQLite.dll"/>  
-     <reference file="${basedir}/../emergeTk-trunk/lib/Lucene.Net.dll"/>
+	  <reference file="${basedir}/../emergeTk/server/bin/EmergeTk.dll"/>
+     <reference file="${basedir}/../emergeTk/server/bin/Boo.Lang.CodeDom.dll"/>
+     <reference file="${basedir}/../emergeTk/server/bin/Boo.Lang.Compiler.dll"/>
+     <reference file="${basedir}/../emergeTk/server/bin/Boo.Lang.dll"/>
+     <reference file="${basedir}/../emergeTk/server/bin/Boo.Lang.Interpreter.dll"/>
+     <reference file="${basedir}/../emergeTk/server/bin/Boo.Lang.Parser.dll"/>
+     <reference file="${basedir}/../emergeTk/server/bin/Boo.Lang.Useful.dll"/>
+     <reference file="${basedir}/../emergeTk/server/bin/MySql.Data.dll"/>
+     <reference file="${basedir}/../emergeTk/server/bin/System.Data.SQLite.dll"/>  
+     <reference file="${basedir}/../emergeTk/server/lib/Lucene.Net.dll"/>
      <reference file="/usr/local/lib/mono/2.0/System.Data.dll"/>  
      <reference file="/usr/local/lib/mono/2.0/System.Drawing.dll"/>  
      <reference file="/usr/local/lib/mono/2.0/System.Web.dll"/>  
@@ -65,10 +65,10 @@
 
     <target name="copy">
  	<copy todir="${dist}">
-            <fileset dir="${basedir}/../emergeTk-trunk/lib/" includes="**/*.dll"/>
+            <fileset dir="${basedir}/../emergeTk/server/lib/" includes="**/*.dll"/>
         </copy>
         <copy todir="${dist}">
-            <fileset dir="${basedir}/../emergeTk-trunk/bin/" includes="**/*.dll"/>
+            <fileset dir="${basedir}/../emergeTk/server/bin/" includes="**/*.dll"/>
         </copy>
         <copy todir="${dist}">
             <fileset dir="${lib}" includes="**/*.dll"/>

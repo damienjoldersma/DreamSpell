@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /opt/cruisecontrol-bin-2.7/projects/DreamSpell
+cd ~/workspaces/DreamSpell
 if [ -e pid ] 
 then
   pid=`cat pid`

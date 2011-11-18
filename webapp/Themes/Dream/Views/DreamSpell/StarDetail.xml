@@ -2,7 +2,7 @@
 
 <div class="star-detail-container">
 	<emg:Pane Id="StarSummaryPicture" ClassName="star-summary-picture">
-		<img src="{PictureUrl}"/>
+		<img src="{PictureSquareUrl}"/>
 		<br/>		
 		{FirstName}				
 	</emg:Pane>

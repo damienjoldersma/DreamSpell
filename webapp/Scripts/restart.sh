@@ -1,2 +1,2 @@
-cd /opt/cruisecontrol-bin-2.7/projects/DreamSpell
+cd ~/workspaces/DreamSpell
 ./Scripts/stopserver.sh && ./Scripts/startserver.sh

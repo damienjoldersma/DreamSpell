@@ -92,20 +92,27 @@ img
 	font-size:12px;
 	height:88px;
 	margin-right:10px;
-	margin-top:-119px;
+	margin-top:-133px;
 	padding:3px;
-	width:130px;
+	width:90px;
 }
 
 h1
 {
-	margin-left:40px;
+	margin-left:40px;	
+	font-size:2.5em;
+	line-height:1.2em;
+	font-weight:bold;
 }
 
-#StarHeader.star-summary .DreamName, #StarHeader.star-summary .FirstName
-
+#StarHeader.star-summary .DreamName, #StarHeader.star-summary .FirstName, #StarHeader.star-summary .star-summary-picture 
 {
 	 display:none; 
+}
+
+#StarHeader.star-summary .hoverbox .star-summary-picture 
+{
+	 display:block; 
 }
 
 .MeTab .star-summary,
@@ -116,10 +123,10 @@ h1
 	border:1px solid black;
 	float:left;
 	padding:3px;
-	width:55px;
-	font-size:10px;
+	width:60px;
+	font-size:9px;
 	margin:10px;
-	height:250px;
+	height:185px
 }
 
 .MeTab .star-detail,
@@ -131,9 +138,10 @@ h1
 	
 }
 
-.friend-groups .star-detail
+.friend-groups .star-detail,
+.friend-list .star-detail
 {
-	width:250px;
+	width:220px;
 	float:none;
 }
 
@@ -150,13 +158,12 @@ h1
 .star-summary-picture
 {	
 	position:relative;
-	min-height:90px;
+	/* min-height:95px; */
 }
 
 #StarHeader.star-summary .star-summary-picture
-{
-	
-	float:left;	
+{	
+	/*float:left;	*/
 }
 
 .MeTab .star-summary-picture
@@ -188,16 +195,11 @@ h1
 	top:0;
 }
 
-.friend-groups .star-summary-dream .hover
-{	
-	margin-left:-98px;
-	margin-top:-260px;
-}
-
+.friend-groups .star-summary-dream .hover,
 .friend-list .star-summary-dream .hover
 {	
-	margin-left:-191px;
-	margin-top:-150px;
+	margin-left:-81px;
+	margin-top:-231px;
 }
 
 
@@ -212,7 +214,13 @@ h1
 .TodayTab .star-detail-container, 
 .FriendsTab .star-detail-container
 {	
-	width:250px;
+	width:360px;
+}
+
+.friend-groups .star-detail-container,
+.friend-list .star-detail-container
+{
+	width:220px;
 }
 
 .star-detail-container
@@ -357,7 +365,8 @@ border:1px solid black;
 
 .TodayTab .friend-groups .star-detail-container .star-summary-picture,
 .MeTab .friend-groups .star-detail-container .star-summary-picture,
-.FriendsTab .friend-groups .star-detail-container .star-summary-picture
+.FriendsTab .friend-groups .star-detail-container .star-summary-picture,
+.FriendsTab .friend-list .star-detail-container .star-summary-picture
 {
 	display:block;
 	padding:10px;

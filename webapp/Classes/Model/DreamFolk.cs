@@ -20,7 +20,7 @@ namespace DreamSpell.Model
 		DateTime birthday,last_update;
 		int kin;		
 		RecordList<DreamFolk> friends;
-		string pictureBigUrl,pictureUrl,pictureSmallUrl;
+		string pictureBigUrl,pictureUrl,pictureSmallUrl,pictureSquareUrl;
 		Tone tone;
 		Glyph seal,guide,analog,occult,antipode;
 		bool updated = false;
@@ -46,21 +46,28 @@ namespace DreamSpell.Model
 
 		public DreamFolk(Facebook.Entity.User fb_user)
 		{
+			this.update(fb_user);
+			
+			log.Debug("\n\nCreated new dreamfolk person: " + this.Birthday);		
+		}
+		
+		public void update(Facebook.Entity.User fb_user)
+		{
 			this.FacebookId = fb_user.UserId;
 			this.FirstName = fb_user.FirstName;
 			this.LastName = fb_user.LastName;
 			this.Birthday = (DateTime)fb_user.Birthday;
-			this.PictureSmallUrl = Convert.ToString( fb_user.PictureSmallUrl );
 			this.PictureUrl = Convert.ToString( fb_user.PictureUrl );
 			this.PictureBigUrl = Convert.ToString( fb_user.PictureBigUrl );
+			this.PictureSmallUrl = Convert.ToString( fb_user.PictureSmallUrl );
+			this.PictureSquareUrl = Convert.ToString( fb_user.PictureSquareUrl );
 			
-			log.Debug("\n\nCreated new dreamfolk person: " + this.Birthday);
-			
+			log.Debug("\n\nUpdated dreamfolk person: " + this.Birthday);			
 		}
 
 		public string GetName()
 		{
-			if ( Seal == null || Seal.Number == 0 ) return "Unknown";
+			if ( Seal == null || Seal.Number == 0 ) return "<a target=\"_parent\" href=\"http://apps.facebook.com/dreamspell/index.aspx?invite=1\" style=\"background-color:#3B5998;border-color:#D9DFEA #0E1F5B #0E1F5B #D9DFEA;border-style:solid;border-width:1px;color:white;margin-right:5px;padding:3px 10px;line-height:24px\">Invite!</a>";;
 			string seal = DreamSpellUtil.Seals[Seal.Number,0];
 			//log.Debug("seal is: " + seal);			
 			seal = seal.Replace(" "," " + DreamSpellUtil.Tones[Tone.Number,0] + " ");
@@ -89,7 +96,7 @@ namespace DreamSpell.Model
 				this.Occult = new Glyph();
 				this.Antipode = new Glyph();
 				this.Kin = 0;
-				log.Error("Invalid date set for birthday calc for " + FirstName + " " + LastName + " " + FacebookId,bday);
+				//log.Error("Invalid date set for birthday calc for " + FirstName + " " + LastName + " " + FacebookId,bday);
 				return; 
 			}
 			DreamSpellUtil.Calc(bday);			
@@ -403,20 +410,30 @@ namespace DreamSpell.Model
 				updated = value;
 			}
 		}
-		
-		public  void Save()
+
+		public string PictureSquareUrl {
+			get {
+				return pictureSquareUrl;
+			}
+			set {
+				pictureSquareUrl = value;
+			}
+		}
+		/*
+		public override void Save()
         {
 			this.LastUpdate = DateTime.Now;
             base.Save();
 			this.SaveRelations("Friends");           
         }
 		
-		public  void Save(bool SaveChildren)
+		public override void Save(bool SaveChildren)
         {
 			this.LastUpdate = DateTime.Now;
             base.Save(SaveChildren);
 			this.SaveRelations("Friends");    			
-        }	
+        }
+        */	
 
 	}
 }

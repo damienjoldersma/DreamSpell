@@ -2,7 +2,7 @@
 
 	<emg:Pane Id="Tones">
 	
-	<H2>Today's Tones</H2>
+	<H2>Tones</H2>
 
 	<hr/>
 
@@ -13,8 +13,8 @@
 	</emg:Pane>
 
 	<emg:Pane Id="Seals">
-	
-	<H2>Today's Solar Tribe</H2>
+	 
+	<H2>Solar Tribe</H2>
 
 	<hr/>
 

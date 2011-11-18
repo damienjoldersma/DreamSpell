@@ -21,6 +21,7 @@ namespace DreamSpell
 	
 	public class FriendList : Generic
 	{
+		private static readonly EmergeTkLog log = EmergeTkLogManager.GetLogger(typeof(FriendList));
 		
 		public FriendList()
 		{
@@ -28,7 +29,7 @@ namespace DreamSpell
 		
 		public override void PostInitialize()
 		{
-			UnDataBindWidget();
+			//UnDataBindWidget();
 			//this.Record = Main.Current.CurrentDreamFriend;
 			//this.DataBindWidget();
 			
@@ -50,12 +51,13 @@ namespace DreamSpell
 			{
 				log.Warn("Creating new dreamPerson");
 				dreamPerson = new DreamFolk(Main.Current.FbUser);
-				dreamPerson.Save();
+				dreamPerson.Save(true);
 			} 
 			else if ( dreamPerson.Birthday != Main.Current.FbUser.Birthday )
 			{
+				log.Warn("Updating dreamPerson's birthday");
 				dreamPerson.Birthday = (DateTime)Main.Current.FbUser.Birthday;
-				dreamPerson.Save();
+				dreamPerson.Save(true);
 			}
 				
 			DreamFolk dreamFriend = null;
@@ -73,12 +75,13 @@ namespace DreamSpell
 				dreamFriend = dreamPerson.GetFriend(friend);
 				if ( dreamFriend == null )
 				{
+					log.Warn("dreamFriend not found, going to create new one, friend is", friend);
 					fb_users = Main.Current.FacebookApi.GetUserInfo(friend);
 					Facebook.Entity.User fb_user = fb_users[0];
 					log.Debug(fb_user);
 					
 					dreamFriend = new DreamFolk(fb_user);
-					dreamFriend.Save();
+					dreamFriend.Save(true);
 					
 					log.Warn("Created new dreamFriend");
 					
@@ -91,9 +94,18 @@ namespace DreamSpell
 				else if ( !dreamFriend.Updated )
 				{
 					log.Warn("Updating dreamFriend");
-					dreamFriend.Birthday = dreamFriend.Birthday;
+
+					fb_users = Main.Current.FacebookApi.GetUserInfo(dreamFriend.FacebookId);
+					Facebook.Entity.User fb_user = fb_users[0];
+					log.Debug(fb_user);					
+					
+					//dreamFriend.Birthday = dreamFriend.Birthday;
+					dreamFriend.update(fb_user);
+					
 					dreamFriend.Updated = true;
-					//dreamFriend.Save();				
+					dreamFriend.Save(true);	
+					
+					count++;
 				}
 				//else
 				//	log.Warn("DreamFriend is current and up todate",dreamFriend.FirstName);
@@ -177,12 +189,16 @@ namespace DreamSpell
 			}
 			
 			if ( dreamPersonChanged )
-				dreamPerson.Save();
+			{
+				log.Debug("dreamPersonChanged, saving");			
+				dreamPerson.Save(true);
+			}
 			log.Debug("Added " + added + " new dream friends");		
+			log.Debug("Updated " + count + " dream friends");		
 			
 			Repeater<DreamFolk> friendList = this.Find<Repeater<DreamFolk>>("Friends");
 			//if ( friendList != null && Main.Current.CurrentDreamFriend != null && Main.Current.CurrentDreamFriend.Friends.Count > 0)
-			if ( friendList != null && dreamFolk.Count > 0)
+			if ( friendList != null && Main.Current.CurrentDreamFriend.Friends.Count > 1)
 			{		
 				log.Warn("Going to unbind and rebind friendList, friend count " + dreamFolk.Count);
 				log.Warn("Going to unbind and rebind friendList, CurrentDreamFriend.friend count " + Main.Current.CurrentDreamFriend.Friends.Count);
@@ -192,8 +208,8 @@ namespace DreamSpell
 				friendList.DataBind();			
 				
 				
-				foreach (DreamFolk d in Main.Current.CurrentDreamFriend.Friends)
-					log.Debug(d.FirstName);
+				//foreach (DreamFolk d in Main.Current.CurrentDreamFriend.Friends)
+				//	log.Debug(d.FirstName);
 			}	
 			else
 				log.Error("Skipped unbind and rebind of frinedList");

@@ -182,7 +182,8 @@ using System.Web.SessionState;
 						
 						}
 					}
-				
+					
+					/*
 					foreach (Object obj in tabPane.tabsByLabels.Keys)
 					{
 						if ( ! (obj is HtmlElement) )
@@ -205,12 +206,12 @@ using System.Web.SessionState;
 						else
 							li.AppendClass("no-top-margin");
 					}
+					*/
 				}
 				
 			}
 			else
 			{
-			log.Debug("Working with a facebook session id");
 				log.Debug( sessionKey, userId ); 
 				
 				IsFaceBookSession = true;
@@ -219,7 +220,6 @@ using System.Web.SessionState;
 					handleFacebookUser(sessionKey, userId);			
 			}
 
-			log.Debug("Moving on");
 			if ( CurrentDreamFriend == null )
 			{
 				log.Debug("Setting CurrentDreamFriend to Now");
@@ -276,59 +276,68 @@ using System.Web.SessionState;
 		
 		private void handleFacebookUser(string sessionKey, string userId )
 		{
+			log.Debug("Handling facebook user",userId);	
+		
 			facebookApi = new FacebookAPI();
 			
 			facebookApi.IsDesktopApplication = false;
-					facebookApi.ApplicationKey = apikey;
-					facebookApi.Secret = apisecret;
+        	facebookApi.ApplicationKey = apikey;
+        	facebookApi.Secret = apisecret;
 
 			facebookApi.SessionKey = sessionKey;
-						facebookApi.UserId = userId;
+            facebookApi.UserId = userId;
 
-					facebookApi.ConnectToFacebook();
+        	facebookApi.ConnectToFacebook();
 			
 			FacebookId = facebookApi.GetLoggedInUser();
 			Collection<Facebook.Entity.User> fb_users = facebookApi.GetUserInfo(facebook_id);
+			log.Debug("Got Facebook users fb_users",fb_users);	
 			fb_user = fb_users[0];
-			log.Debug(fb_user);
+			log.Debug("Facebook user fb_user",fb_user);
 			
 			IRecordList<DreamFolk> dreamFolk = DataProvider.LoadList<DreamFolk>(new FilterInfo("FacebookId",FacebookId));
+			log.Debug("Got dreamFolk folk with FacebookId",FacebookId,dreamFolk);
+		
 			DreamFolk dreamPerson = null;
 			if ( dreamFolk.Count > 0 ) dreamPerson = dreamFolk[0];
 			
 			if ( dreamPerson == null )
 			{
-				log.Warn("Creating new dreamPerson");
+				log.Warn("Creating new dreamPerson from Main.Current");
 				dreamPerson = new DreamFolk(Main.Current.FbUser);
-				dreamPerson.Save();
+				dreamPerson.Save(true);
 			}
+			/*
 			else if ( dreamPerson.Birthday != Main.Current.FbUser.Birthday )
 			{
+				log.Warn("Updating birthday dreamPerson from Main.Current");
 				dreamPerson.Birthday = (DateTime)Main.Current.FbUser.Birthday;
-				dreamPerson.Save();
+				dreamPerson.Save(true);
 			}
 			else if ( !dreamPerson.Updated )
+			*/
+			else
 			{
 				log.Warn("Updating dreamPerson");
-				dreamPerson.Birthday = dreamPerson.Birthday;
+				dreamPerson.update(fb_user);
 				dreamPerson.Updated = true;
-				dreamPerson.Save();				
+				dreamPerson.Save(true);				
 			}
 			
 			CurrentDreamFriend = dreamPerson;
 			Now.Friends = CurrentDreamFriend.Friends;
-				}
+        }
 
 		public static Main Current { get { return (Main)Context.Current; } }
 		
 		public FacebookAPI FacebookApi {
-					get {
-						return facebookApi;
-					}
-					set {
-						facebookApi = value;
-					}
-				}
+        	get {
+        		return facebookApi;
+        	}
+        	set {
+        		facebookApi = value;
+        	}
+        }
 
 		public string FacebookId {
 			get {

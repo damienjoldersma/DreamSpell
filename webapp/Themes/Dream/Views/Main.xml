@@ -1,4 +1,4 @@
-<Context xmlns:emg="http://www.emergetk.com/" Id="Main" ClassName="Main">
+<Context xmlns:emg="http://www.emergetk.com/" Id="main" ClassName="Main">
 	<img src="/Images/hunabku.jpg" style="height:90px; width:90px; float:left; border:1px solid black; margin-left:10px; margin-top:-40px;"/>
 
 	<h1>DreamSpell</h1>
@@ -8,10 +8,13 @@
 	<emg:DreamSpell.StarSummary Id="StarHeader" ClientId="StarHeader"/>
 	
 
-		<emg:TabPane Id="tabs">
+
+	<!--<i>Down for maintenance. Should be back up in 10-20 min</i>-->
+
+	<emg:TabPane Id="tabs">
 		<emg:Pane Label="Today" ClassName="TodayTab" Id="Today">				
 			<div class="clearfix">
-			<emg:Label Text="Today is " ClassName="DateLabel"/>
+			<emg:Label Text="Today is {Birthday}" ClassName="DateLabel"/>
 			<emg:DreamSpell.StarInfo/>
 			<emg:DreamSpell.StarDetail/>				
 			</div>
@@ -24,7 +27,7 @@
 			</div>
 			<emg:DreamSpell.FriendGroups/>			
 		</emg:Pane>
-		<emg:Pane Label="Friends" ClassName="FriendsTab" Id="Friends" Visible="False">	
+		<emg:Pane Label="Friends" ClassName="FriendsTab" Id="Friends">	
 			<h2>Dream Friends</h2>
 	
 			<div class="clearfix">

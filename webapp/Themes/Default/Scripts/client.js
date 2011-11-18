@@ -421,6 +421,11 @@ function Widget( args ) //id, baseElem, className, appearEffect )
 //    catch(e){console.debug("error setting up " + args.id ); console.debug(e);}    
 }
 
+Widget.prototype.addClass = function( className )
+{
+	this.className = this.className + " " + className;
+}
+
 Widget.prototype.test = function() { console.log( "testing ", this ); }
 
 Widget.prototype.WireUpEvents = function(wireUpChildren)
@@ -1493,6 +1498,11 @@ function la( args )
 	this.Widget( args );
 	this.elem.innerHTML = args.html ? args.html : '&nbsp;';
 	this.SetValue = this.SetText;
+}
+
+la.prototype.addClass = function( className )
+{
+	this.className = this.className + " " + className;
 }
 
 la.prototype.SetText = function( html )
@@ -2745,7 +2755,6 @@ function DocumentOnClick(evt)
 	Send( "root", "OnClick", evt.clientX + "," + evt.clientY );
 }
 
-/*
 svgSelectableElements = [];
 SvgCircle.inherits(Widget);
 function SvgCircle( args )
@@ -2805,7 +2814,6 @@ function SvgPath( args )
 	this.elemType = "path";
 	this.Widget(args);
 }
-*/
 
 /*
 function(evt)
@@ -2819,7 +2827,6 @@ function(evt)
 	alert(str);
 }*/
 
-/*
 SvgImage.inherits(Widget);
 function SvgImage( args )
 {
@@ -2941,7 +2948,6 @@ function SvgGradient( args )
 }
 
 SvgGradient.prototype.Render = function(){};
-*/
 
 var gdx = 0,gdy = 0;
 var tx = 0, ty = 0;
